@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using HotChocolate.Data;
 using HotChocolate;
 using HotChocolate.Types;
 using Limbo.Umbraco.Subscription.Persistence.Contexts;
-using Limbo.Umbraco.Subscription.Persistence.Subscribers.Models;
 using Limbo.Umbraco.Subscriptions.Bases.GraphQL;
-using Limbo.Umbraco.Subscriptions.Subscribers.Services;
 using Limbo.Umbraco.Subscription.Persistence.SubscriptionItems.Models;
 using Limbo.Umbraco.Subscriptions.SubscriptionItems.Services;
 

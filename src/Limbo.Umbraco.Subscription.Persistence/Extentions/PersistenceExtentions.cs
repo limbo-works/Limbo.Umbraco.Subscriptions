@@ -8,7 +8,6 @@ using Limbo.Umbraco.Subscription.Persistence.SubscriptionSystems.Extentions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 
 namespace Limbo.Umbraco.Subscription.Persistence.Extentions {
     public static class PersistenceExtentions {
