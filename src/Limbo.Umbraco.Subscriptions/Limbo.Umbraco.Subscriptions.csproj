@@ -1,0 +1,48 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>net5.0</TargetFramework>
+        <ContentTargetFolders>.</ContentTargetFolders>
+        <RootNamespace>Limbo.Umbraco.Subscriptions</RootNamespace>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <Version>0.1.0</Version>
+        <Company>Limbo</Company>
+        <Authors>Nikolaj Brask-Nielsen, Jesper Mayntzhusen</Authors>
+        <Copyright>Copyright © 2022</Copyright>
+        <Title>Limbo.Umbraco.Subscriptions</Title>
+        <Description>A package for subscriptions on content nodes in Umbraco</Description>
+    </PropertyGroup>
+
+    <!-- Information for the NuGet package -->
+    <PropertyGroup>
+        <Product>Limbo.Umbraco.Subscriptions</Product>
+        <PackageId>Limbo.Umbraco.Subscriptions</PackageId>
+        <PackageTags>umbraco plugin package</PackageTags>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <PackageProjectUrl>https://github.com/limbo-works/Limbo.Umbraco.Subscriptions</PackageProjectUrl>
+        <PackageIcon>Limbo.png</PackageIcon>
+        <RepositoryType>git</RepositoryType>
+        <RepositoryUrl>https://github.com/limbo-works/Limbo.Umbraco.Subscriptions</RepositoryUrl>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Umbraco.Cms.Core" Version="9.0.0" />
+        <PackageReference Include="Umbraco.Cms.Web.Website" Version="9.0.0"/>
+        <PackageReference Include="Umbraco.Cms.Web.BackOffice" Version="9.0.0"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Content Include="App_Plugins\Limbo.Umbraco.Subscriptions\**\*.*">
+        </Content>
+        <None Include="build\**\*.*">
+            <Pack>True</Pack>
+            <PackagePath>buildTransitive</PackagePath>
+        </None>
+    </ItemGroup>
+
+    <!-- Generate XML documentation -->
+    <PropertyGroup>
+        <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
+    </PropertyGroup>
+</Project>

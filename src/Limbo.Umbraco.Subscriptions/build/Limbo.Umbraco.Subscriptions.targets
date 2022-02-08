@@ -1,0 +1,27 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+    <PropertyGroup>
+        <LimboUmbracoSubscriptionsContentFilesPath>$(MSBuildThisFileDirectory)..\App_Plugins\Limbo.Umbraco.Subscriptions\**\*.*</LimboUmbracoSubscriptionsContentFilesPath>
+    </PropertyGroup>
+
+    <Target Name="CopyLimboUmbracoSubscriptionsAssets" BeforeTargets="Build">
+        <ItemGroup>
+            <LimboUmbracoSubscriptionsContentFiles Include="$(LimboUmbracoSubscriptionsContentFilesPath)" />
+        </ItemGroup>
+        <Message Text="Copying Limbo.Umbraco.Subscriptions files: $(LimboUmbracoSubscriptionsContentFilesPath) - #@(LimboUmbracoSubscriptionsContentFiles->Count()) files"  Importance="high" />
+        <Copy
+            SourceFiles="@(LimboUmbracoSubscriptionsContentFiles)"
+            DestinationFiles="@(LimboUmbracoSubscriptionsContentFiles->'$(MSBuildProjectDirectory)\App_Plugins\Limbo.Umbraco.Subscriptions\%(RecursiveDir)%(Filename)%(Extension)')"
+            SkipUnchangedFiles="true" />
+
+    </Target>
+
+    <Target Name="ClearLimboUmbracoSubscriptionsAssets" BeforeTargets="Clean">
+        <ItemGroup>
+            <LimboUmbracoSubscriptionsDir Include="$(MSBuildProjectDirectory)\App_Plugins\Limbo.Umbraco.Subscriptions\" />
+        </ItemGroup>
+        <Message Text="Clear old Limbo.Umbraco.Subscriptions data"  Importance="high" />
+        <RemoveDir Directories="@(LimboUmbracoSubscriptionsDir)"  />
+    </Target>
+
+</Project>
