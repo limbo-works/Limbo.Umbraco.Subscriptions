@@ -9,5 +9,7 @@ namespace Limbo.Umbraco.Subscription.Persistence.Categories.Models {
 
         public IEnumerable<Subscriber> Subscribers { get; set; }
         public IEnumerable<SubscriptionItem> SubscriptionItems { get; set; }
+
+        public byte[] ConcurrencyStamp { get; set; }
     }
 }

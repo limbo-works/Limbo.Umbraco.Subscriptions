@@ -7,5 +7,7 @@ namespace Limbo.Umbraco.Subscription.Persistence.NewsletterQueues.Models {
         public string Name { get; set; }
 
         public IEnumerable<SubscriptionItem> SubscriptionItems { get; set; }
+
+        public byte[] ConcurrencyStamp { get; set; }
     }
 }

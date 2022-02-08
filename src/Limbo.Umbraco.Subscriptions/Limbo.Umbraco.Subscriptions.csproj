@@ -45,6 +45,10 @@
       <ProjectReference Include="..\Limbo.Umbraco.Subscription.Persistence\Limbo.Umbraco.Subscription.Persistence.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Categories\" />
+    </ItemGroup>
+
     <!-- Generate XML documentation -->
     <PropertyGroup>
         <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
