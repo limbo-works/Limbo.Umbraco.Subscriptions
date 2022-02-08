@@ -13,7 +13,7 @@ namespace TestProject {
 
         [HttpGet]
         public IActionResult Test() {
-            return null;
+            return Ok("Hello");
         }
     }
 }
