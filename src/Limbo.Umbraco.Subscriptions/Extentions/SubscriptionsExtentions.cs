@@ -1,10 +1,14 @@
 ﻿using Limbo.Umbraco.Subscription.Persistence.Extentions;
-using Limbo.Umbraco.Subscriptions.Bases.GraphQL;
+using Limbo.Umbraco.Subscriptions.Bases.Automapper;
+using Limbo.Umbraco.Subscriptions.Bases.GraphQL.Mutations;
+using Limbo.Umbraco.Subscriptions.Bases.GraphQL.Queries;
 using Limbo.Umbraco.Subscriptions.Categories.Extentions;
+using Limbo.Umbraco.Subscriptions.Categories.Mutations;
 using Limbo.Umbraco.Subscriptions.Categories.Queries;
 using Limbo.Umbraco.Subscriptions.NewsletterQueues.Extentions;
 using Limbo.Umbraco.Subscriptions.NewsletterQueues.Queries;
 using Limbo.Umbraco.Subscriptions.Subscribers.Extentions;
+using Limbo.Umbraco.Subscriptions.Subscribers.Mutations;
 using Limbo.Umbraco.Subscriptions.Subscribers.Queries;
 using Limbo.Umbraco.Subscriptions.SubscriptionItems.Extentions;
 using Limbo.Umbraco.Subscriptions.SubscriptionItems.Queries;
@@ -50,7 +54,13 @@ namespace Limbo.Umbraco.Subscriptions.Extentions {
                 .AddTypeExtension<NewsletterQueueQueries>()
                 .AddTypeExtension<SubscriberQueries>()
                 .AddTypeExtension<SubscriptionItemQueries>()
-                .AddTypeExtension<SubscriptionSystemQueries>();
+                .AddTypeExtension<SubscriptionSystemQueries>()
+                .AddMutationType<Mutation>()
+                .AddTypeExtension<CategoryMutations>()
+                .AddTypeExtension<SubscriberMutations>();
+
+            services
+                .AddSubscriptionAutomapper();
 
             return services;
         }
@@ -65,6 +75,13 @@ namespace Limbo.Umbraco.Subscriptions.Extentions {
             });
 
             return app;
+        }
+
+        public static IServiceCollection AddSubscriptionAutomapper(this IServiceCollection services) {
+            services
+                .AddAutoMapper(typeof(AutomapperReference));
+
+            return services;
         }
     }
 }

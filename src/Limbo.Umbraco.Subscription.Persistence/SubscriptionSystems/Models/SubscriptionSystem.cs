@@ -6,7 +6,7 @@ namespace Limbo.Umbraco.Subscription.Persistence.SubscriptionSystems.Models {
         public int Id { get; set; }
         public string Name { get; set; }
 
-        public IEnumerable<Subscriber> Subscribers { get; set; }
+        public virtual IEnumerable<Subscriber> Subscribers { get; set; }
 
         public byte[] ConcurrencyStamp { get; set; }
     }

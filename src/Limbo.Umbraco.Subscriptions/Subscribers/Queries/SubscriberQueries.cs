@@ -7,7 +7,7 @@ using Limbo.Umbraco.Subscription.Persistence.Contexts;
 using Limbo.Umbraco.Subscription.Persistence.Subscribers.Models;
 using Limbo.Umbraco.Subscriptions.Subscribers.Services;
 using HotChocolate.Types;
-using Limbo.Umbraco.Subscriptions.Bases.GraphQL;
+using Limbo.Umbraco.Subscriptions.Bases.GraphQL.Queries;
 
 namespace Limbo.Umbraco.Subscriptions.Subscribers.Queries {
 

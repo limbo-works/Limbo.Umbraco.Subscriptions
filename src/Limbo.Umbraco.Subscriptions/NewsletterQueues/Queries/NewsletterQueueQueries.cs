@@ -7,7 +7,7 @@ using HotChocolate;
 using Limbo.Umbraco.Subscription.Persistence.Contexts;
 using Limbo.Umbraco.Subscription.Persistence.NewsletterQueues.Models;
 using Limbo.Umbraco.Subscriptions.NewsletterQueues.Services;
-using Limbo.Umbraco.Subscriptions.Bases.GraphQL;
+using Limbo.Umbraco.Subscriptions.Bases.GraphQL.Queries;
 
 namespace Limbo.Umbraco.Subscriptions.NewsletterQueues.Queries {
     [ExtendObjectType(typeof(Query))]

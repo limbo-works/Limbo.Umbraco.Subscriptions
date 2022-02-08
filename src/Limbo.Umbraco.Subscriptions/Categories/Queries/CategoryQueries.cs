@@ -5,9 +5,9 @@ using HotChocolate.Data;
 using HotChocolate;
 using HotChocolate.Types;
 using Limbo.Umbraco.Subscription.Persistence.Contexts;
-using Limbo.Umbraco.Subscriptions.Bases.GraphQL;
 using Limbo.Umbraco.Subscriptions.Categories.Services;
 using Limbo.Umbraco.Subscription.Persistence.Categories.Models;
+using Limbo.Umbraco.Subscriptions.Bases.GraphQL.Queries;
 
 namespace Limbo.Umbraco.Subscriptions.Categories.Queries {
 

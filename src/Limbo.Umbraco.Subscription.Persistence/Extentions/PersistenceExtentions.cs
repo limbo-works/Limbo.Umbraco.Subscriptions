@@ -13,7 +13,9 @@ namespace Limbo.Umbraco.Subscription.Persistence.Extentions {
     public static class PersistenceExtentions {
         public static IServiceCollection AddPersistence(this IServiceCollection services, IConfiguration config) {
             services.AddPooledDbContextFactory<SubscriptionDbContext>(options =>
-                options.UseSqlServer(config.GetConnectionString("umbracoDbDSN")).LogTo(Console.WriteLine));
+                options.UseSqlServer(config.GetConnectionString("umbracoDbDSN"))
+                .UseLazyLoadingProxies()
+                .LogTo(Console.WriteLine));
 
             services.AddScoped<ISubscriptionDbContext>(x => {
                 var factory = x.GetRequiredService<IDbContextFactory<SubscriptionDbContext>>();
