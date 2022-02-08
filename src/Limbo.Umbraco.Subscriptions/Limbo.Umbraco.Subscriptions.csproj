@@ -28,8 +28,8 @@
 
     <ItemGroup>
         <PackageReference Include="Umbraco.Cms.Core" Version="9.0.0" />
-        <PackageReference Include="Umbraco.Cms.Web.Website" Version="9.0.0"/>
-        <PackageReference Include="Umbraco.Cms.Web.BackOffice" Version="9.0.0"/>
+        <PackageReference Include="Umbraco.Cms.Web.Website" Version="9.0.0" />
+        <PackageReference Include="Umbraco.Cms.Web.BackOffice" Version="9.0.0" />
     </ItemGroup>
 
     <ItemGroup>
@@ -39,6 +39,10 @@
             <Pack>True</Pack>
             <PackagePath>buildTransitive</PackagePath>
         </None>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Limbo.Umbraco.Subscription.Persistence\Limbo.Umbraco.Subscription.Persistence.csproj" />
     </ItemGroup>
 
     <!-- Generate XML documentation -->
