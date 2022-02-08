@@ -14,7 +14,7 @@ namespace Limbo.Umbraco.Subscription.Persistence.Subscribers.Models {
         public DateTime Created { get; set; }
 
         public IEnumerable<SubscriptionItem> SubscriptionItems { get; set; }
-        public SubscriptionSystem subscriptionSystem { get; set; }
+        public SubscriptionSystem SubscriptionSystem { get; set; }
         public IEnumerable<Category> Categories { get; set; }
 
         public byte[] ConcurrencyStamp { get; set; }

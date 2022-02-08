@@ -1,4 +1,5 @@
 using Limbo.Umbraco.Subscription.Persistence.Contexts;
+using Limbo.Umbraco.Subscriptions.Extentions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -37,20 +38,12 @@ namespace TestProject {
         /// </remarks>
         public void ConfigureServices(IServiceCollection services) {
 
-            services.AddDbContext<SubscriptionDbContext>(options => {
-                options.UseSqlServer(_config.GetConnectionString("umbracoDbDSN"));
-            });
-
-            services.AddScoped<ISubscriptionDbContext, SubscriptionDbContext>();
-
-#pragma warning disable IDE0022 // Use expression body for methods
             services.AddUmbraco(_env, _config)
                 .AddBackOffice()
                 .AddWebsite()
                 .AddComposers()
+                .AddSubscriptions(_config)
                 .Build();
-#pragma warning restore IDE0022 // Use expression body for methods
-
         }
 
         /// <summary>

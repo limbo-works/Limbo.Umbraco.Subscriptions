@@ -47,6 +47,10 @@
 
     <ItemGroup>
       <Folder Include="Categories\" />
+      <Folder Include="NewsletterQueues\" />
+      <Folder Include="Subscribers\" />
+      <Folder Include="SubscriptionItems\" />
+      <Folder Include="SubscriptionSystems\" />
     </ItemGroup>
 
     <!-- Generate XML documentation -->
