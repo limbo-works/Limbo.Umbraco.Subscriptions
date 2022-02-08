@@ -60,6 +60,8 @@ namespace TestProject {
 
             app.UseHttpsRedirection();
 
+            app.UseSubscriptionsGraphQLEndpoint();
+
             app.UseUmbraco()
                 .WithMiddleware(u => {
                     u.UseBackOffice();

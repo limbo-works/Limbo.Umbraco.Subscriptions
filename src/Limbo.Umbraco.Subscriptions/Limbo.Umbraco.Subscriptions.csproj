@@ -27,6 +27,9 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="HotChocolate.AspNetCore" Version="12.6.0" />
+        <PackageReference Include="HotChocolate.Data" Version="12.6.0" />
+        <PackageReference Include="HotChocolate.Data.EntityFramework" Version="12.6.0" />
         <PackageReference Include="Umbraco.Cms.Core" Version="9.0.0" />
         <PackageReference Include="Umbraco.Cms.Web.Website" Version="9.0.0" />
         <PackageReference Include="Umbraco.Cms.Web.BackOffice" Version="9.0.0" />
