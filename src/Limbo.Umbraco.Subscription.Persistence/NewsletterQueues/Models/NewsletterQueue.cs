@@ -7,6 +7,6 @@ namespace Limbo.Umbraco.Subscription.Persistence.NewsletterQueues.Models {
         public int Id { get; set; }
         public string Name { get; set; }
 
-        public virtual ICollection<SubscriptionItem> SubscriptionItems { get; set; }
+        public virtual List<SubscriptionItem> SubscriptionItems { get; set; }
     }
 }

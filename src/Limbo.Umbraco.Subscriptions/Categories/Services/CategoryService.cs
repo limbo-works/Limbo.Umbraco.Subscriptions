@@ -28,13 +28,13 @@ namespace Limbo.Umbraco.Subscriptions.Categories.Services {
         public async Task<IServiceResponse<Category>> RemoveSubscribers(int id, int[] subscriberIds) {
             return await ExecuteServiceTask(async () => {
                 return await repository.RemoveSubscribers(id, subscriberIds);
-            }, HttpStatusCode.Created, IsolationLevel.Snapshot);
+            }, HttpStatusCode.OK, IsolationLevel.Snapshot);
         }
 
         public async Task<IServiceResponse<Category>> RemoveSubscriptionItems(int id, int[] subscriptionItemIds) {
             return await ExecuteServiceTask(async () => {
                 return await repository.RemoveSubscriptionItems(id, subscriptionItemIds);
-            }, HttpStatusCode.Created, IsolationLevel.Snapshot);
+            }, HttpStatusCode.OK, IsolationLevel.Snapshot);
         }
     }
 }

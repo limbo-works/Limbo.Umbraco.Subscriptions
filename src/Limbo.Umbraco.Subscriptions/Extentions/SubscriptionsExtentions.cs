@@ -6,11 +6,13 @@ using Limbo.Umbraco.Subscriptions.Categories.Extentions;
 using Limbo.Umbraco.Subscriptions.Categories.Mutations;
 using Limbo.Umbraco.Subscriptions.Categories.Queries;
 using Limbo.Umbraco.Subscriptions.NewsletterQueues.Extentions;
+using Limbo.Umbraco.Subscriptions.NewsletterQueues.Mutations;
 using Limbo.Umbraco.Subscriptions.NewsletterQueues.Queries;
 using Limbo.Umbraco.Subscriptions.Subscribers.Extentions;
 using Limbo.Umbraco.Subscriptions.Subscribers.Mutations;
 using Limbo.Umbraco.Subscriptions.Subscribers.Queries;
 using Limbo.Umbraco.Subscriptions.SubscriptionItems.Extentions;
+using Limbo.Umbraco.Subscriptions.SubscriptionItems.Mutations;
 using Limbo.Umbraco.Subscriptions.SubscriptionItems.Queries;
 using Limbo.Umbraco.Subscriptions.SubscriptionSystems.Extentions;
 using Limbo.Umbraco.Subscriptions.SubscriptionSystems.Queries;
@@ -57,7 +59,9 @@ namespace Limbo.Umbraco.Subscriptions.Extentions {
                 .AddTypeExtension<SubscriptionSystemQueries>()
                 .AddMutationType<Mutation>()
                 .AddTypeExtension<CategoryMutations>()
-                .AddTypeExtension<SubscriberMutations>();
+                .AddTypeExtension<SubscriberMutations>()
+                .AddTypeExtension<NewsletterQueueMutations>()
+                .AddTypeExtension<SubscriptionItemMutations>();
 
             services
                 .AddSubscriptionAutomapper();
