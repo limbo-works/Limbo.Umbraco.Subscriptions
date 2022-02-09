@@ -2,6 +2,7 @@
 using System.Data;
 using System.Net;
 using System.Threading.Tasks;
+using Limbo.Umbraco.Subscription.Persistence.Bases.Model;
 using Limbo.Umbraco.Subscription.Persistence.Bases.Repositories;
 using Limbo.Umbraco.Subscription.Persistence.Bases.Repositories.Crud;
 using Limbo.Umbraco.Subscriptions.Bases.Services.Models;
@@ -9,7 +10,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Limbo.Umbraco.Subscriptions.Bases.Services.Crud {
     public abstract class CrudServiceBase<TDomain, TRepository> : ServiceBase<TRepository>, ICrudServiceBase<TDomain, TRepository>
-        where TDomain : class
+        where TDomain : class, GenericId, new()
         where TRepository : IDbRepository, IDbCrudRepository<TDomain> {
         protected readonly TRepository repository;
 

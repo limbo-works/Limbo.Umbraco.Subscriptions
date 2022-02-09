@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using Limbo.Umbraco.Subscription.Persistence.Bases.Model;
 
 namespace Limbo.Umbraco.Subscription.Persistence.Bases.Repositories.Crud {
     public interface IDbCrudRepository<TDomain> : IDbRepository
-        where TDomain : class {
+        where TDomain : class, GenericId, new() {
         /// <summary>
         /// Gets all entities
         /// </summary>

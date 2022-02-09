@@ -1,13 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using Limbo.Umbraco.Subscription.Persistence.Bases.Model;
 using Limbo.Umbraco.Subscription.Persistence.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 namespace Limbo.Umbraco.Subscription.Persistence.Bases.Repositories.Crud {
     public class DbCrudRepositoryBase<TDomain> : DbRepositoryBase, IDbCrudRepository<TDomain>
-        where TDomain : class {
+        where TDomain : class, GenericId, new() {
         protected readonly ILogger<DbCrudRepositoryBase<TDomain>> logger;
 
         protected readonly DbSet<TDomain> dbSet;
@@ -71,6 +73,32 @@ namespace Limbo.Umbraco.Subscription.Persistence.Bases.Repositories.Crud {
             } catch (Exception e) {
                 logger.LogError(e, $"Failed on Update with {typeof(TDomain)}");
                 throw new ArgumentException("Failed updating entity");
+            }
+        }
+
+        protected async Task<TDomain> AddToCollection<TCollectionItemType>(int id, int[] collectionIds, Func<TDomain, List<TCollectionItemType>> collectionKeySelector)
+            where TCollectionItemType : class, GenericId, new() {
+            try {
+                var domain = await GetByIdAsync(id);
+                var collection = collectionIds.Where(itemId => !collectionKeySelector(domain).Any(item => item.Id == itemId)).Select(itemId => new TCollectionItemType { Id = itemId });
+                collectionKeySelector(domain).AddRange(collection);
+                return domain;
+            } catch (Exception e) {
+                logger.LogError(e, $"Failed while adding collection {typeof(List<TCollectionItemType>)} to {typeof(TDomain)}");
+                throw new TaskCanceledException("Task failed");
+            }
+        }
+
+        protected async Task<TDomain> RemoveFromCollection<TCollectionItemType>(int id, int[] collectionIds, Func<TDomain, List<TCollectionItemType>> collectionKeySelector)
+            where TCollectionItemType : class, GenericId, new() {
+            try {
+                var domain = await GetByIdAsync(id);
+                var collection = collectionIds.Select(itemId => new TCollectionItemType { Id = itemId });
+                collectionKeySelector(domain).RemoveAll(collectionItem => collection.Any(c => c.Id == collectionItem.Id));
+                return domain;
+            } catch (Exception e) {
+                logger.LogError(e, $"Failed while removing collection {typeof(List<TCollectionItemType>)} from {typeof(TDomain)}");
+                throw new TaskCanceledException("Task failed");
             }
         }
 
