@@ -7,6 +7,6 @@ namespace Limbo.Umbraco.Subscription.Persistence.SubscriptionSystems.Models {
         public int Id { get; set; }
         public string Name { get; set; }
 
-        public virtual ICollection<Subscriber> Subscribers { get; set; }
+        public virtual List<Subscriber> Subscribers { get; set; }
     }
 }
