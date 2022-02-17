@@ -1,36 +1,36 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using HotChocolate.Data;
 using HotChocolate;
 using HotChocolate.Types;
-using Limbo.Subscriptions.Persistence.Contexts;
 using Limbo.Subscriptions.Categories.Services;
 using Limbo.Subscriptions.Persistence.Categories.Models;
 using Limbo.Subscriptions.Bases.GraphQL.Queries;
+using System.Data;
 
 namespace Limbo.Subscriptions.Categories.Queries {
 
     [ExtendObjectType(typeof(Query))]
     public class CategoryQueries {
-        [UseDbContext(typeof(SubscriptionDbContext))]
         [UsePaging]
+        [UseProjection]
         [UseFiltering]
         [UseSorting]
-        public async Task<IEnumerable<Category>> GetCategories([Service] ICategoryService categoryService) {
-            var response = (await categoryService.GetAll()).ReponseValue;
+        public async Task<IQueryable<Category>> GetCategories([Service] ICategoryService categoryService) {
+            var response = (await categoryService.QueryDbSet(IsolationLevel.ReadCommitted)).ReponseValue;
             if (response is not null) {
-                return response.ToList();
+                return response;
             } else {
-                return Enumerable.Empty<Category>();
+                return Enumerable.Empty<Category>().AsQueryable();
             }
         }
 
-        [UseDbContext(typeof(SubscriptionDbContext))]
+        [UseFirstOrDefault]
+        [UseProjection]
         [UseFiltering]
         [UseSorting]
-        public async Task<Category> GetCategoryById([Service] ICategoryService categoryService, int id) {
-            var response = (await categoryService.GetById(id)).ReponseValue;
+        public async Task<IQueryable<Category>> GetCategory([Service] ICategoryService categoryService) {
+            var response = (await categoryService.QueryDbSet(IsolationLevel.ReadCommitted)).ReponseValue;
             return response;
         }
     }

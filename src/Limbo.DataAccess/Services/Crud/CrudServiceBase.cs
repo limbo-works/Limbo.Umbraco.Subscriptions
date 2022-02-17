@@ -7,6 +7,7 @@ using Limbo.DataAccess.Repositories.Crud;
 using Limbo.DataAccess.Repositories;
 using Limbo.DataAccess.Models;
 using Limbo.DataAccess.Services.Models;
+using System.Linq;
 
 namespace Limbo.DataAccess.Services.Crud {
     public abstract class CrudServiceBase<TDomain, TRepository> : ServiceBase<TRepository>, ICrudServiceBase<TDomain, TRepository>
@@ -45,6 +46,12 @@ namespace Limbo.DataAccess.Services.Crud {
             return await ExecuteServiceTask(async () => {
                 return await repository.GetByIdAsync(id);
             }, HttpStatusCode.OK, IsolationLevel.Snapshot);
+        }
+
+        public async Task<IServiceResponse<IQueryable<TDomain>>> QueryDbSet(IsolationLevel isolationLevel = IsolationLevel.Snapshot) {
+            return await ExecuteServiceTask(async () => {
+                return await repository.QueryDbSet();
+            }, HttpStatusCode.OK, isolationLevel);
         }
 
         /// <inheritdoc/>

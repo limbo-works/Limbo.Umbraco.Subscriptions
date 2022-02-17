@@ -1,36 +1,37 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using HotChocolate.Data;
 using HotChocolate;
-using Limbo.Subscriptions.Persistence.Contexts;
 using Limbo.Subscriptions.Persistence.Subscribers.Models;
 using Limbo.Subscriptions.Subscribers.Services;
 using HotChocolate.Types;
 using Limbo.Subscriptions.Bases.GraphQL.Queries;
+using System.Data;
 
 namespace Limbo.Subscriptions.Subscribers.Queries {
 
     [ExtendObjectType(typeof(Query))]
     public class SubscriberQueries {
-        [UseDbContext(typeof(SubscriptionDbContext))]
+
         [UsePaging]
+        [UseProjection]
         [UseFiltering]
         [UseSorting]
-        public async Task<IEnumerable<Subscriber>> GetSubscribers([Service] ISubscriberService subscriberService) {
-            var response = (await subscriberService.GetAll()).ReponseValue;
+        public async Task<IQueryable<Subscriber>> GetSubscribers([Service] ISubscriberService subscriberService) {
+            var response = (await subscriberService.QueryDbSet(IsolationLevel.ReadCommitted)).ReponseValue;
             if (response is not null) {
-                return response.ToList();
+                return response;
             } else {
-                return Enumerable.Empty<Subscriber>();
+                return Enumerable.Empty<Subscriber>().AsQueryable();
             }
         }
 
-        [UseDbContext(typeof(SubscriptionDbContext))]
+        [UseFirstOrDefault]
+        [UseProjection]
         [UseFiltering]
         [UseSorting]
-        public async Task<Subscriber> GetSubscriberById([Service] ISubscriberService subscriberService, int id) {
-            var response = (await subscriberService.GetById(id)).ReponseValue;
+        public async Task<IQueryable<Subscriber>> GetSubscriber([Service] ISubscriberService subscriberService) {
+            var response = (await subscriberService.QueryDbSet(IsolationLevel.ReadCommitted)).ReponseValue;
             return response;
         }
     }

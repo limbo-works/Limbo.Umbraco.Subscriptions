@@ -52,6 +52,7 @@ namespace Limbo.Subscriptions.Extentions {
                 .AddSubscriptionSecurity(useSecurity)
                 .AddFiltering()
                 .AddSorting()
+                .AddProjections()
                 .OnSchemaError(new((dc, ex) => {
                     throw ex;
                 }))

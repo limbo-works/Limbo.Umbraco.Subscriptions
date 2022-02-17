@@ -1,10 +1,18 @@
 ﻿using System.Collections.Generic;
+using System.Data;
+using System.Linq;
 using System.Threading.Tasks;
 using Limbo.DataAccess.Services.Models;
 
 namespace Limbo.DataAccess.Services.Crud {
     public interface ICrudService<TDomain>
         where TDomain : class {
+        /// <summary>
+        /// Queries the dbset
+        /// </summary>
+        /// <returns></returns>
+        Task<IServiceResponse<IQueryable<TDomain>>> QueryDbSet(IsolationLevel isolationLevel = IsolationLevel.Snapshot);
+
         /// <summary>
         /// Gets all entities from the database
         /// </summary>

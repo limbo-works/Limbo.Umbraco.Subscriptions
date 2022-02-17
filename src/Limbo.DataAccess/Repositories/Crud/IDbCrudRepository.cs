@@ -1,10 +1,17 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Limbo.DataAccess.Models;
 
 namespace Limbo.DataAccess.Repositories.Crud {
     public interface IDbCrudRepository<TDomain> : IDbRepository
         where TDomain : class, GenericId, new() {
+        /// <summary>
+        /// Queries the dbset
+        /// </summary>
+        /// <returns></returns>
+        Task<IQueryable<TDomain>> QueryDbSet();
+
         /// <summary>
         /// Gets all entities
         /// </summary>

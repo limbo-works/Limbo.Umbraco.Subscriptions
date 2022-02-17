@@ -1,35 +1,34 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using HotChocolate.Data;
 using HotChocolate;
 using HotChocolate.Types;
-using Limbo.Subscriptions.Persistence.Contexts;
 using Limbo.Subscriptions.Persistence.SubscriptionItems.Models;
 using Limbo.Subscriptions.SubscriptionItems.Services;
 using Limbo.Subscriptions.Bases.GraphQL.Queries;
+using System.Data;
 
 namespace Limbo.Subscriptions.SubscriptionItems.Queries {
     [ExtendObjectType(typeof(Query))]
     public class SubscriptionItemQueries {
-        [UseDbContext(typeof(SubscriptionDbContext))]
         [UsePaging]
+        [UseProjection]
         [UseFiltering]
         [UseSorting]
-        public async Task<IEnumerable<SubscriptionItem>> GetSubscriptionItems([Service] ISubscriptionItemService subscriptionItemService) {
-            var response = (await subscriptionItemService.GetAll()).ReponseValue;
+        public async Task<IQueryable<SubscriptionItem>> GetSubscriptionItems([Service] ISubscriptionItemService subscriptionItemService) {
+            var response = (await subscriptionItemService.QueryDbSet(IsolationLevel.ReadCommitted)).ReponseValue;
             if (response is not null) {
-                return response.ToList();
+                return response;
             } else {
-                return Enumerable.Empty<SubscriptionItem>();
+                return Enumerable.Empty<SubscriptionItem>().AsQueryable();
             }
         }
 
-        [UseDbContext(typeof(SubscriptionDbContext))]
+        [UseProjection]
         [UseFiltering]
         [UseSorting]
-        public async Task<SubscriptionItem> GetSubscriptionItemById([Service] ISubscriptionItemService subscriptionItemService, int id) {
-            var response = (await subscriptionItemService.GetById(id)).ReponseValue;
+        public async Task<IQueryable<SubscriptionItem>> GetSubscriptionItemById([Service] ISubscriptionItemService subscriptionItemService) {
+            var response = (await subscriptionItemService.QueryDbSet(IsolationLevel.ReadCommitted)).ReponseValue;
             return response;
         }
     }

@@ -64,6 +64,15 @@ namespace Limbo.DataAccess.Repositories.Crud {
             }
         }
 
+        public async Task<IQueryable<TDomain>> QueryDbSet() {
+            try {
+                return dbSet;
+            } catch (Exception e) {
+                logger.LogError(e, $"Failed query {typeof(TDomain)}");
+                throw new TaskCanceledException("Task failed");
+            }
+        }
+
         /// <inheritdoc/>
         public virtual TDomain Update(TDomain entity) {
             try {
@@ -102,5 +111,8 @@ namespace Limbo.DataAccess.Repositories.Crud {
             }
         }
 
+        Task<IEnumerable<TDomain>> IDbCrudRepository<TDomain>.GetAllAsync() {
+            throw new NotImplementedException();
+        }
     }
 }

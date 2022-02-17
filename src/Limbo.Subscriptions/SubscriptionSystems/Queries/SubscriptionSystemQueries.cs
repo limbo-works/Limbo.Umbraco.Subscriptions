@@ -1,35 +1,35 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using HotChocolate.Data;
 using HotChocolate;
 using HotChocolate.Types;
-using Limbo.Subscriptions.Persistence.Contexts;
 using Limbo.Subscriptions.Persistence.SubscriptionSystems.Models;
 using Limbo.Subscriptions.SubscriptionSystems.Services;
 using Limbo.Subscriptions.Bases.GraphQL.Queries;
+using System.Data;
 
 namespace Limbo.Subscriptions.SubscriptionSystems.Queries {
     [ExtendObjectType(typeof(Query))]
     public class SubscriptionSystemQueries {
-        [UseDbContext(typeof(SubscriptionDbContext))]
         [UsePaging]
+        [UseProjection]
         [UseFiltering]
         [UseSorting]
-        public async Task<IEnumerable<SubscriptionSystem>> GetSubscriptionSystems([Service] ISubscriptionSystemService subscriptionSystemService) {
-            var response = (await subscriptionSystemService.GetAll()).ReponseValue;
+        public async Task<IQueryable<SubscriptionSystem>> GetSubscriptionSystems([Service] ISubscriptionSystemService subscriptionSystemService) {
+            var response = (await subscriptionSystemService.QueryDbSet(IsolationLevel.ReadCommitted)).ReponseValue;
             if (response is not null) {
-                return response.ToList();
+                return response;
             } else {
-                return Enumerable.Empty<SubscriptionSystem>();
+                return Enumerable.Empty<SubscriptionSystem>().AsQueryable();
             }
         }
 
-        [UseDbContext(typeof(SubscriptionDbContext))]
+        [UseFirstOrDefault]
+        [UseProjection]
         [UseFiltering]
         [UseSorting]
-        public async Task<SubscriptionSystem> GetSubscriptionSystemById([Service] ISubscriptionSystemService subscriptionSystemService, int id) {
-            var response = (await subscriptionSystemService.GetById(id)).ReponseValue;
+        public async Task<IQueryable<SubscriptionSystem>> GetSubscriptionSystemById([Service] ISubscriptionSystemService subscriptionSystemService) {
+            var response = (await subscriptionSystemService.QueryDbSet(IsolationLevel.ReadCommitted)).ReponseValue;
             return response;
         }
     }

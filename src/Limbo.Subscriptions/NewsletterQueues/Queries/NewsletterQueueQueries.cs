@@ -1,35 +1,35 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using HotChocolate.Data;
 using HotChocolate.Types;
 using HotChocolate;
-using Limbo.Subscriptions.Persistence.Contexts;
 using Limbo.Subscriptions.Persistence.NewsletterQueues.Models;
 using Limbo.Subscriptions.NewsletterQueues.Services;
 using Limbo.Subscriptions.Bases.GraphQL.Queries;
+using System.Data;
 
 namespace Limbo.Subscriptions.NewsletterQueues.Queries {
     [ExtendObjectType(typeof(Query))]
     public class NewsletterQueueQueries {
-        [UseDbContext(typeof(SubscriptionDbContext))]
         [UsePaging]
+        [UseProjection]
         [UseFiltering]
         [UseSorting]
-        public async Task<IEnumerable<NewsletterQueue>> GetNewsLetterQueues([Service] INewsletterQueueService newsletterQueueService) {
-            var response = (await newsletterQueueService.GetAll()).ReponseValue;
+        public async Task<IQueryable<NewsletterQueue>> GetNewsLetterQueues([Service] INewsletterQueueService newsletterQueueService) {
+            var response = (await newsletterQueueService.QueryDbSet(IsolationLevel.ReadCommitted)).ReponseValue;
             if (response is not null) {
-                return response.ToList();
+                return response;
             } else {
-                return Enumerable.Empty<NewsletterQueue>();
+                return Enumerable.Empty<NewsletterQueue>().AsQueryable();
             }
         }
 
-        [UseDbContext(typeof(SubscriptionDbContext))]
+        [UseFirstOrDefault]
+        [UseProjection]
         [UseFiltering]
         [UseSorting]
-        public async Task<NewsletterQueue> GetNewsletterQueueById([Service] INewsletterQueueService newsletterQueueService, int id) {
-            var response = (await newsletterQueueService.GetById(id)).ReponseValue;
+        public async Task<IQueryable<NewsletterQueue>> GetNewsletterQueueById([Service] INewsletterQueueService newsletterQueueService) {
+            var response = (await newsletterQueueService.QueryDbSet(IsolationLevel.ReadCommitted)).ReponseValue;
             return response;
         }
     }
