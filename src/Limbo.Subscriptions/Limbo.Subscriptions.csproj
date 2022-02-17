@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Limbo.ApiAuthentication\Limbo.ApiAuthentication.csproj" />
+    <ProjectReference Include="..\Limbo.Subscription.Persistence\Limbo.Subscriptions.Persistence.csproj" />
+  </ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
+		<PackageReference Include="HotChocolate.AspNetCore" Version="12.6.0" />
+		<PackageReference Include="HotChocolate.AspNetCore.Authorization" Version="12.6.0" />
+		<PackageReference Include="HotChocolate.Data" Version="12.6.0" />
+		<PackageReference Include="HotChocolate.Data.EntityFramework" Version="12.6.0" />
+		<PackageReference Include="Umbraco.Cms.Core" Version="9.0.0" />
+		<PackageReference Include="Umbraco.Cms.Web.Website" Version="9.0.0" />
+		<PackageReference Include="Umbraco.Cms.Web.BackOffice" Version="9.0.0" />
+	</ItemGroup>
+
+</Project>

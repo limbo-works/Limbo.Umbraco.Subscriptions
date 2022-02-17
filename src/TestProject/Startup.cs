@@ -1,12 +1,18 @@
-using Limbo.Umbraco.Subscription.Persistence.Contexts;
-using Limbo.Umbraco.Subscriptions.Extentions;
+using Limbo.ApiAuthentication.Extentions;
+using Limbo.ApiAuthentication.Settings.Models;
+using Limbo.Subscriptions.Extentions;
+using Limbo.Subscriptions.Persistence.Contexts;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Tokens;
 using System;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Principal;
+using System.Text;
 using Umbraco.Cms.Core.DependencyInjection;
 using Umbraco.Extensions;
 
@@ -38,12 +44,14 @@ namespace TestProject {
         /// </remarks>
         public void ConfigureServices(IServiceCollection services) {
 
+
             services.AddUmbraco(_env, _config)
                 .AddBackOffice()
                 .AddWebsite()
                 .AddComposers()
-                .AddSubscriptions(_config)
+                .AddSubscriptions(_config, true)
                 .Build();
+            services.AddLimboApiAuthentication(_config);
         }
 
         /// <summary>
@@ -51,7 +59,7 @@ namespace TestProject {
         /// </summary>
         /// <param name="app">The application builder.</param>
         /// <param name="env">The web hosting environment.</param>
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ISubscriptionDbContext subscriptionDbContext) {
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ISubscriptionDbContext subscriptionDbContext, ApiAuthenticationSettings bindJwtSettings) {
             subscriptionDbContext.Context.Database.Migrate();
 
             if (env.IsDevelopment()) {
@@ -60,7 +68,34 @@ namespace TestProject {
 
             app.UseHttpsRedirection();
 
-            app.UseSubscriptionsGraphQLEndpoint();
+            app.Use(async (context, next) => {
+                try {
+                    Console.WriteLine(context.User.Identity.Name);
+                    Console.WriteLine(context.User.Identity.IsAuthenticated);
+                    var authToken = context.Request.Headers["Authorization"].ToString().Replace("Bearer ", string.Empty);
+                    var tokenHandler = new JwtSecurityTokenHandler();
+                    var validationParameters = new TokenValidationParameters() {
+                        ValidateIssuerSigningKey = bindJwtSettings.ValidateIssuerSigningKey,
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(bindJwtSettings.AccessTokenSecret)),
+                        ValidateIssuer = bindJwtSettings.ValidateIssuer,
+                        ValidIssuer = bindJwtSettings.ValidIssuer,
+                        ValidateAudience = bindJwtSettings.ValidateAudience,
+                        ValidAudience = bindJwtSettings.ValidAudience,
+                        RequireExpirationTime = bindJwtSettings.RequireExpirationTime,
+                        ValidateLifetime = bindJwtSettings.RequireExpirationTime,
+                        ClockSkew = TimeSpan.Zero
+                    }; ;
+
+                    IPrincipal principal = tokenHandler.ValidateToken(authToken, validationParameters, out SecurityToken validatedToken);
+                    Console.WriteLine("SUccess: " + validatedToken);
+                } catch (Exception ex) {
+                    Console.WriteLine(ex.Message);
+                }
+                await next();
+            });
+
+            app.UseSubscriptionsGraphQLEndpoint(true);
+
 
             app.UseUmbraco()
                 .WithMiddleware(u => {

@@ -1,0 +1,36 @@
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using HotChocolate.Data;
+using HotChocolate.Types;
+using HotChocolate;
+using Limbo.Subscriptions.Persistence.Contexts;
+using Limbo.Subscriptions.Persistence.NewsletterQueues.Models;
+using Limbo.Subscriptions.NewsletterQueues.Services;
+using Limbo.Subscriptions.Bases.GraphQL.Queries;
+
+namespace Limbo.Subscriptions.NewsletterQueues.Queries {
+    [ExtendObjectType(typeof(Query))]
+    public class NewsletterQueueQueries {
+        [UseDbContext(typeof(SubscriptionDbContext))]
+        [UsePaging]
+        [UseFiltering]
+        [UseSorting]
+        public async Task<IEnumerable<NewsletterQueue>> GetNewsLetterQueues([Service] INewsletterQueueService newsletterQueueService) {
+            var response = (await newsletterQueueService.GetAll()).ReponseValue;
+            if (response is not null) {
+                return response.ToList();
+            } else {
+                return Enumerable.Empty<NewsletterQueue>();
+            }
+        }
+
+        [UseDbContext(typeof(SubscriptionDbContext))]
+        [UseFiltering]
+        [UseSorting]
+        public async Task<NewsletterQueue> GetNewsletterQueueById([Service] INewsletterQueueService newsletterQueueService, int id) {
+            var response = (await newsletterQueueService.GetById(id)).ReponseValue;
+            return response;
+        }
+    }
+}
