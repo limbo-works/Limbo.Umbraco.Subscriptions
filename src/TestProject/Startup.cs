@@ -51,7 +51,7 @@ namespace TestProject {
                 .AddComposers()
                 .AddSubscriptions(_config, useSecurity: true)
                 .Build();
-            services.AddLimboApiAuthentication(_config, "umbracoDbDSN");
+            services.AddLimboApiAuthentication(_config, connectionStringKey: "umbracoDbDSN");
         }
 
         /// <summary>

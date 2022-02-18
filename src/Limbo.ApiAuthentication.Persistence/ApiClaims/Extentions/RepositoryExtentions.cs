@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Limbo.ApiAuthentication.Persistence.ApiClaims.Repositories;
+﻿using Limbo.ApiAuthentication.Persistence.ApiClaims.Repositories;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Limbo.ApiAuthentication.Persistence.ApiClaims.Extentions {
