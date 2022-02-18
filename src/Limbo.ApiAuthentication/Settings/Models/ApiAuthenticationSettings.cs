@@ -4,7 +4,7 @@ namespace Limbo.ApiAuthentication.Settings.Models {
     public class ApiAuthenticationSettings {
         public string AccessTokenSecret { get; set; } = Guid.NewGuid().ToString();
         public string RefreshTokenSecret { get; set; } = Guid.NewGuid().ToString();
-        public double AccessTokenExpirationMinutes { get; set; } = 1;
+        public double AccessTokenExpirationMinutes { get; set; } = 10;
         public double RefreshTokenExpirationMinutes { get; set; } = 60;
         public string ValidIssuer { get; set; } = "";
         public string ValidAudience { get; set; } = "";

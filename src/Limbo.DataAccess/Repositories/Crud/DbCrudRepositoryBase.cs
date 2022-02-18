@@ -110,9 +110,5 @@ namespace Limbo.DataAccess.Repositories.Crud {
                 throw new TaskCanceledException("Task failed");
             }
         }
-
-        Task<IEnumerable<TDomain>> IDbCrudRepositoryBase<TDomain>.GetAllAsync() {
-            throw new NotImplementedException();
-        }
     }
 }
