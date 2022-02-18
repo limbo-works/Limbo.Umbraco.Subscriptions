@@ -9,7 +9,7 @@ using Limbo.DataAccess.Services.Models;
 
 namespace Limbo.DataAccess.Services {
     public abstract class ServiceBase<TRepository> : UnitOfWork<TRepository>, IServiceBase<TRepository>
-        where TRepository : IDbRepository {
+        where TRepository : IDbRepositoryBase {
         protected ILogger<ServiceBase<TRepository>> Logger { get; }
 
         public ServiceBase(TRepository repository, ILogger<ServiceBase<TRepository>> logger) : base(repository) {

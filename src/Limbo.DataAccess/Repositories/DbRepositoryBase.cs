@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 
 namespace Limbo.DataAccess.Repositories {
-    public abstract class DbRepositoryBase : IDbRepository {
+    public abstract class DbRepositoryBase : IDbRepositoryBase {
         private readonly DbContext _context;
 
         public DbRepositoryBase(IDbContext context) {

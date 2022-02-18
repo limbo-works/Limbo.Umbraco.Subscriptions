@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 namespace Limbo.DataAccess.Repositories.Crud {
-    public class DbCrudRepositoryBase<TDomain> : DbRepositoryBase, IDbCrudRepository<TDomain>
+    public class DbCrudRepositoryBase<TDomain> : DbRepositoryBase, IDbCrudRepositoryBase<TDomain>
         where TDomain : class, GenericId, new() {
         protected readonly ILogger<DbCrudRepositoryBase<TDomain>> logger;
 
@@ -111,7 +111,7 @@ namespace Limbo.DataAccess.Repositories.Crud {
             }
         }
 
-        Task<IEnumerable<TDomain>> IDbCrudRepository<TDomain>.GetAllAsync() {
+        Task<IEnumerable<TDomain>> IDbCrudRepositoryBase<TDomain>.GetAllAsync() {
             throw new NotImplementedException();
         }
     }

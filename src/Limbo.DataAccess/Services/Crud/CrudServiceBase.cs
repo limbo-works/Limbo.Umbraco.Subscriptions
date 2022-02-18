@@ -12,7 +12,7 @@ using System.Linq;
 namespace Limbo.DataAccess.Services.Crud {
     public abstract class CrudServiceBase<TDomain, TRepository> : ServiceBase<TRepository>, ICrudServiceBase<TDomain, TRepository>
         where TDomain : class, GenericId, new()
-        where TRepository : IDbRepository, IDbCrudRepository<TDomain> {
+        where TRepository : IDbRepositoryBase, IDbCrudRepositoryBase<TDomain> {
         protected readonly TRepository repository;
 
         public CrudServiceBase(TRepository repository, ILogger<ServiceBase<TRepository>> logger) : base(repository, logger) {

@@ -2,6 +2,6 @@
 using Limbo.Subscriptions.Persistence.SubscriptionSystems.Models;
 
 namespace Limbo.Subscriptions.Persistence.SubscriptionSystems.Repositories {
-    public interface ISubscriptionSystemRepository : IDbCrudRepository<SubscriptionSystem> {
+    public interface ISubscriptionSystemRepository : IDbCrudRepositoryBase<SubscriptionSystem> {
     }
 }

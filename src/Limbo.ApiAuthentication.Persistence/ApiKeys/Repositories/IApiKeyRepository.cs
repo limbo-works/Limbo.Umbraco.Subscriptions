@@ -2,6 +2,6 @@
 using Limbo.DataAccess.Repositories.Crud;
 
 namespace Limbo.ApiAuthentication.Persistence.ApiKeys.Repositories {
-    public interface IApiKeyRepository : IDbCrudRepository<ApiKey> {
+    public interface IApiKeyRepository : IDbCrudRepositoryBase<ApiKey> {
     }
 }

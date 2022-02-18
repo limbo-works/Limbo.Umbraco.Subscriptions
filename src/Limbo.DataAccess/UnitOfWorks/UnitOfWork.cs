@@ -7,7 +7,7 @@ using Limbo.DataAccess.Repositories;
 
 namespace Limbo.DataAccess.UnitOfWorks {
     public class UnitOfWork<TRepository> : IUnitOfWork<TRepository>
-        where TRepository : IDbRepository {
+        where TRepository : IDbRepositoryBase {
         private readonly DbContext _context;
         private IDbContextTransaction _transaction;
 

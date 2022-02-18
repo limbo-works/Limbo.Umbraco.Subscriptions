@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Limbo.DataAccess.Models;
 
 namespace Limbo.DataAccess.Repositories.Crud {
-    public interface IDbCrudRepository<TDomain> : IDbRepository
+    public interface IDbCrudRepositoryBase<TDomain> : IDbRepositoryBase
         where TDomain : class, GenericId, new() {
         /// <summary>
         /// Queries the dbset

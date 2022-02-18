@@ -3,7 +3,7 @@ using Limbo.DataAccess.Repositories.Crud;
 using Limbo.Subscriptions.Persistence.Categories.Models;
 
 namespace Limbo.Subscriptions.Persistence.Categories.Repositories {
-    public interface ICategoryRepository : IDbCrudRepository<Category> {
+    public interface ICategoryRepository : IDbCrudRepositoryBase<Category> {
         Task<Category> AddSubscribers(int id, int[] subscriberIds);
         Task<Category> RemoveSubscribers(int id, int[] subscriberIds);
         Task<Category> AddSubscriptionItems(int id, int[] subscriptionItemIds);
