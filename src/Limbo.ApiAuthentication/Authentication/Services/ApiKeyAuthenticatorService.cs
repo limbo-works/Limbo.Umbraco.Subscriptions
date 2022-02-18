@@ -20,8 +20,9 @@ namespace Limbo.ApiAuthentication.Authentication.Services {
 
         public async Task<ApiToken> AuthenticateKey(string apikey) {
             try {
-                var apiKeyExists = (await _apiKeyService.QueryDbSet()).ReponseValue.Where(item => item.Key == apikey).FirstOrDefault() != default;
-                return _tokenService.GenerateToken();
+                var apiKeyEntry = (await _apiKeyService.QueryDbSet()).ReponseValue.Where(item => item.Key == apikey).FirstOrDefault();
+                var apiKeyExists = apiKeyEntry != default;
+                return _tokenService.GenerateToken(apiKeyEntry.GetClaims());
             } catch (Exception ex) {
                 _logger.LogError(ex, $"Authentication failed for key: {apikey}");
                 return null;

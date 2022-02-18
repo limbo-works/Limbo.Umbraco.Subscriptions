@@ -1,6 +1,5 @@
 ﻿using Limbo.ApiAuthentication.Persistence.ApiKeys.Models;
 using Limbo.ApiAuthentication.Persistence.Contexts;
-using Limbo.DataAccess.Contexts.Models;
 using Limbo.DataAccess.Repositories.Crud;
 using Microsoft.Extensions.Logging;
 
