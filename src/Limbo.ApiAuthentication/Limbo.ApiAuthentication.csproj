@@ -9,7 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ApiKeys\" />
+    <ProjectReference Include="..\Limbo.ApiAuthentication.Persistence\Limbo.ApiAuthentication.Persistence.csproj" />
   </ItemGroup>
 
 </Project>

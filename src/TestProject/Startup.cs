@@ -49,9 +49,9 @@ namespace TestProject {
                 .AddBackOffice()
                 .AddWebsite()
                 .AddComposers()
-                .AddSubscriptions(_config, true)
+                .AddSubscriptions(_config, useSecurity: true)
                 .Build();
-            services.AddLimboApiAuthentication(_config);
+            services.AddLimboApiAuthentication(_config, "umbracoDbDSN");
         }
 
         /// <summary>
