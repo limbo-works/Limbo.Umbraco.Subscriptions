@@ -5,6 +5,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="Limbo.ApiAuthentication" Version="1.0.0" />
         <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.13">
           <PrivateAssets>all</PrivateAssets>
           <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -23,7 +24,6 @@
     <Import Project="..\Limbo.Umbraco.Subscriptions\build\Limbo.Umbraco.Subscriptions.targets" />
 
     <ItemGroup>
-        <ProjectReference Include="..\Limbo.ApiAuthentication\Limbo.ApiAuthentication.csproj" />
         <ProjectReference Include="..\Limbo.Umbraco.Subscriptions\Limbo.Umbraco.Subscriptions.csproj" />
     </ItemGroup>
 
