@@ -11,7 +11,10 @@ namespace Limbo.ApiAuthentication.Persistence.Migrations
     [DbContext(typeof(ApiAuthenticationContext))]
     [Migration("20220218102752_Add-Claims")]
     partial class AddClaims
-    {
+    {/// <summary>
+    /// 
+    /// </summary>
+    /// <param name="modelBuilder"></param>
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618

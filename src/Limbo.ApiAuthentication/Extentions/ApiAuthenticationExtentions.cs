@@ -13,7 +13,20 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 
 namespace Limbo.ApiAuthentication.Extentions {
+    /// <summary>
+    /// Extentions
+    /// </summary>
     public static class ApiAuthenticationExtentions {
+        /// <summary>
+        /// Adds api authentication
+        /// </summary>
+        /// <param name="services"></param>
+        /// <param name="configuration"></param>
+        /// <param name="authorizationOptions"></param>
+        /// <param name="connectionStringKey"></param>
+        /// <param name="configurationSection"></param>
+        /// <remarks>This must be placed after the AddUmbraco extention</remarks>
+        /// <returns></returns>
         public static IServiceCollection AddLimboApiAuthentication(this IServiceCollection services, IConfiguration configuration, Action<AuthorizationOptions> authorizationOptions = default, string connectionStringKey = "Default", string configurationSection = "Limbo:ApiAuthentication") {
             services
                 .AddSettings(configuration, configurationSection)
@@ -32,6 +45,12 @@ namespace Limbo.ApiAuthentication.Extentions {
             return services;
         }
 
+        /// <summary>
+        /// Adds console logs to help debug Jwt errors
+        /// </summary>
+        /// <param name="app"></param>
+        /// <param name="bindJwtSettings"></param>
+        /// <returns></returns>
         public static IApplicationBuilder UseJwtDebug(this IApplicationBuilder app, ApiAuthenticationSettings bindJwtSettings) {
             app.Use(async (context, next) => {
                 try {
@@ -40,7 +59,7 @@ namespace Limbo.ApiAuthentication.Extentions {
                     var authToken = context.Request.Headers["Authorization"].ToString().Replace("Bearer ", string.Empty);
                     var tokenHandler = new JwtSecurityTokenHandler();
                     var validationParameters = new TokenValidationParameters() {
-                        ValidateIssuerSigningKey = bindJwtSettings.ValidateIssuerSigningKey,
+                        ValidateIssuerSigningKey = bindJwtSettings.ValidateAccessTokenSecretKey,
                         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(bindJwtSettings.AccessTokenSecret)),
                         ValidateIssuer = bindJwtSettings.ValidateIssuer,
                         ValidIssuer = bindJwtSettings.ValidIssuer,

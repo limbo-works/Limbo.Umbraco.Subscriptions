@@ -12,4 +12,9 @@
     <ProjectReference Include="..\Limbo.ApiAuthentication.Persistence\Limbo.ApiAuthentication.Persistence.csproj" />
   </ItemGroup>
 
+
+	<!-- Generate XML documentation -->
+	<PropertyGroup>
+		<DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
+	</PropertyGroup>
 </Project>

@@ -5,16 +5,22 @@ using Limbo.ApiAuthentication.Settings.Models;
 using Microsoft.IdentityModel.Tokens;
 
 namespace Limbo.ApiAuthentication.Tokens.Validators {
+    /// <inheritdoc/>
     public class RefreshTokenValidator : IRefreshTokenValidator {
         private readonly ApiAuthenticationSettings _settings;
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="settings"></param>
         public RefreshTokenValidator(ApiAuthenticationSettings settings) {
             _settings = settings;
         }
 
+        /// <inheritdoc/>
         public bool Validate(string refreshToken, string issuer, string audience) {
             var validationParameters = new TokenValidationParameters {
-                ValidateIssuerSigningKey = _settings.ValidateIssuerSigningKey,
+                ValidateIssuerSigningKey = _settings.ValidateAccessTokenSecretKey,
                 ValidateIssuer = _settings.ValidateIssuer,
                 ValidateAudience = _settings.ValidateAudience,
                 ValidateLifetime = _settings.ValidateLifetime,

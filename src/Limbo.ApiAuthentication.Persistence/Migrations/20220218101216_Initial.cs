@@ -1,7 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Limbo.ApiAuthentication.Persistence.Migrations {
+    /// <summary>
+    /// 
+    /// </summary>
     public partial class Initial : Migration {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="migrationBuilder"></param>
         protected override void Up(MigrationBuilder migrationBuilder) {
             migrationBuilder.CreateTable(
                 name: "ApiKeys",
@@ -15,6 +22,10 @@ namespace Limbo.ApiAuthentication.Persistence.Migrations {
                 });
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="migrationBuilder"></param>
         protected override void Down(MigrationBuilder migrationBuilder) {
             migrationBuilder.DropTable(
                 name: "ApiKeys");

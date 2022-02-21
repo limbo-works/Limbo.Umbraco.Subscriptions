@@ -7,7 +7,17 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 
 namespace Limbo.ApiAuthentication.Settings.Extentions {
+    /// <summary>
+    /// Extentions
+    /// </summary>
     public static class SettingsExtentions {
+        /// <summary>
+        /// Adds settings
+        /// </summary>
+        /// <param name="services"></param>
+        /// <param name="configuration"></param>
+        /// <param name="configurationSection"></param>
+        /// <returns></returns>
         public static IServiceCollection AddSettings(this IServiceCollection services, IConfiguration configuration, string configurationSection) {
             var bindJwtSettings = new ApiAuthenticationSettings();
             configuration.Bind(configurationSection, bindJwtSettings);
@@ -19,7 +29,7 @@ namespace Limbo.ApiAuthentication.Settings.Extentions {
                 options.RequireHttpsMetadata = bindJwtSettings.RequireHttpsMetadata;
                 options.SaveToken = bindJwtSettings.SaveToken;
                 options.TokenValidationParameters = new TokenValidationParameters() {
-                    ValidateIssuerSigningKey = bindJwtSettings.ValidateIssuerSigningKey,
+                    ValidateIssuerSigningKey = bindJwtSettings.ValidateAccessTokenSecretKey,
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(bindJwtSettings.AccessTokenSecret)),
                     ValidateIssuer = bindJwtSettings.ValidateIssuer,
                     ValidIssuer = bindJwtSettings.ValidIssuer,

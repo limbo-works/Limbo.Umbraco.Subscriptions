@@ -12,6 +12,10 @@ namespace Limbo.ApiAuthentication.Persistence.Migrations
     [Migration("20220218101216_Initial")]
     partial class Initial
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="modelBuilder"></param>
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
