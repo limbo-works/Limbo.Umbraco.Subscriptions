@@ -10,7 +10,7 @@ namespace Limbo.DataAccess.Repositories {
         /// Constructor
         /// </summary>
         /// <param name="context"></param>
-        public DbRepositoryBase(IDbContext context) {
+        protected DbRepositoryBase(IDbContext context) {
             _context = context.Context;
         }
 

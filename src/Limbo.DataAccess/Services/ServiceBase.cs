@@ -21,7 +21,7 @@ namespace Limbo.DataAccess.Services {
         /// </summary>
         /// <param name="repository"></param>
         /// <param name="logger"></param>
-        public ServiceBase(TRepository repository, ILogger<ServiceBase<TRepository>> logger) : base(repository) {
+        protected ServiceBase(TRepository repository, ILogger<ServiceBase<TRepository>> logger) : base(repository) {
             Logger = logger;
         }
 
