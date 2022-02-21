@@ -48,7 +48,7 @@ namespace Limbo.DataAccess.Services.Crud {
             }, HttpStatusCode.OK, IsolationLevel.Snapshot);
         }
 
-        public async Task<IServiceResponse<IQueryable<TDomain>>> QueryDbSet(IsolationLevel isolationLevel = IsolationLevel.Snapshot) {
+        public virtual async Task<IServiceResponse<IQueryable<TDomain>>> QueryDbSet(IsolationLevel isolationLevel = IsolationLevel.Snapshot) {
             return await ExecuteServiceTask(async () => {
                 return await repository.QueryDbSet();
             }, HttpStatusCode.OK, isolationLevel);

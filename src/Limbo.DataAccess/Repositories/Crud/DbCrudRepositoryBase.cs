@@ -64,7 +64,7 @@ namespace Limbo.DataAccess.Repositories.Crud {
             }
         }
 
-        public async Task<IQueryable<TDomain>> QueryDbSet() {
+        public virtual async Task<IQueryable<TDomain>> QueryDbSet() {
             try {
                 return dbSet;
             } catch (Exception e) {
@@ -85,7 +85,7 @@ namespace Limbo.DataAccess.Repositories.Crud {
             }
         }
 
-        protected async Task<TDomain> AddToCollection<TCollectionItemType>(int id, int[] collectionIds, Func<TDomain, List<TCollectionItemType>> collectionKeySelector)
+        protected virtual async Task<TDomain> AddToCollection<TCollectionItemType>(int id, int[] collectionIds, Func<TDomain, List<TCollectionItemType>> collectionKeySelector)
             where TCollectionItemType : class, GenericId, new() {
             try {
                 var domain = await GetByIdAsync(id);
@@ -98,7 +98,7 @@ namespace Limbo.DataAccess.Repositories.Crud {
             }
         }
 
-        protected async Task<TDomain> RemoveFromCollection<TCollectionItemType>(int id, int[] collectionIds, Func<TDomain, List<TCollectionItemType>> collectionKeySelector)
+        protected virtual async Task<TDomain> RemoveFromCollection<TCollectionItemType>(int id, int[] collectionIds, Func<TDomain, List<TCollectionItemType>> collectionKeySelector)
             where TCollectionItemType : class, GenericId, new() {
             try {
                 var domain = await GetByIdAsync(id);
