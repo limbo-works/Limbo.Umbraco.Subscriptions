@@ -22,7 +22,7 @@ namespace Limbo.ApiAuthentication.Authentication.Services {
             try {
                 var apiKeyEntry = (await _apiKeyService.QueryDbSet()).ReponseValue.Where(item => item.Key == apikey).FirstOrDefault();
                 var apiKeyExists = apiKeyEntry != default;
-                if(apiKeyExists) {
+                if (apiKeyExists) {
                     return _tokenService.GenerateToken(apiKeyEntry.GetClaims());
                 }
                 return null;

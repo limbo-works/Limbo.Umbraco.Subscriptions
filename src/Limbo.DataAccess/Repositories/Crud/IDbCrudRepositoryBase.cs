@@ -4,6 +4,10 @@ using System.Threading.Tasks;
 using Limbo.DataAccess.Models;
 
 namespace Limbo.DataAccess.Repositories.Crud {
+    /// <summary>
+    /// A generic repository for interacting with a database
+    /// </summary>
+    /// <typeparam name="TDomain"></typeparam>
     public interface IDbCrudRepositoryBase<TDomain> : IDbRepositoryBase
         where TDomain : class, GenericId, new() {
         /// <summary>

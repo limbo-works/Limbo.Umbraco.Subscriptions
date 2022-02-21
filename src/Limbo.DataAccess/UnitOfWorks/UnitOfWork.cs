@@ -6,11 +6,16 @@ using System.Data;
 using Limbo.DataAccess.Repositories;
 
 namespace Limbo.DataAccess.UnitOfWorks {
+    /// <inheritdoc/>
     public class UnitOfWork<TRepository> : IUnitOfWork<TRepository>
         where TRepository : IDbRepositoryBase {
         private readonly DbContext _context;
         private IDbContextTransaction _transaction;
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="repository"></param>
         public UnitOfWork(TRepository repository) {
             _context = repository.GetDBContext();
         }

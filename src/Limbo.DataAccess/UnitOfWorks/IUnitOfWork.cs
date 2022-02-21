@@ -3,6 +3,10 @@ using System.Threading.Tasks;
 using Limbo.DataAccess.Repositories;
 
 namespace Limbo.DataAccess.UnitOfWorks {
+    /// <summary>
+    /// A unit of work
+    /// </summary>
+    /// <typeparam name="TRepository"></typeparam>
     public interface IUnitOfWork<TRepository> where TRepository : IDbRepositoryBase {
         /// <summary>
         /// Begins a unit of work opreation

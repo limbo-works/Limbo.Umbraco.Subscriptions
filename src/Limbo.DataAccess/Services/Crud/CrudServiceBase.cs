@@ -10,11 +10,20 @@ using Limbo.DataAccess.Services.Models;
 using System.Linq;
 
 namespace Limbo.DataAccess.Services.Crud {
+    /// <inheritdoc/>
     public abstract class CrudServiceBase<TDomain, TRepository> : ServiceBase<TRepository>, ICrudServiceBase<TDomain, TRepository>
         where TDomain : class, GenericId, new()
         where TRepository : IDbRepositoryBase, IDbCrudRepositoryBase<TDomain> {
+        /// <summary>
+        /// The repository
+        /// </summary>
         protected readonly TRepository repository;
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="repository"></param>
+        /// <param name="logger"></param>
         public CrudServiceBase(TRepository repository, ILogger<ServiceBase<TRepository>> logger) : base(repository, logger) {
             this.repository = repository;
         }
@@ -48,6 +57,7 @@ namespace Limbo.DataAccess.Services.Crud {
             }, HttpStatusCode.OK, IsolationLevel.Snapshot);
         }
 
+        /// <inheritdoc/>
         public virtual async Task<IServiceResponse<IQueryable<TDomain>>> QueryDbSet(IsolationLevel isolationLevel = IsolationLevel.Snapshot) {
             return await ExecuteServiceTask(async () => {
                 return await repository.QueryDbSet();

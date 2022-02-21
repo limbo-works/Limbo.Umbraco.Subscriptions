@@ -8,12 +8,24 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 namespace Limbo.DataAccess.Repositories.Crud {
+    /// <inheritdoc/>
     public class DbCrudRepositoryBase<TDomain> : DbRepositoryBase, IDbCrudRepositoryBase<TDomain>
         where TDomain : class, GenericId, new() {
+        /// <summary>
+        /// The logger
+        /// </summary>
         protected readonly ILogger<DbCrudRepositoryBase<TDomain>> logger;
 
+        /// <summary>
+        /// The DbSet
+        /// </summary>
         protected readonly DbSet<TDomain> dbSet;
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="dbContext"></param>
+        /// <param name="logger"></param>
         protected DbCrudRepositoryBase(IDbContext dbContext, ILogger<DbCrudRepositoryBase<TDomain>> logger) : base(dbContext) {
             dbSet = dbContext.Context.Set<TDomain>();
             this.logger = logger;
@@ -64,9 +76,10 @@ namespace Limbo.DataAccess.Repositories.Crud {
             }
         }
 
+        /// <inheritdoc/>
         public virtual async Task<IQueryable<TDomain>> QueryDbSet() {
             try {
-                return dbSet;
+                return await Task.FromResult(dbSet);
             } catch (Exception e) {
                 logger.LogError(e, $"Failed query {typeof(TDomain)}");
                 throw new TaskCanceledException("Task failed");
@@ -85,6 +98,15 @@ namespace Limbo.DataAccess.Repositories.Crud {
             }
         }
 
+        /// <summary>
+        /// Adds a collection of items to a many to many releationship
+        /// </summary>
+        /// <typeparam name="TCollectionItemType"></typeparam>
+        /// <param name="id"></param>
+        /// <param name="collectionIds"></param>
+        /// <param name="collectionKeySelector"></param>
+        /// <returns></returns>
+        /// <exception cref="TaskCanceledException"></exception>
         protected virtual async Task<TDomain> AddToCollection<TCollectionItemType>(int id, int[] collectionIds, Func<TDomain, List<TCollectionItemType>> collectionKeySelector)
             where TCollectionItemType : class, GenericId, new() {
             try {
@@ -98,6 +120,15 @@ namespace Limbo.DataAccess.Repositories.Crud {
             }
         }
 
+        /// <summary>
+        /// Removes a collection of item from a many to many relationship
+        /// </summary>
+        /// <typeparam name="TCollectionItemType"></typeparam>
+        /// <param name="id"></param>
+        /// <param name="collectionIds"></param>
+        /// <param name="collectionKeySelector"></param>
+        /// <returns></returns>
+        /// <exception cref="TaskCanceledException"></exception>
         protected virtual async Task<TDomain> RemoveFromCollection<TCollectionItemType>(int id, int[] collectionIds, Func<TDomain, List<TCollectionItemType>> collectionKeySelector)
             where TCollectionItemType : class, GenericId, new() {
             try {

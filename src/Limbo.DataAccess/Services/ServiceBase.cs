@@ -8,10 +8,19 @@ using Limbo.DataAccess.Repositories;
 using Limbo.DataAccess.Services.Models;
 
 namespace Limbo.DataAccess.Services {
+    /// <inheritdoc/>
     public abstract class ServiceBase<TRepository> : UnitOfWork<TRepository>, IServiceBase<TRepository>
         where TRepository : IDbRepositoryBase {
+        /// <summary>
+        /// The logger
+        /// </summary>
         protected ILogger<ServiceBase<TRepository>> Logger { get; }
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="repository"></param>
+        /// <param name="logger"></param>
         public ServiceBase(TRepository repository, ILogger<ServiceBase<TRepository>> logger) : base(repository) {
             Logger = logger;
         }
