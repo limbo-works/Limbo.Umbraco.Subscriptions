@@ -23,6 +23,7 @@
     <Import Project="..\Limbo.Umbraco.Subscriptions\build\Limbo.Umbraco.Subscriptions.targets" />
 
     <ItemGroup>
+        <ProjectReference Include="..\Limbo.ApiAuthentication\Limbo.ApiAuthentication.csproj" />
         <ProjectReference Include="..\Limbo.Umbraco.Subscriptions\Limbo.Umbraco.Subscriptions.csproj" />
     </ItemGroup>
 

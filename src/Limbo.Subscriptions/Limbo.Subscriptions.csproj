@@ -5,7 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Limbo.ApiAuthentication\Limbo.ApiAuthentication.csproj" />
     <ProjectReference Include="..\Limbo.Subscription.Persistence\Limbo.Subscriptions.Persistence.csproj" />
   </ItemGroup>
 

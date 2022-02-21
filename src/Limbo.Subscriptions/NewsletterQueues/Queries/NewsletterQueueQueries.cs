@@ -7,10 +7,12 @@ using Limbo.Subscriptions.Persistence.NewsletterQueues.Models;
 using Limbo.Subscriptions.NewsletterQueues.Services;
 using Limbo.Subscriptions.Bases.GraphQL.Queries;
 using System.Data;
+using HotChocolate.AspNetCore.Authorization;
 
 namespace Limbo.Subscriptions.NewsletterQueues.Queries {
     [ExtendObjectType(typeof(Query))]
     public class NewsletterQueueQueries {
+        [Authorize]
         [UsePaging]
         [UseProjection]
         [UseFiltering]
@@ -24,6 +26,7 @@ namespace Limbo.Subscriptions.NewsletterQueues.Queries {
             }
         }
 
+        [Authorize]
         [UseFirstOrDefault]
         [UseProjection]
         [UseFiltering]

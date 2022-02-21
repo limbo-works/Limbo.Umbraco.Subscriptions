@@ -7,21 +7,23 @@ using Umbraco.Cms.Core.DependencyInjection;
 
 namespace Limbo.Subscriptions.Extentions {
     public static class SubscriptionsExtentions {
-        public static IUmbracoBuilder AddSubscriptions(this IUmbracoBuilder builder, IConfiguration config, string connectionStringKey = "umbracoDbDSN", bool useSecurity = false) {
+        public static IUmbracoBuilder AddSubscriptions(this IUmbracoBuilder builder, IConfiguration config, string connectionStringKey = "umbracoDbDSN") {
             builder.Services
                 .AddPersistence(config, connectionStringKey)
                 .AddSubscriptionServices()
-                .AddSubscriptionsGraphQL(useSecurity);
+                .AddSubscriptionsGraphQL();
 
             return builder;
         }
 
-        public static IApplicationBuilder UseSubscriptionsGraphQLEndpoint(this IApplicationBuilder app, bool useSecurity = false) {
+        public static IApplicationBuilder UseSubscriptionsGraphQLEndpoint(this IApplicationBuilder app, bool useSecurity = true) {
             app.UseRouting();
             app.UseCors();
 
             if (useSecurity) {
-                app.UseSubscriptionGraphQLEndpointSecurity();
+                app
+                    .UseAuthentication()
+                    .UseAuthorization();
             }
 
             app.UseEndpoints(endpoints => {

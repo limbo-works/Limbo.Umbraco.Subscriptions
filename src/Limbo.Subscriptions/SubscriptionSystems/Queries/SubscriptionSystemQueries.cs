@@ -7,10 +7,12 @@ using Limbo.Subscriptions.Persistence.SubscriptionSystems.Models;
 using Limbo.Subscriptions.SubscriptionSystems.Services;
 using Limbo.Subscriptions.Bases.GraphQL.Queries;
 using System.Data;
+using HotChocolate.AspNetCore.Authorization;
 
 namespace Limbo.Subscriptions.SubscriptionSystems.Queries {
     [ExtendObjectType(typeof(Query))]
     public class SubscriptionSystemQueries {
+        [Authorize]
         [UsePaging]
         [UseProjection]
         [UseFiltering]
@@ -24,6 +26,7 @@ namespace Limbo.Subscriptions.SubscriptionSystems.Queries {
             }
         }
 
+        [Authorize]
         [UseFirstOrDefault]
         [UseProjection]
         [UseFiltering]
