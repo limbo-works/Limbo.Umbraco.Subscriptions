@@ -1,9 +1,7 @@
 using Limbo.ApiAuthentication.Extentions;
 using Limbo.Subscriptions.Extentions;
-using Limbo.Subscriptions.Persistence.Contexts;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -54,9 +52,7 @@ namespace TestProject {
         /// </summary>
         /// <param name="app">The application builder.</param>
         /// <param name="env">The web hosting environment.</param>
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ISubscriptionDbContext subscriptionDbContext) {
-            subscriptionDbContext.Context.Database.Migrate();
-
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env) {
             if (env.IsDevelopment()) {
                 app.UseDeveloperExceptionPage();
             }

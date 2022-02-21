@@ -10,7 +10,6 @@ namespace Limbo.Subscriptions.Persistence.Contexts {
     public class SubscriptionDbContext : DbContext, ISubscriptionDbContext {
 
         public SubscriptionDbContext(DbContextOptions<SubscriptionDbContext> options) : base(options) {
-            Database.Migrate();
         }
 
         public DbSet<Category> Categories { get; set; }

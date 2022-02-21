@@ -6,7 +6,6 @@ using Microsoft.EntityFrameworkCore;
 namespace Limbo.ApiAuthentication.Persistence.Contexts {
     public class ApiAuthenticationContext : DbContext, IApiAuthenticationContext {
         public ApiAuthenticationContext(DbContextOptions<ApiAuthenticationContext> options) : base(options) {
-            Database.Migrate();
         }
 
         public DbContext Context => this;
