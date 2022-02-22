@@ -7,7 +7,6 @@ using Microsoft.Extensions.Logging;
 using Limbo.DataAccess.Services.Crud;
 using Limbo.DataAccess.Services;
 using Limbo.DataAccess.Services.Models;
-using System;
 
 namespace Limbo.Subscriptions.Categories.Services {
     public class CategoryService : CrudServiceBase<Category, ICategoryRepository>, ICategoryService {

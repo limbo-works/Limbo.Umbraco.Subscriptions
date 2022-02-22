@@ -15,12 +15,14 @@ namespace Limbo.Subscriptions.Persistence.SubscriptionItems.Models {
         public virtual List<NewsletterQueue> NewsletterQueues { get; set; }
 
         public static void Validate(SubscriptionItem subscriptionItem, bool checkRelations = true) {
-            if (subscriptionItem == null) throw new ArgumentException("SubscriptionItem cannot be null", nameof(subscriptionItem));
+            if (subscriptionItem == null) {
+                throw new ArgumentException("SubscriptionItem cannot be null", nameof(subscriptionItem));
+            }
 
             if (checkRelations) {
-                subscriptionItem.Categories.ForEach(category => Category.Vaildate(category, false));
-                subscriptionItem.Subscribers.ForEach(subscriber => Subscriber.Validate(subscriber, false));
-                subscriptionItem.NewsletterQueues.ForEach(newsletterQueue => NewsletterQueue.Validate(newsletterQueue, false));
+                subscriptionItem.Categories?.ForEach(category => Category.Vaildate(category, false));
+                subscriptionItem.Subscribers?.ForEach(subscriber => Subscriber.Validate(subscriber, false));
+                subscriptionItem.NewsletterQueues?.ForEach(newsletterQueue => NewsletterQueue.Validate(newsletterQueue, false));
             }
         }
     }

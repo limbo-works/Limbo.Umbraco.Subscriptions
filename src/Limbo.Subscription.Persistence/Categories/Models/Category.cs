@@ -13,12 +13,17 @@ namespace Limbo.Subscriptions.Persistence.Categories.Models {
         public virtual List<SubscriptionItem> SubscriptionItems { get; set; }
 
         public static void Vaildate(Category category, bool checkReleations = true) {
-            if (category == null) throw new ArgumentException("Category cannot be null", nameof(category));
-            if (category.Name == null) throw new ArgumentException("Name cannot be null", nameof(category));
+            if (category == null) {
+                throw new ArgumentException("Category cannot be null", nameof(category));
+            }
+
+            if (category.Name == null) {
+                throw new ArgumentException("Name cannot be null", nameof(category));
+            }
 
             if (checkReleations) {
-                category.Subscribers.ForEach(subscriber => Subscriber.Validate(subscriber, false));
-                category.SubscriptionItems.ForEach(subscriptionItem => SubscriptionItem.Validate(subscriptionItem, false));
+                category.Subscribers?.ForEach(subscriber => Subscriber.Validate(subscriber, false));
+                category.SubscriptionItems?.ForEach(subscriptionItem => SubscriptionItem.Validate(subscriptionItem, false));
             }
         }
     }

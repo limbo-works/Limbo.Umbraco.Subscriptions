@@ -11,11 +11,16 @@ namespace Limbo.Subscriptions.Persistence.NewsletterQueues.Models {
         public virtual List<SubscriptionItem> SubscriptionItems { get; set; }
 
         public static void Validate(NewsletterQueue newsletterQueue, bool checkRelations = true) {
-            if (newsletterQueue == null) throw new ArgumentException("NewsletterQueue cannot be null", nameof(newsletterQueue));
-            if (newsletterQueue.Name == null) throw new ArgumentException("Name cannot be null", nameof(newsletterQueue));
+            if (newsletterQueue == null) {
+                throw new ArgumentException("NewsletterQueue cannot be null", nameof(newsletterQueue));
+            }
+
+            if (newsletterQueue.Name == null) {
+                throw new ArgumentException("Name cannot be null", nameof(newsletterQueue));
+            }
 
             if (checkRelations) {
-                newsletterQueue.SubscriptionItems.ForEach(subscriptionItem => SubscriptionItem.Validate(subscriptionItem, false));
+                newsletterQueue.SubscriptionItems?.ForEach(subscriptionItem => SubscriptionItem.Validate(subscriptionItem, false));
             }
         }
     }
