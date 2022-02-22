@@ -1,4 +1,5 @@
-﻿using System.Data;
+﻿using System;
+using System.Data;
 using System.Net;
 using System.Threading.Tasks;
 using Limbo.DataAccess.Services;
@@ -11,6 +12,11 @@ using Microsoft.Extensions.Logging;
 namespace Limbo.Subscriptions.Subscribers.Services {
     public class SubscriberService : CrudServiceBase<Subscriber, ISubscriberRepository>, ISubscriberService {
         public SubscriberService(ISubscriberRepository repository, ILogger<ServiceBase<ISubscriberRepository>> logger) : base(repository, logger) {
+        }
+
+        public override Task<IServiceResponse<Subscriber>> Add(Subscriber entity) {
+            Subscriber.Validate(entity);
+            return base.Add(entity);
         }
 
         public async Task<IServiceResponse<Subscriber>> AddCategories(int id, int[] categoryIds) {
@@ -35,6 +41,11 @@ namespace Limbo.Subscriptions.Subscribers.Services {
             return await ExecuteServiceTask(async () => {
                 return await repository.RemoveSubscriptionItems(id, subscriptionItemIds);
             }, HttpStatusCode.OK, IsolationLevel.Snapshot);
+        }
+
+        public override Task<IServiceResponse<Subscriber>> Update(Subscriber entity) {
+            Subscriber.Validate(entity);
+            return base.Update(entity);
         }
     }
 }

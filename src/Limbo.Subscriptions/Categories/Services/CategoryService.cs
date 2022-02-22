@@ -7,10 +7,16 @@ using Microsoft.Extensions.Logging;
 using Limbo.DataAccess.Services.Crud;
 using Limbo.DataAccess.Services;
 using Limbo.DataAccess.Services.Models;
+using System;
 
 namespace Limbo.Subscriptions.Categories.Services {
     public class CategoryService : CrudServiceBase<Category, ICategoryRepository>, ICategoryService {
         public CategoryService(ICategoryRepository repository, ILogger<ServiceBase<ICategoryRepository>> logger) : base(repository, logger) {
+        }
+
+        public override Task<IServiceResponse<Category>> Add(Category entity) {
+            Category.Vaildate(entity);
+            return base.Add(entity);
         }
 
         public async Task<IServiceResponse<Category>> AddSubscribers(int id, int[] subscriberIds) {
@@ -35,6 +41,11 @@ namespace Limbo.Subscriptions.Categories.Services {
             return await ExecuteServiceTask(async () => {
                 return await repository.RemoveSubscriptionItems(id, subscriptionItemIds);
             }, HttpStatusCode.OK, IsolationLevel.Snapshot);
+        }
+
+        public override Task<IServiceResponse<Category>> Update(Category entity) {
+            Category.Vaildate(entity);
+            return base.Update(entity);
         }
     }
 }

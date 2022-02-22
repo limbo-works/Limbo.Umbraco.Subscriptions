@@ -13,6 +13,11 @@ namespace Limbo.Subscriptions.SubscriptionItems.Services {
         public SubscriptionItemService(ISubscriptionItemRepository repository, ILogger<ServiceBase<ISubscriptionItemRepository>> logger) : base(repository, logger) {
         }
 
+        public override Task<IServiceResponse<SubscriptionItem>> Add(SubscriptionItem entity) {
+            SubscriptionItem.Validate(entity);
+            return base.Add(entity);
+        }
+
         public async Task<IServiceResponse<SubscriptionItem>> AddCategories(int id, int[] categoryIds) {
             return await ExecuteServiceTask(async () => {
                 return await repository.AddCategories(id, categoryIds);
@@ -47,6 +52,11 @@ namespace Limbo.Subscriptions.SubscriptionItems.Services {
             return await ExecuteServiceTask(async () => {
                 return await repository.RemoveSubscribers(id, subscriberIds);
             }, HttpStatusCode.Created, IsolationLevel.Snapshot);
+        }
+
+        public override Task<IServiceResponse<SubscriptionItem>> Update(SubscriptionItem entity) {
+            SubscriptionItem.Validate(entity);
+            return base.Update(entity);
         }
     }
 }

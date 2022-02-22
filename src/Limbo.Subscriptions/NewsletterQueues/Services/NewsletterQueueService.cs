@@ -1,4 +1,5 @@
-﻿using System.Data;
+﻿using System;
+using System.Data;
 using System.Net;
 using System.Threading.Tasks;
 using Limbo.DataAccess.Services;
@@ -13,6 +14,11 @@ namespace Limbo.Subscriptions.NewsletterQueues.Services {
         public NewsletterQueueService(INewsletterQueueRepository repository, ILogger<ServiceBase<INewsletterQueueRepository>> logger) : base(repository, logger) {
         }
 
+        public override Task<IServiceResponse<NewsletterQueue>> Add(NewsletterQueue entity) {
+            NewsletterQueue.Validate(entity);
+            return base.Add(entity);
+        }
+
         public async Task<IServiceResponse<NewsletterQueue>> AddSubscriptionItems(int id, int[] subscriptionItemIds) {
             return await ExecuteServiceTask(async () => {
                 return await repository.AddSubscriptionItems(id, subscriptionItemIds);
@@ -23,6 +29,11 @@ namespace Limbo.Subscriptions.NewsletterQueues.Services {
             return await ExecuteServiceTask(async () => {
                 return await repository.RemoveSubscriptionItems(id, subscriptionItemIds);
             }, HttpStatusCode.OK, IsolationLevel.Snapshot);
+        }
+
+        public override Task<IServiceResponse<NewsletterQueue>> Update(NewsletterQueue entity) {
+            NewsletterQueue.Validate(entity);
+            return base.Update(entity);
         }
     }
 }
