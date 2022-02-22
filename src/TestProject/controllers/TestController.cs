@@ -6,7 +6,7 @@ using Limbo.ApiAuthentication.Tokens.Models;
 using Microsoft.AspNetCore.Mvc;
 using Umbraco.Cms.Web.Common.Controllers;
 
-namespace TestProject {
+namespace TestProject.controllers {
     public class TestController : UmbracoApiController {
         private readonly IApiKeyAuthenticatorService _authenticationService;
         private readonly IApiKeyService _apiKeyService;
