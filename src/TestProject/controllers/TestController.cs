@@ -3,6 +3,7 @@ using Limbo.ApiAuthentication.ApiKeys.Services;
 using Limbo.ApiAuthentication.Authentication.Services;
 using Limbo.ApiAuthentication.Persistence.ApiKeys.Models;
 using Limbo.ApiAuthentication.Tokens.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Umbraco.Cms.Web.Common.Controllers;
 
@@ -22,6 +23,7 @@ namespace TestProject.controllers {
         }
 
         [HttpGet]
+        [Authorize]
         public async Task<ApiKey> CreateApiKey(string apiKey) {
             return (await _apiKeyService.Add(new ApiKey { Key = apiKey })).ReponseValue;
         }

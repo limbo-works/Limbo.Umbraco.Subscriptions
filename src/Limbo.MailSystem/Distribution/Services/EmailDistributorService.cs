@@ -16,14 +16,14 @@ namespace Limbo.MailSystem.Distribution.Services {
             _queueService = queueService;
         }
 
-        public void QueueDistributeEmails(List<Mail> mails, Action<Mail> sendEmail) {
+        public void QueueDistributeEmails(List<Mail> mails, Func<Mail, Task> sendEmail) {
             _queueService.QueueUp(async () => await DistributeEmails(mails, sendEmail));
         }
 
-        private async Task DistributeEmails(List<Mail> mails, Action<Mail> sendEmail) {
+        private async Task DistributeEmails(List<Mail> mails, Func<Mail, Task> sendEmail) {
             for (int i = 0; i < mails.Count; i++) {
 
-                sendEmail(mails[i]);
+                await sendEmail.Invoke(mails[i]);
 
                 if (_mailSettings.DelayBetweenMails != 0) {
                     await Task.Delay(_mailSettings.DelayBetweenMails);
