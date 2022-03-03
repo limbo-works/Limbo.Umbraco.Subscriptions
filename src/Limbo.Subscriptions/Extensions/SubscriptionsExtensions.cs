@@ -8,9 +8,9 @@ using System;
 
 namespace Limbo.Subscriptions.Extensions {
     public static class SubscriptionsExtensions {
-        public static IServiceCollection AddSubscriptions(this IServiceCollection services, IConfiguration config, string connectionStringKey = "Default", Func<IRequestExecutorBuilder, IRequestExecutorBuilder>? graphQLExtensions = null) {
+        public static IServiceCollection AddSubscriptions(this IServiceCollection services, IConfiguration config, string connectionStringKey = "Default", string dataAccessConfigurationSection = "Limbo:DataAccess", Func<IRequestExecutorBuilder, IRequestExecutorBuilder>? graphQLExtensions = null) {
             services
-                .AddPersistence(config, connectionStringKey)
+                .AddPersistence(config, connectionStringKey, dataAccessConfigurationSection)
                 .AddSubscriptionServices()
                 .AddSubscriptionsGraphQL(graphQLExtensions);
 
