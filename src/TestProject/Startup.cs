@@ -1,5 +1,5 @@
-using Limbo.ApiAuthentication.Extentions;
-using Limbo.Subscriptions.Extentions;
+using Limbo.ApiAuthentication.Extensions;
+using Limbo.Subscriptions.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -44,7 +44,7 @@ namespace TestProject {
                 .AddComposers()
                 .AddSubscriptions(_config)
                 .Build();
-            services.AddLimboApiAuthentication(_config, connectionStringKey: "umbracoDbDSN");
+            services.AddLimboApiAuthentication(_config, settings: new Limbo.ApiAuthentication.Extensions.Models.ApiAuthenticationConfigurationSettings() { ConnectionStringKey = "umbracoDbDSN" });
         }
 
         /// <summary>

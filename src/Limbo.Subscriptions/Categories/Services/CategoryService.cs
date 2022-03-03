@@ -7,10 +7,11 @@ using Microsoft.Extensions.Logging;
 using Limbo.DataAccess.Services.Crud;
 using Limbo.DataAccess.Services;
 using Limbo.DataAccess.Services.Models;
+using Limbo.DataAccess.Settings;
 
 namespace Limbo.Subscriptions.Categories.Services {
     public class CategoryService : CrudServiceBase<Category, ICategoryRepository>, ICategoryService {
-        public CategoryService(ICategoryRepository repository, ILogger<ServiceBase<ICategoryRepository>> logger) : base(repository, logger) {
+        public CategoryService(ICategoryRepository repository, ILogger<ServiceBase<ICategoryRepository>> logger, DataAccessSettings dataAccessSettings) : base(repository, logger, dataAccessSettings) {
         }
 
         public override Task<IServiceResponse<Category>> Add(Category entity) {

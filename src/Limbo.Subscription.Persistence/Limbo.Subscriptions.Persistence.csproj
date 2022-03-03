@@ -9,7 +9,8 @@
         <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
     </PropertyGroup>
     <ItemGroup>
-      <PackageReference Include="Limbo.DataAccess" Version="1.0.0" />
+      <PackageReference Include="Limbo.DataAccess" Version="1.1.1" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="5.0.14" />
     </ItemGroup>
 
 </Project>

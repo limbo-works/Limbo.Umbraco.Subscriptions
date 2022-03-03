@@ -7,10 +7,11 @@ using Microsoft.Extensions.Logging;
 using Limbo.DataAccess.Services.Crud;
 using Limbo.DataAccess.Services;
 using Limbo.DataAccess.Services.Models;
+using Limbo.DataAccess.Settings;
 
 namespace Limbo.Subscriptions.SubscriptionItems.Services {
     public class SubscriptionItemService : CrudServiceBase<SubscriptionItem, ISubscriptionItemRepository>, ISubscriptionItemService {
-        public SubscriptionItemService(ISubscriptionItemRepository repository, ILogger<ServiceBase<ISubscriptionItemRepository>> logger) : base(repository, logger) {
+        public SubscriptionItemService(ISubscriptionItemRepository repository, ILogger<ServiceBase<ISubscriptionItemRepository>> logger, DataAccessSettings dataAccessSettings) : base(repository, logger, dataAccessSettings) {
         }
 
         public override Task<IServiceResponse<SubscriptionItem>> Add(SubscriptionItem entity) {
