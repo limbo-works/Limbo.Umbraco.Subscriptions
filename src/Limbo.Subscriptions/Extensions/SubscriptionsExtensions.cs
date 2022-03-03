@@ -3,17 +3,18 @@ using Limbo.Subscriptions.Bases.Automapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Umbraco.Cms.Core.DependencyInjection;
+using HotChocolate.Execution.Configuration;
+using System;
 
 namespace Limbo.Subscriptions.Extensions {
     public static class SubscriptionsExtensions {
-        public static IUmbracoBuilder AddSubscriptions(this IUmbracoBuilder builder, IConfiguration config, string connectionStringKey = "umbracoDbDSN") {
-            builder.Services
+        public static IServiceCollection AddSubscriptions(this IServiceCollection services, IConfiguration config, string connectionStringKey = "Default", Func<IRequestExecutorBuilder, IRequestExecutorBuilder>? graphQLExtensions = null) {
+            services
                 .AddPersistence(config, connectionStringKey)
                 .AddSubscriptionServices()
-                .AddSubscriptionsGraphQL();
+                .AddSubscriptionsGraphQL(graphQLExtensions);
 
-            return builder;
+            return services;
         }
 
         public static IApplicationBuilder UseSubscriptionsGraphQLEndpoint(this IApplicationBuilder app, bool useSecurity = true) {

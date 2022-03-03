@@ -1,5 +1,6 @@
 using Limbo.ApiAuthentication.Extensions;
 using Limbo.Subscriptions.Extensions;
+using Limbo.Umbraco.Subscriptions.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;

@@ -1,4 +1,6 @@
-﻿using Limbo.Subscriptions.Bases.GraphQL.Mutations;
+﻿using System;
+using HotChocolate.Execution.Configuration;
+using Limbo.Subscriptions.Bases.GraphQL.Mutations;
 using Limbo.Subscriptions.Bases.GraphQL.Queries;
 using Limbo.Subscriptions.Categories.Mutations;
 using Limbo.Subscriptions.Categories.Queries;
@@ -15,7 +17,24 @@ using Microsoft.Extensions.DependencyInjection;
 namespace Limbo.Subscriptions.Extensions {
     public static class SubscriptionsGraphQLExtensions {
 
-        public static IServiceCollection AddSubscriptionsGraphQL(this IServiceCollection services) {
+        public static IServiceCollection AddSubscriptionsGraphQL(this IServiceCollection services, Func<IRequestExecutorBuilder, IRequestExecutorBuilder>? graphQLExtensions = null) {
+            if (graphQLExtensions == null) {
+                graphQLExtensions = builder => {
+                    return builder.AddQueryType<Query>()
+                        .AddTypeExtension<CategoryQueries>()
+                        .AddTypeExtension<NewsletterQueueQueries>()
+                        .AddTypeExtension<SubscriberQueries>()
+                        .AddTypeExtension<SubscriptionItemQueries>()
+                        .AddTypeExtension<SubscriptionSystemQueries>()
+                        .AddMutationType<Mutation>()
+                        .AddTypeExtension<CategoryMutations>()
+                        .AddTypeExtension<SubscriberMutations>()
+                        .AddTypeExtension<NewsletterQueueMutations>()
+                        .AddTypeExtension<SubscriptionItemMutations>()
+                        .AddTypeExtension<SubscriptionSystemMutations>();
+                };
+            }
+
             services
                 .AddGraphQLServer()
                 .AddAuthorization()
@@ -25,23 +44,18 @@ namespace Limbo.Subscriptions.Extensions {
                 .OnSchemaError(new((dc, ex) => {
                     throw ex;
                 }))
-                .AddQueryType<Query>()
-                .AddTypeExtension<CategoryQueries>()
-                .AddTypeExtension<NewsletterQueueQueries>()
-                .AddTypeExtension<SubscriberQueries>()
-                .AddTypeExtension<SubscriptionItemQueries>()
-                .AddTypeExtension<SubscriptionSystemQueries>()
-                .AddMutationType<Mutation>()
-                .AddTypeExtension<CategoryMutations>()
-                .AddTypeExtension<SubscriberMutations>()
-                .AddTypeExtension<NewsletterQueueMutations>()
-                .AddTypeExtension<SubscriptionItemMutations>()
-                .AddTypeExtension<SubscriptionSystemMutations>();
+                .AddGraphQLExtensions(graphQLExtensions);
 
             services
                 .AddSubscriptionAutomapper();
 
             return services;
+        }
+
+        public static IRequestExecutorBuilder AddGraphQLExtensions(this IRequestExecutorBuilder builder, Func<IRequestExecutorBuilder, IRequestExecutorBuilder> graphQLExtensions) {
+            builder = graphQLExtensions.Invoke(builder);
+
+            return builder;
         }
     }
 }
