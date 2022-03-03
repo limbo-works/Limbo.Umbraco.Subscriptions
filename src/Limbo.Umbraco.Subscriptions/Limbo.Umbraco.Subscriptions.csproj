@@ -8,8 +8,8 @@
     <PropertyGroup>
         <Version>0.1.0</Version>
         <Company>Limbo</Company>
-        <Authors>Nikolaj Brask-Nielsen, Jesper Mayntzhusen</Authors>
-        <Copyright>Copyright © 2022</Copyright>
+        <Authors>nikcio</Authors>
+        <Copyright></Copyright>
         <Title>Limbo.Umbraco.Subscriptions</Title>
         <Description>A package for subscriptions on content nodes in Umbraco</Description>
     </PropertyGroup>
@@ -36,6 +36,17 @@
     </ItemGroup>
 
     <ItemGroup>
+      <None Include="..\..\Limbo.png">
+        <Pack>True</Pack>
+        <PackagePath>\</PackagePath>
+      </None>
+      <None Include="..\..\README.md">
+        <Pack>True</Pack>
+        <PackagePath>\</PackagePath>
+      </None>
+    </ItemGroup>
+
+    <ItemGroup>
       <ProjectReference Include="..\Limbo.Subscriptions\Limbo.Subscriptions.csproj" />
     </ItemGroup>
 
@@ -43,5 +54,6 @@
     <PropertyGroup>
         <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
         <Nullable>enable</Nullable>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
     </PropertyGroup>
 </Project>
