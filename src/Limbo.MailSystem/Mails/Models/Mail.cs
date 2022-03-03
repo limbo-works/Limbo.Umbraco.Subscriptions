@@ -3,17 +3,42 @@ using Limbo.MailSystem.Receivers.Models;
 using Limbo.MailSystem.Senders.Models;
 
 namespace Limbo.MailSystem.Mails.Models {
+    /// <summary>
+    /// Represents a mail
+    /// </summary>
     public class Mail {
-        public Mail(Sender from, ICollection<Receiver> receivers, string subject, string body) {
+        /// <summary>
+        /// Creates a mail
+        /// </summary>
+        /// <param name="from"></param>
+        /// <param name="receivers"></param>
+        /// <param name="subject"></param>
+        /// <param name="body"></param>
+        public Mail(Sender from, ICollection<Recipient> receivers, string subject, string body) {
             From = from;
-            Receivers = receivers;
+            Recipients = receivers;
             Subject = subject;
             Body = body;
         }
 
+        /// <summary>
+        /// The sender of the mail
+        /// </summary>
         public Sender From { get; set; }
-        public ICollection<Receiver> Receivers { get; set; }
+
+        /// <summary>
+        /// The recipients of the mail
+        /// </summary>
+        public ICollection<Recipient> Recipients { get; set; }
+
+        /// <summary>
+        /// The subject of the mail
+        /// </summary>
         public string Subject { get; set; }
+
+        /// <summary>
+        /// The body of the mail
+        /// </summary>
         public string Body { get; set; }
     }
 }

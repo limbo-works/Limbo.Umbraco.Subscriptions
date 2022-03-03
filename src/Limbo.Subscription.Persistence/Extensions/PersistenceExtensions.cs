@@ -8,7 +8,17 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Limbo.Subscriptions.Persistence.Extensions {
+    /// <summary>
+    /// Extensions
+    /// </summary>
     public static class PersistenceExtensions {
+        /// <summary>
+        /// Adds persistence
+        /// </summary>
+        /// <param name="services"></param>
+        /// <param name="configuration"></param>
+        /// <param name="connectionStringKey"></param>
+        /// <returns></returns>
         public static IServiceCollection AddPersistence(this IServiceCollection services, IConfiguration configuration, string connectionStringKey) {
             services
                 .AddContexts(configuration, connectionStringKey)

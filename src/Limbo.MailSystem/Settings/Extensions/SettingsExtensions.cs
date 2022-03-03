@@ -3,6 +3,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Limbo.MailSystem.Settings.Extensions {
+    /// <summary>
+    /// Extensions
+    /// </summary>
     public static class SettingsExtensions {
         /// <summary>
         /// Adds settings

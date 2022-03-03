@@ -2,8 +2,16 @@
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Limbo.Subscriptions.Persistence.Subscribers.Extensions {
+    /// <summary>
+    /// Extensions
+    /// </summary>
     public static class RepositoryExtensions {
-        public static IServiceCollection AddRepositroies(this IServiceCollection services) {
+        /// <summary>
+        /// Adss repositories
+        /// </summary>
+        /// <param name="services"></param>
+        /// <returns></returns>
+        public static IServiceCollection AddRepositories(this IServiceCollection services) {
             services
                 .AddScoped<ISubscriberRepository, SubscriberRepository>();
 

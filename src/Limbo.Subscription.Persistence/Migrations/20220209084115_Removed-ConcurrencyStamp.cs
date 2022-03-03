@@ -2,6 +2,10 @@
 
 namespace Limbo.Subscriptions.Persistence.Migrations {
     public partial class RemovedConcurrencyStamp : Migration {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="migrationBuilder"></param>
         protected override void Up(MigrationBuilder migrationBuilder) {
             migrationBuilder.DropColumn(
                 name: "ConcurrencyStamp",
@@ -24,6 +28,10 @@ namespace Limbo.Subscriptions.Persistence.Migrations {
                 table: "Categories");
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="migrationBuilder"></param>
         protected override void Down(MigrationBuilder migrationBuilder) {
             migrationBuilder.AddColumn<byte[]>(
                 name: "ConcurrencyStamp",

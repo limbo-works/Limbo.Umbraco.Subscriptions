@@ -13,6 +13,10 @@ namespace Limbo.Subscriptions.Persistence.Migrations
     [Migration("20220209100834_Type-Change")]
     partial class TypeChange
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="modelBuilder"></param>
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618

@@ -6,18 +6,57 @@ using Limbo.Subscriptions.Persistence.SubscriptionItems.Models;
 using Limbo.Subscriptions.Persistence.SubscriptionSystems.Models;
 
 namespace Limbo.Subscriptions.Persistence.Subscribers.Models {
+    /// <summary>
+    /// Represents a subscriber
+    /// </summary>
     public class Subscriber : GenericId {
-
+        /// <summary>
+        /// The unique id
+        /// </summary>
         public int Id { get; set; }
+
+        /// <summary>
+        /// The name of the subscriber
+        /// </summary>
         public string? Name { get; set; }
+
+        /// <summary>
+        /// The email of the subscriber
+        /// </summary>
         public string? Email { get; set; }
+
+        /// <summary>
+        /// Has the subscriber confirmed thier email
+        /// </summary>
         public bool IsConfirmed { get; set; }
+
+        /// <summary>
+        /// When was the subscriber created
+        /// </summary>
         public DateTime Created { get; set; }
 
+        /// <summary>
+        /// The subscription items of the subscriber
+        /// </summary>
         public virtual List<SubscriptionItem>? SubscriptionItems { get; set; }
+
+        /// <summary>
+        /// The subscription systems of the subscriber
+        /// </summary>
         public virtual SubscriptionSystem? SubscriptionSystem { get; set; }
+
+        /// <summary>
+        /// The categories of the subscriber
+        /// </summary>
         public virtual List<Category>? Categories { get; set; }
 
+
+        /// <summary>
+        /// Validates if a subscriber is valid
+        /// </summary>
+        /// <param name="subscriber"></param>
+        /// <param name="checkRelations"></param>
+        /// <exception cref="ArgumentException"></exception>
         public static void Validate(Subscriber? subscriber, bool checkRelations = true) {
             if (subscriber == null) {
                 throw new ArgumentException("Subscriber cannot be null", nameof(subscriber));

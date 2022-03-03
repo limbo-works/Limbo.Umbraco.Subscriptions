@@ -1,7 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Limbo.Subscriptions.Persistence.Migrations {
+    /// <summary>
+    /// 
+    /// </summary>
     public partial class FixSpelling : Migration {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="migrationBuilder"></param>
         protected override void Up(MigrationBuilder migrationBuilder) {
             migrationBuilder.DropForeignKey(
                 name: "FK_Subscribers_SubscriptionSystems_subscriptionSystemId",
@@ -26,6 +33,10 @@ namespace Limbo.Subscriptions.Persistence.Migrations {
                 onDelete: ReferentialAction.Restrict);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="migrationBuilder"></param>
         protected override void Down(MigrationBuilder migrationBuilder) {
             migrationBuilder.DropForeignKey(
                 name: "FK_Subscribers_SubscriptionSystems_SubscriptionSystemId",

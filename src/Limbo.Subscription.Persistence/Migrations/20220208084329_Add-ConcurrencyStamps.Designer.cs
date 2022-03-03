@@ -13,6 +13,10 @@ namespace Limbo.Subscriptions.Persistence.Migrations
     [Migration("20220208084329_Add-ConcurrencyStamps")]
     partial class AddConcurrencyStamps
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="modelBuilder"></param>
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618

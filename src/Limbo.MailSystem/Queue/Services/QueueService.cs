@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 
 namespace Limbo.MailSystem.Queue.Services {
+    /// <inheritdoc/>
     public class QueueService : IQueueService {
         private bool _isItemRunning;
         private readonly object _lock = new();
         private readonly List<Action> _queue = new();
 
+        /// <inheritdoc/>
         public void RunNextAction() {
             Action? nextItem = null;
             lock (_lock) {
@@ -22,6 +24,7 @@ namespace Limbo.MailSystem.Queue.Services {
             }
         }
 
+        /// <inheritdoc/>
         public void QueueUp(Action action) {
             if (!_isItemRunning) {
                 lock (_lock) {
@@ -37,6 +40,7 @@ namespace Limbo.MailSystem.Queue.Services {
             }
         }
 
+        /// <inheritdoc/>
         public bool AddToQueue(Action action) {
             bool runAction = false;
             lock (_lock) {

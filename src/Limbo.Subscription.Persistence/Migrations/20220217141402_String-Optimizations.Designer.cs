@@ -13,6 +13,10 @@ namespace Limbo.Subscriptions.Persistence.Migrations
     [Migration("20220217141402_String-Optimizations")]
     partial class StringOptimizations
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="modelBuilder"></param>
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618

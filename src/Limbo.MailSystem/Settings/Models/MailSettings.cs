@@ -1,4 +1,7 @@
 ﻿namespace Limbo.MailSystem.Settings.Models {
+    /// <summary>
+    /// Represents the mail setting available
+    /// </summary>
     public class MailSettings {
         /// <summary>
         /// The default sender email to use

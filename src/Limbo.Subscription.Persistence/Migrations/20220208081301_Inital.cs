@@ -3,6 +3,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Limbo.Subscriptions.Persistence.Migrations {
     public partial class Inital : Migration {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="migrationBuilder"></param>
         protected override void Up(MigrationBuilder migrationBuilder) {
             migrationBuilder.CreateTable(
                 name: "Categories",
@@ -183,6 +187,10 @@ namespace Limbo.Subscriptions.Persistence.Migrations {
                 column: "SubscriptionItemsId");
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="migrationBuilder"></param>
         protected override void Down(MigrationBuilder migrationBuilder) {
             migrationBuilder.DropTable(
                 name: "CategorySubscriber");

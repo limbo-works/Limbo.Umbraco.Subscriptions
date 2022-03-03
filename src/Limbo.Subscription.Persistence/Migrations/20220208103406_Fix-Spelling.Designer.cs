@@ -9,10 +9,17 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Limbo.Subscriptions.Persistence.Migrations
 {
+    /// <summary>
+    /// 
+    /// </summary>
     [DbContext(typeof(SubscriptionDbContext))]
     [Migration("20220208103406_test")]
     partial class FixSpelling
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="modelBuilder"></param>
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618

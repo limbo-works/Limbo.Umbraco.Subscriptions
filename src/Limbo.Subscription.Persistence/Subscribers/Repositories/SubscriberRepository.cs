@@ -8,22 +8,29 @@ using Limbo.Subscriptions.Persistence.SubscriptionItems.Models;
 using Microsoft.Extensions.Logging;
 
 namespace Limbo.Subscriptions.Persistence.Subscribers.Repositories {
+    /// <inheritdoc/>
     public class SubscriberRepository : DbCrudRepositoryBase<Subscriber>, ISubscriberRepository {
+
+        /// <inheritdoc/>
         public SubscriberRepository(ISubscriptionDbContext dbContext, ILogger<DbCrudRepositoryBase<Subscriber>> logger) : base(dbContext, logger) {
         }
 
+        /// <inheritdoc/>
         public async Task<Subscriber> AddCategories(int id, int[] categoryIds) {
             return await AddToCollection(id, categoryIds, subscriber => subscriber.Categories ?? new List<Category>());
         }
 
+        /// <inheritdoc/>
         public async Task<Subscriber> AddSubscriptionItems(int id, int[] subscriptionItemIds) {
             return await AddToCollection(id, subscriptionItemIds, subscriber => subscriber.SubscriptionItems ?? new List<SubscriptionItem>());
         }
 
+        /// <inheritdoc/>
         public async Task<Subscriber> RemoveCategories(int id, int[] categoryIds) {
             return await RemoveFromCollection(id, categoryIds, subscriber => subscriber.Categories ?? new List<Category>());
         }
 
+        /// <inheritdoc/>
         public async Task<Subscriber> RemoveSubscriptionItems(int id, int[] subscriptionItemIds) {
             return await RemoveFromCollection(id, subscriptionItemIds, subscriber => subscriber.SubscriptionItems ?? new List<SubscriptionItem>());
         }
