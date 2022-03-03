@@ -13,5 +13,6 @@
     <!-- Generate XML documentation -->
     <PropertyGroup>
         <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
+        <Nullable>enable</Nullable>
     </PropertyGroup>
 </Project>

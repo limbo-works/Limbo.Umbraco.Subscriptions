@@ -12,11 +12,14 @@ namespace Limbo.Subscriptions.Persistence.Contexts {
         public SubscriptionDbContext(DbContextOptions<SubscriptionDbContext> options) : base(options) {
         }
 
-        public DbSet<Category> Categories { get; set; }
-        public DbSet<NewsletterQueue> NewsletterQueues { get; set; }
-        public DbSet<Subscriber> Subscribers { get; set; }
-        public DbSet<SubscriptionItem> SubscriptionItems { get; set; }
-        public DbSet<SubscriptionSystem> SubscriptionSystems { get; set; }
+        //TODO Remove this disable when updating EF Core
+#pragma warning disable CS8766 // Nullability of reference types in return type doesn't match implicitly implemented member (possibly because of nullability attributes).
+        public DbSet<Category>? Categories { get; set; }
+        public DbSet<NewsletterQueue>? NewsletterQueues { get; set; }
+        public DbSet<Subscriber>? Subscribers { get; set; }
+        public DbSet<SubscriptionItem>? SubscriptionItems { get; set; }
+        public DbSet<SubscriptionSystem>? SubscriptionSystems { get; set; }
+#pragma warning restore CS8766 // Nullability of reference types in return type doesn't match implicitly implemented member (possibly because of nullability attributes).
 
         public DbContext Context => this;
 

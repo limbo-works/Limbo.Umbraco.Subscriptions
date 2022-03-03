@@ -33,7 +33,7 @@ namespace Limbo.Subscriptions.Subscribers.Queries {
         [UseProjection]
         [UseFiltering]
         [UseSorting]
-        public async Task<IQueryable<Subscriber>> GetSubscriber([Service] ISubscriberService subscriberService) {
+        public async Task<IQueryable<Subscriber>?> GetSubscriber([Service] ISubscriberService subscriberService) {
             var response = (await subscriberService.QueryDbSet(IsolationLevel.ReadCommitted)).ReponseValue;
             return response;
         }

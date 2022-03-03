@@ -3,11 +3,11 @@
         /// <summary>
         /// The Regex pattern used to match the occurences
         /// </summary>
-        public string Pattern { get; set; }
+        public string? Pattern { get; set; }
 
         /// <summary>
         /// Value to replace the pattern with
         /// </summary>
-        public string Value { get; set; }
+        public string? Value { get; set; }
     }
 }

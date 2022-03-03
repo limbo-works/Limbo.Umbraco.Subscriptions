@@ -31,7 +31,7 @@ namespace Limbo.Subscriptions.NewsletterQueues.Queries {
         [UseProjection]
         [UseFiltering]
         [UseSorting]
-        public async Task<IQueryable<NewsletterQueue>> GetNewsletterQueueById([Service] INewsletterQueueService newsletterQueueService) {
+        public async Task<IQueryable<NewsletterQueue>?> GetNewsletterQueueById([Service] INewsletterQueueService newsletterQueueService) {
             var response = (await newsletterQueueService.QueryDbSet(IsolationLevel.ReadCommitted)).ReponseValue;
             return response;
         }

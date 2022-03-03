@@ -32,7 +32,7 @@ namespace Limbo.Subscriptions.Categories.Queries {
         [UseProjection]
         [UseFiltering]
         [UseSorting]
-        public async Task<IQueryable<Category>> GetCategory([Service] ICategoryService categoryService) {
+        public async Task<IQueryable<Category>?> GetCategory([Service] ICategoryService categoryService) {
             var response = (await categoryService.QueryDbSet(IsolationLevel.ReadCommitted)).ReponseValue;
             return response;
         }

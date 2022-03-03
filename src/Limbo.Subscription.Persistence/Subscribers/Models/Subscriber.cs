@@ -9,16 +9,16 @@ namespace Limbo.Subscriptions.Persistence.Subscribers.Models {
     public class Subscriber : GenericId {
 
         public int Id { get; set; }
-        public string Name { get; set; }
-        public string Email { get; set; }
+        public string? Name { get; set; }
+        public string? Email { get; set; }
         public bool IsConfirmed { get; set; }
         public DateTime Created { get; set; }
 
-        public virtual List<SubscriptionItem> SubscriptionItems { get; set; }
-        public virtual SubscriptionSystem SubscriptionSystem { get; set; }
-        public virtual List<Category> Categories { get; set; }
+        public virtual List<SubscriptionItem>? SubscriptionItems { get; set; }
+        public virtual SubscriptionSystem? SubscriptionSystem { get; set; }
+        public virtual List<Category>? Categories { get; set; }
 
-        public static void Validate(Subscriber subscriber, bool checkRelations = true) {
+        public static void Validate(Subscriber? subscriber, bool checkRelations = true) {
             if (subscriber == null) {
                 throw new ArgumentException("Subscriber cannot be null", nameof(subscriber));
             }
@@ -33,8 +33,8 @@ namespace Limbo.Subscriptions.Persistence.Subscribers.Models {
 
             if (checkRelations) {
                 subscriber.SubscriptionItems?.ForEach(subscriptionItem => SubscriptionItem.Validate(subscriptionItem, false));
-                SubscriptionSystem.Validate(subscriber?.SubscriptionSystem, false);
                 subscriber.Categories?.ForEach(category => Category.Vaildate(category, false));
+                SubscriptionSystem.Validate(subscriber?.SubscriptionSystem, false);
             }
         }
     }

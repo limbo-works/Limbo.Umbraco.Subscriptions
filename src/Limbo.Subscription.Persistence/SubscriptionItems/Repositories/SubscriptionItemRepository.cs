@@ -1,6 +1,10 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Limbo.DataAccess.Repositories.Crud;
+using Limbo.Subscriptions.Persistence.Categories.Models;
 using Limbo.Subscriptions.Persistence.Contexts;
+using Limbo.Subscriptions.Persistence.NewsletterQueues.Models;
+using Limbo.Subscriptions.Persistence.Subscribers.Models;
 using Limbo.Subscriptions.Persistence.SubscriptionItems.Models;
 using Microsoft.Extensions.Logging;
 
@@ -10,27 +14,27 @@ namespace Limbo.Subscriptions.Persistence.SubscriptionItems.Repositories {
         }
 
         public async Task<SubscriptionItem> AddCategories(int id, int[] categoryIds) {
-            return await AddToCollection(id, categoryIds, subscriptionItem => subscriptionItem.Categories);
+            return await AddToCollection(id, categoryIds, subscriptionItem => subscriptionItem.Categories ?? new List<Category>());
         }
 
         public async Task<SubscriptionItem> AddNewsletterQueues(int id, int[] newsletterQueueIds) {
-            return await AddToCollection(id, newsletterQueueIds, subscriptionItem => subscriptionItem.NewsletterQueues);
+            return await AddToCollection(id, newsletterQueueIds, subscriptionItem => subscriptionItem.NewsletterQueues ?? new List<NewsletterQueue>());
         }
 
         public async Task<SubscriptionItem> AddSubscribers(int id, int[] subscriberIds) {
-            return await AddToCollection(id, subscriberIds, subscriptionItem => subscriptionItem.Subscribers);
+            return await AddToCollection(id, subscriberIds, subscriptionItem => subscriptionItem.Subscribers ?? new List<Subscriber>());
         }
 
         public async Task<SubscriptionItem> RemoveCategories(int id, int[] categoryIds) {
-            return await RemoveFromCollection(id, categoryIds, subscriptionItem => subscriptionItem.Categories);
+            return await RemoveFromCollection(id, categoryIds, subscriptionItem => subscriptionItem.Categories ?? new List<Category>());
         }
 
         public async Task<SubscriptionItem> RemoveNewsletterQueues(int id, int[] newsletterQueueIds) {
-            return await RemoveFromCollection(id, newsletterQueueIds, subscriptionItem => subscriptionItem.NewsletterQueues);
+            return await RemoveFromCollection(id, newsletterQueueIds, subscriptionItem => subscriptionItem.NewsletterQueues ?? new List<NewsletterQueue>());
         }
 
         public async Task<SubscriptionItem> RemoveSubscribers(int id, int[] subscriberIds) {
-            return await RemoveFromCollection(id, subscriberIds, subscriptionItem => subscriptionItem.Subscribers);
+            return await RemoveFromCollection(id, subscriberIds, subscriptionItem => subscriptionItem.Subscribers ?? new List<Subscriber>());
         }
     }
 }

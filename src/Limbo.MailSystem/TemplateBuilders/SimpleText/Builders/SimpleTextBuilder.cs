@@ -24,6 +24,9 @@ namespace Limbo.MailSystem.TemplateBuilders.SimpleText.Builders {
 
         public string BuildMailBody(string body, IEnumerable<TextReplacement> textReplacements) {
             foreach (var replacement in textReplacements) {
+                if (replacement.Pattern == null || replacement.Value == null) {
+                    continue;
+                }
                 body = Regex.Replace(body, replacement.Pattern, replacement.Value);
             }
             return body;

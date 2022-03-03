@@ -14,7 +14,7 @@ namespace Limbo.Subscriptions.Persistence.Contexts.Extensions {
                 return factory.CreateDbContext();
             });
 
-            var context = services.BuildServiceProvider().GetService<ISubscriptionDbContext>();
+            var context = services.BuildServiceProvider().GetRequiredService<ISubscriptionDbContext>();
             context.Context.Database.Migrate();
 
             return services;

@@ -9,7 +9,7 @@ namespace Limbo.MailSystem.Queue.Services {
         private readonly List<Action> _queue = new();
 
         public void RunNextAction() {
-            Action nextItem = null;
+            Action? nextItem = null;
             lock (_lock) {
                 if (_queue.Any()) {
                     nextItem = _queue.First();
