@@ -5,14 +5,16 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using HotChocolate.Execution.Configuration;
 using System;
+using Limbo.MailSystem.Extensions;
 
 namespace Limbo.Subscriptions.Extensions {
     public static class SubscriptionsExtensions {
-        public static IServiceCollection AddSubscriptions(this IServiceCollection services, IConfiguration config, string connectionStringKey = "Default", string dataAccessConfigurationSection = "Limbo:DataAccess", Func<IRequestExecutorBuilder, IRequestExecutorBuilder>? graphQLExtensions = null) {
+        public static IServiceCollection AddSubscriptions(this IServiceCollection services, IConfiguration config, string connectionStringKey = "Default", string dataAccessConfigurationSection = "Limbo:DataAccess", Func<IRequestExecutorBuilder, IRequestExecutorBuilder>? graphQLExtensions = null, string mailConfigurationSection = "Limbo:MailSystem") {
             services
                 .AddPersistence(config, connectionStringKey, dataAccessConfigurationSection)
                 .AddSubscriptionServices()
-                .AddSubscriptionsGraphQL(graphQLExtensions);
+                .AddSubscriptionsGraphQL(graphQLExtensions)
+                .AddMailSystem(config, connectionStringKey, mailConfigurationSection);
 
             return services;
         }

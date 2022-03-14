@@ -13,6 +13,8 @@ namespace Limbo.MailSystem.Persisence.Contexts {
         public MailContext(DbContextOptions options) : base(options) {
         }
 
+        private static readonly string _tablePrefix = "Limbo_Mail";
+
         /// <inheritdoc/>
         public DbContext Context => this;
 
@@ -28,6 +30,11 @@ namespace Limbo.MailSystem.Persisence.Contexts {
         /// <inheritdoc/>
         protected override void OnModelCreating(ModelBuilder modelBuilder) {
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+
+            // Prefix tables
+            foreach (var entityType in modelBuilder.Model.GetEntityTypes()) {
+                entityType.SetTableName(_tablePrefix + "_" + entityType.GetTableName());
+            }
         }
 
     }

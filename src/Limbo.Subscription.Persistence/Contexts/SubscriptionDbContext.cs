@@ -9,13 +9,12 @@ using Microsoft.EntityFrameworkCore;
 namespace Limbo.Subscriptions.Persistence.Contexts {
     /// <inheritdoc/>
     public class SubscriptionDbContext : DbContext, ISubscriptionDbContext {
+        private static readonly string _tablePrefix = "Limbo_Subscription";
 
         /// <inheritdoc/>
         public SubscriptionDbContext(DbContextOptions<SubscriptionDbContext> options) : base(options) {
         }
 
-        //TODO Remove this disable when updating EF Core
-#pragma warning disable CS8766 // Nullability of reference types in return type doesn't match implicitly implemented member (possibly because of nullability attributes).
 
         /// <inheritdoc/>
         public DbSet<Category>? Categories { get; set; }
@@ -31,7 +30,6 @@ namespace Limbo.Subscriptions.Persistence.Contexts {
 
         /// <inheritdoc/>
         public DbSet<SubscriptionSystem>? SubscriptionSystems { get; set; }
-#pragma warning restore CS8766 // Nullability of reference types in return type doesn't match implicitly implemented member (possibly because of nullability attributes).
 
         /// <inheritdoc/>
         public DbContext Context => this;
@@ -39,6 +37,11 @@ namespace Limbo.Subscriptions.Persistence.Contexts {
         /// <inheritdoc/>
         protected override void OnModelCreating(ModelBuilder modelBuilder) {
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+
+            // Prefix tables
+            foreach (var entityType in modelBuilder.Model.GetEntityTypes()) {
+                entityType.SetTableName(_tablePrefix + "_" + entityType.GetTableName());
+            }
         }
     }
 }

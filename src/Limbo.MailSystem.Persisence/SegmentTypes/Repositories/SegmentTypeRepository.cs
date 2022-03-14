@@ -7,7 +7,7 @@ namespace Limbo.MailSystem.Persisence.SegmentTypes.Repositories {
     /// <inheritdoc/>
     public class SegmentTypeRepository : DbCrudRepositoryBase<SegmentType>, ISegmentTypeRepository {
         /// <inheritdoc/>
-        protected SegmentTypeRepository(IMailContext dbContext, ILogger<DbCrudRepositoryBase<SegmentType>> logger) : base(dbContext, logger) {
+        public SegmentTypeRepository(IMailContext dbContext, ILogger<DbCrudRepositoryBase<SegmentType>> logger) : base(dbContext, logger) {
         }
     }
 }

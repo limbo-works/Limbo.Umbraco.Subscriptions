@@ -14,26 +14,26 @@ namespace Limbo.Subscriptions.Persistence.Contexts {
         /// <summary>
         /// Categories
         /// </summary>
-        DbSet<Category> Categories { get; set; }
+        DbSet<Category>? Categories { get; set; }
 
         /// <summary>
         /// Newsletter queues
         /// </summary>
-        DbSet<NewsletterQueue> NewsletterQueues { get; set; }
+        DbSet<NewsletterQueue>? NewsletterQueues { get; set; }
 
         /// <summary>
         /// Subscribers
         /// </summary>
-        DbSet<Subscriber> Subscribers { get; set; }
+        DbSet<Subscriber>? Subscribers { get; set; }
 
         /// <summary>
         /// Subscription items
         /// </summary>
-        DbSet<SubscriptionItem> SubscriptionItems { get; set; }
+        DbSet<SubscriptionItem>? SubscriptionItems { get; set; }
 
         /// <summary>
         /// Subscription systems
         /// </summary>
-        DbSet<SubscriptionSystem> SubscriptionSystems { get; set; }
+        DbSet<SubscriptionSystem>? SubscriptionSystems { get; set; }
     }
 }

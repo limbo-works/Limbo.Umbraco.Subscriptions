@@ -7,7 +7,7 @@ namespace Limbo.MailSystem.Persisence.MailTemplates.Repositories {
     /// <inheritdoc/>
     public class MailTemplateRepository : DbCrudRepositoryBase<MailTemplate>, IMailTemplateRepository {
         /// <inheritdoc/>
-        protected MailTemplateRepository(IMailContext dbContext, ILogger<DbCrudRepositoryBase<MailTemplate>> logger) : base(dbContext, logger) {
+        public MailTemplateRepository(IMailContext dbContext, ILogger<DbCrudRepositoryBase<MailTemplate>> logger) : base(dbContext, logger) {
         }
     }
 }

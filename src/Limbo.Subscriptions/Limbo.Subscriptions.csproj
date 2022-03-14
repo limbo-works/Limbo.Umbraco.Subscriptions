@@ -26,6 +26,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Limbo.MailSystem\Limbo.MailSystem.csproj" />
     <ProjectReference Include="..\Limbo.Subscription.Persistence\Limbo.Subscriptions.Persistence.csproj" />
   </ItemGroup>
 
