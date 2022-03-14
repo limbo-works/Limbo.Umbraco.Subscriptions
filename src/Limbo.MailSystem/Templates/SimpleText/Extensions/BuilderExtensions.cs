@@ -1,7 +1,7 @@
-﻿using Limbo.MailSystem.TemplateBuilders.SimpleText.Builders;
+﻿using Limbo.MailSystem.Templates.SimpleText.Builders;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Limbo.MailSystem.TemplateBuilders.SimpleText.Extensions {
+namespace Limbo.MailSystem.Templates.SimpleText.Extensions {
     /// <summary>
     /// Extensions
     /// </summary>

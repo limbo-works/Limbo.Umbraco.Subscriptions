@@ -10,8 +10,8 @@
           <PrivateAssets>all</PrivateAssets>
           <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="Umbraco.Cms" Version="9.2.0" />
-        <PackageReference Include="Umbraco.Cms.SqlCe" Version="9.2.0" />
+        <PackageReference Include="Umbraco.Cms" Version="9.3.1" />
+        <PackageReference Include="Umbraco.Cms.SqlCe" Version="9.3.1" />
         <PackageReference Include="Umbraco.SqlServerCE" Version="4.0.0.1" />
     </ItemGroup>
 

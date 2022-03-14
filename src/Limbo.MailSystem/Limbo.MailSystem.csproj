@@ -21,6 +21,14 @@
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Limbo.MailSystem.Persisence\Limbo.MailSystem.Persisence.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Templates\SegmentTemplates\" />
+  </ItemGroup>
+
     <!-- Generate XML documentation -->
     <PropertyGroup>
         <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>

@@ -1,4 +1,4 @@
-﻿namespace Limbo.MailSystem.TemplateBuilders.SimpleText.Models {
+﻿namespace Limbo.MailSystem.Templates.SimpleText.Models {
     /// <summary>
     /// Represents a text that should be replaced where the Regex pattern matches
     /// </summary>
