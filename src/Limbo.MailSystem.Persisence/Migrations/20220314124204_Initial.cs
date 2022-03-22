@@ -1,45 +1,37 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Limbo.MailSystem.Persisence.Migrations
-{
-    public partial class Initial : Migration
-    {
+namespace Limbo.MailSystem.Persisence.Migrations {
+    public partial class Initial : Migration {
         /// <summary>
         /// 
         /// </summary>
         /// <param name="migrationBuilder"></param>
-        protected override void Up(MigrationBuilder migrationBuilder)
-        {
+        protected override void Up(MigrationBuilder migrationBuilder) {
             migrationBuilder.CreateTable(
                 name: "Limbo_Mail_MailTemplates",
-                columns: table => new
-                {
+                columns: table => new {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true)
                 },
-                constraints: table =>
-                {
+                constraints: table => {
                     table.PrimaryKey("PK_Limbo_Mail_MailTemplates", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Limbo_Mail_SegmentTypes",
-                columns: table => new
-                {
+                columns: table => new {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Alias = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true)
                 },
-                constraints: table =>
-                {
+                constraints: table => {
                     table.PrimaryKey("PK_Limbo_Mail_SegmentTypes", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Limbo_Mail_MailSegments",
-                columns: table => new
-                {
+                columns: table => new {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     NVarCharValue = table.Column<string>(type: "nvarchar(512)", maxLength: 512, nullable: true),
@@ -47,8 +39,7 @@ namespace Limbo.MailSystem.Persisence.Migrations
                     MailTemplateId = table.Column<int>(type: "int", nullable: true),
                     SegmentTypeId = table.Column<int>(type: "int", nullable: true)
                 },
-                constraints: table =>
-                {
+                constraints: table => {
                     table.PrimaryKey("PK_Limbo_Mail_MailSegments", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Limbo_Mail_MailSegments_Limbo_Mail_MailTemplates_MailTemplateId",
@@ -79,8 +70,7 @@ namespace Limbo.MailSystem.Persisence.Migrations
         /// 
         /// </summary>
         /// <param name="migrationBuilder"></param>
-        protected override void Down(MigrationBuilder migrationBuilder)
-        {
+        protected override void Down(MigrationBuilder migrationBuilder) {
             migrationBuilder.DropTable(
                 name: "Limbo_Mail_MailSegments");
 

@@ -19,7 +19,7 @@ namespace Limbo.Subscriptions.Persistence.Contexts.Extensions {
                 options.UseSqlServer(configuration.GetConnectionString(connectionStringKey))
                 .UseLazyLoadingProxies());
 
-            services.AddScoped<ISubscriptionDbContext>(x => {
+            services.AddTransient<ISubscriptionDbContext>(x => {
                 var factory = x.GetRequiredService<IDbContextFactory<SubscriptionDbContext>>();
                 return factory.CreateDbContext();
             });

@@ -1,9 +1,10 @@
-﻿using HotChocolate.Execution.Configuration;
-using System;
+﻿using System;
 using Limbo.Subscriptions.Extensions;
 using Microsoft.Extensions.Configuration;
 using Umbraco.Cms.Core.DependencyInjection;
 using Limbo.MailSystem.Extensions;
+using Limbo.Umbraco.Subscriptions.Content.Events.Extensions;
+using Limbo.Umbraco.Subscriptions.Extensions.Models;
 
 namespace Limbo.Umbraco.Subscriptions.Extensions {
     /// <summary>
@@ -15,14 +16,16 @@ namespace Limbo.Umbraco.Subscriptions.Extensions {
         /// </summary>
         /// <param name="builder"></param>
         /// <param name="config"></param>
-        /// <param name="connectionStringKey"></param>
-        /// <param name="dataAccessConfigurationSection"></param>
-        /// <param name="mailConfigurationSection"></param>
-        /// <param name="graphQLExtensions"></param>
+        /// <param name="subscriptionConfigurationOptions"></param>
         /// <returns></returns>
-        public static IUmbracoBuilder AddSubscriptions(this IUmbracoBuilder builder, IConfiguration config, string connectionStringKey = "umbracoDbDSN", string dataAccessConfigurationSection = "Limbo.DataAccess", string mailConfigurationSection = "Limbo:MailSettings", Func<IRequestExecutorBuilder, IRequestExecutorBuilder>? graphQLExtensions = null) {
-            builder.Services.AddSubscriptions(config, connectionStringKey, dataAccessConfigurationSection, graphQLExtensions)
-                .AddMailSystem(config, mailConfigurationSection);
+        public static IUmbracoBuilder AddSubscriptions(this IUmbracoBuilder builder, IConfiguration config, Action<SubscriptionsConfigurationOptions> subscriptionConfigurationOptions) {
+            var subscriptionConfiguration = new SubscriptionsConfigurationOptions();
+            subscriptionConfigurationOptions.Invoke(subscriptionConfiguration);
+
+            builder.Services.AddSubscriptions(config, subscriptionConfiguration.ConnectionStringKey, subscriptionConfiguration.DataAccessConfigurationSection, subscriptionConfiguration.GraphQLExtensions)
+                .AddMailSystem(config, subscriptionConfiguration.MailConfigurationSection);
+
+            builder.AddEvents();
 
             return builder;
         }

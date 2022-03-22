@@ -1,15 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Limbo.Subscriptions.Persistence.Migrations
-{
-    public partial class NamingPrefix : Migration
-    {
+namespace Limbo.Subscriptions.Persistence.Migrations {
+    public partial class NamingPrefix : Migration {
         /// <summary>
         /// 
         /// </summary>
         /// <param name="migrationBuilder"></param>
-        protected override void Up(MigrationBuilder migrationBuilder)
-        {
+        protected override void Up(MigrationBuilder migrationBuilder) {
             migrationBuilder.DropForeignKey(
                 name: "FK_CategorySubscriber_Categories_CategoriesId",
                 table: "CategorySubscriber");
@@ -265,8 +262,7 @@ namespace Limbo.Subscriptions.Persistence.Migrations
         /// 
         /// </summary>
         /// <param name="migrationBuilder"></param>
-        protected override void Down(MigrationBuilder migrationBuilder)
-        {
+        protected override void Down(MigrationBuilder migrationBuilder) {
             migrationBuilder.DropForeignKey(
                 name: "FK_Limbo_Subscription_CategorySubscriber_Limbo_Subscription_Categories_CategoriesId",
                 table: "Limbo_Subscription_CategorySubscriber");

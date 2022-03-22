@@ -22,8 +22,8 @@ namespace Limbo.Subscriptions.NewsletterQueues.Mutations {
         }
 
         [Authorize]
-        public virtual async Task<NewsletterQueue?> DeleteNewsletterQueue([Service] INewsletterQueueService newsletterQueueService, int Id) {
-            var response = await newsletterQueueService.DeleteById(Id);
+        public virtual async Task<NewsletterQueue?> DeleteNewsletterQueue([Service] INewsletterQueueService newsletterQueueService, int id) {
+            var response = await newsletterQueueService.DeleteById(id);
             return Response.CreateResponse(response);
         }
 

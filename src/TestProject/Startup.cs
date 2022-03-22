@@ -1,4 +1,6 @@
 using Limbo.ApiAuthentication.Extensions;
+using Limbo.ApiAuthentication.Extensions.Models;
+using Limbo.ApiAuthentication.Settings.Models;
 using Limbo.Subscriptions.Extensions;
 using Limbo.Umbraco.Subscriptions.Extensions;
 using Microsoft.AspNetCore.Builder;
@@ -43,9 +45,9 @@ namespace TestProject {
                 .AddBackOffice()
                 .AddWebsite()
                 .AddComposers()
-                .AddSubscriptions(_config)
+                .AddSubscriptions(_config, options => { })
                 .Build();
-            services.AddLimboApiAuthentication(_config, settings: new Limbo.ApiAuthentication.Extensions.Models.ApiAuthenticationConfigurationSettings() { ConnectionStringKey = "umbracoDbDSN" });
+            services.AddLimboApiAuthentication(_config, settings: new ApiAuthenticationConfigurationSettings() { ConnectionStringKey = "umbracoDbDSN" });
         }
 
         /// <summary>
@@ -53,12 +55,14 @@ namespace TestProject {
         /// </summary>
         /// <param name="app">The application builder.</param>
         /// <param name="env">The web hosting environment.</param>
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env) {
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ApiAuthenticationSettings apiAuthenticationSettings) {
             if (env.IsDevelopment()) {
                 app.UseDeveloperExceptionPage();
             }
 
             app.UseHttpsRedirection();
+
+            app.UseJwtDebug(apiAuthenticationSettings);
 
             app.UseSubscriptionsGraphQLEndpoint(true);
 

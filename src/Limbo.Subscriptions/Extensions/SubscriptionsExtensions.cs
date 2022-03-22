@@ -21,7 +21,7 @@ namespace Limbo.Subscriptions.Extensions {
 
         public static IApplicationBuilder UseSubscriptionsGraphQLEndpoint(this IApplicationBuilder app, bool useSecurity = true) {
             app.UseRouting();
-            app.UseCors();
+            app.UseCors(options => options.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
 
             if (useSecurity) {
                 app

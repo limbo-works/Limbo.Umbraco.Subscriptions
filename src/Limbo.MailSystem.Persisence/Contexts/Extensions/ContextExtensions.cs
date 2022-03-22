@@ -20,7 +20,7 @@ namespace Limbo.MailSystem.Persisence.Contexts.Extensions {
                 options.UseSqlServer(configuration.GetConnectionString(connectionStringKey))
                 .UseLazyLoadingProxies());
 
-            services.AddScoped<IMailContext>(x => {
+            services.AddTransient<IMailContext>(x => {
                 var factory = x.GetRequiredService<IDbContextFactory<MailContext>>();
                 return factory.CreateDbContext();
             });
