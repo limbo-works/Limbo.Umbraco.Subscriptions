@@ -17,7 +17,7 @@ namespace Limbo.Subscriptions.NewsletterQueues.Queries {
         [UseFiltering]
         [UseSorting]
         public virtual async Task<IQueryable<NewsletterQueue>?> GetNewsletterQueueById([Service] INewsletterQueueService newsletterQueueService) {
-            var response = (await newsletterQueueService.QueryDbSet(IsolationLevel.ReadCommitted)).ReponseValue;
+            var response = (await newsletterQueueService.QueryDbSet(IsolationLevel.ReadCommitted)).ResponseValue;
             return response;
         }
         [Authorize]
@@ -26,7 +26,7 @@ namespace Limbo.Subscriptions.NewsletterQueues.Queries {
         [UseFiltering]
         [UseSorting]
         public virtual async Task<IQueryable<NewsletterQueue>> GetNewsLetterQueues([Service] INewsletterQueueService newsletterQueueService) {
-            var response = (await newsletterQueueService.QueryDbSet(IsolationLevel.ReadCommitted)).ReponseValue;
+            var response = (await newsletterQueueService.QueryDbSet(IsolationLevel.ReadCommitted)).ResponseValue;
             if (response is not null) {
                 return response;
             } else {

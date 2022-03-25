@@ -5,6 +5,7 @@ using Limbo.MailSystem.Persisence.Extensions;
 using Limbo.MailSystem.Queue.Extensions;
 using Limbo.MailSystem.SegmentTypes.Extensions;
 using Limbo.MailSystem.Settings.Extensions;
+using Limbo.MailSystem.Templates.RazorTemplates.Extensions;
 using Limbo.MailSystem.Templates.SimpleText.Extensions;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -31,7 +32,8 @@ namespace Limbo.MailSystem.Extensions {
                 .AddMailSegments()
                 .AddMailTemplates()
                 .AddSegmentTypes()
-                .AddSimpleTextTemplates();
+                .AddSimpleTextTemplates()
+                .AddRazorTemplates();
 
             return services;
         }

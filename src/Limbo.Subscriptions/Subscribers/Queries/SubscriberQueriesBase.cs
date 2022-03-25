@@ -17,7 +17,7 @@ namespace Limbo.Subscriptions.Subscribers.Queries {
         [UseFiltering]
         [UseSorting]
         public virtual async Task<IQueryable<Subscriber>?> GetSubscriber([Service] ISubscriberService subscriberService) {
-            var response = (await subscriberService.QueryDbSet(IsolationLevel.ReadCommitted)).ReponseValue;
+            var response = (await subscriberService.QueryDbSet(IsolationLevel.ReadCommitted)).ResponseValue;
             return response;
         }
 
@@ -27,7 +27,7 @@ namespace Limbo.Subscriptions.Subscribers.Queries {
         [UseFiltering]
         [UseSorting]
         public virtual async Task<IQueryable<Subscriber>> GetSubscribers([Service] ISubscriberService subscriberService) {
-            var response = (await subscriberService.QueryDbSet(IsolationLevel.ReadCommitted)).ReponseValue;
+            var response = (await subscriberService.QueryDbSet(IsolationLevel.ReadCommitted)).ResponseValue;
             if (response is not null) {
                 return response;
             } else {

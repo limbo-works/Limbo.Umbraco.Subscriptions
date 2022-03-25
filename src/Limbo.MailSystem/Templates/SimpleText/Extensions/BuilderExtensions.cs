@@ -13,7 +13,7 @@ namespace Limbo.MailSystem.Templates.SimpleText.Extensions {
         /// <returns></returns>
         public static IServiceCollection AddBuilders(this IServiceCollection services) {
             services
-                .AddScoped<ISimpleTextBuilder, SimpleTextBuilder>();
+                .AddTransient<ISimpleTextBuilder, SimpleTextBuilder>();
 
             return services;
         }

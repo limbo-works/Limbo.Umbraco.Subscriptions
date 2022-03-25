@@ -5,6 +5,7 @@ using Umbraco.Cms.Core.DependencyInjection;
 using Limbo.MailSystem.Extensions;
 using Limbo.Umbraco.Subscriptions.Content.Events.Extensions;
 using Limbo.Umbraco.Subscriptions.Extensions.Models;
+using Limbo.Umbraco.Subscriptions.Queues.Jobs.Extensions;
 
 namespace Limbo.Umbraco.Subscriptions.Extensions {
     /// <summary>
@@ -26,6 +27,8 @@ namespace Limbo.Umbraco.Subscriptions.Extensions {
                 .AddMailSystem(config, subscriptionConfiguration.MailConfigurationSection);
 
             builder.AddEvents();
+
+            builder.Services.AddJobs();
 
             return builder;
         }

@@ -19,20 +19,20 @@ namespace Limbo.MailSystem.Distribution.Services {
         }
 
         /// <inheritdoc/>
-        public void QueueDistributeEmails(List<Mail> mails, Func<Mail, Task> sendEmail) {
-            _queueService.QueueUp(async () => await DistributeEmails(mails, sendEmail));
+        public void QueueDistributeEmails(List<Mail> mails, Func<Mail, Task> sendEmailMethod) {
+            _queueService.QueueUp(async () => await DistributeEmails(mails, sendEmailMethod));
         }
 
         /// <summary>
         /// Distributes emails with the mail settings set
         /// </summary>
         /// <param name="mails"></param>
-        /// <param name="sendEmail"></param>
+        /// <param name="sendEmailMethod"></param>
         /// <returns></returns>
-        private async Task DistributeEmails(List<Mail> mails, Func<Mail, Task> sendEmail) {
+        private async Task DistributeEmails(List<Mail> mails, Func<Mail, Task> sendEmailMethod) {
             for (int i = 0; i < mails.Count; i++) {
 
-                await sendEmail.Invoke(mails[i]);
+                await sendEmailMethod.Invoke(mails[i]);
 
                 if (_mailSettings.DelayBetweenMails != 0) {
                     await Task.Delay(_mailSettings.DelayBetweenMails);

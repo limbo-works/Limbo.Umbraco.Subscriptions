@@ -41,9 +41,9 @@ namespace Limbo.Umbraco.Subscriptions.Content.Events.Saving {
         }
 
         private async Task RemoveFromNewsletter(IContent contentItem) {
-            var exsitingItem = (await _subscriptionItemService.QueryDbSet()).ReponseValue?.Include(item => item.NewsletterQueues).FirstOrDefault(item => item.NodeId == contentItem.Id);
+            var exsitingItem = (await _subscriptionItemService.QueryDbSet()).ResponseValue?.Include(item => item.NewsletterQueues).FirstOrDefault(item => item.NodeId == contentItem.Id);
             if (exsitingItem == null) {
-                exsitingItem = (await _subscriptionItemService.Add(new() { NodeId = contentItem.Id })).ReponseValue;
+                exsitingItem = (await _subscriptionItemService.Add(new() { NodeId = contentItem.Id })).ResponseValue;
             }
             if (exsitingItem != null && exsitingItem.NewsletterQueues != null && exsitingItem.NewsletterQueues.Any(item => item.Name == QueueConstants.DefaultQueueName)) {
                 var newsletter = exsitingItem.NewsletterQueues.First(item => item.Name == QueueConstants.DefaultQueueName);
@@ -54,9 +54,9 @@ namespace Limbo.Umbraco.Subscriptions.Content.Events.Saving {
         }
 
         private async Task AddToNewsLetter(IContent contentItem) {
-            var exsitingItem = (await _subscriptionItemService.QueryDbSet()).ReponseValue?.FirstOrDefault(item => item.NodeId == contentItem.Id);
+            var exsitingItem = (await _subscriptionItemService.QueryDbSet()).ResponseValue?.FirstOrDefault(item => item.NodeId == contentItem.Id);
             if (exsitingItem == null) {
-                exsitingItem = (await _subscriptionItemService.Add(new() { NodeId = contentItem.Id })).ReponseValue;
+                exsitingItem = (await _subscriptionItemService.Add(new() { NodeId = contentItem.Id })).ResponseValue;
             }
             if (exsitingItem != null) {
                 NewsletterQueue? newsletter = await GetNewsletter();
@@ -71,9 +71,9 @@ namespace Limbo.Umbraco.Subscriptions.Content.Events.Saving {
         }
 
         private async Task<NewsletterQueue?> GetNewsletter() {
-            var newsletter = (await _newsletterQueueService.QueryDbSet()).ReponseValue?.FirstOrDefault(item => item.Name == QueueConstants.DefaultQueueName);
+            var newsletter = (await _newsletterQueueService.QueryDbSet()).ResponseValue?.FirstOrDefault(item => item.Name == QueueConstants.DefaultQueueName);
             if (newsletter == null) {
-                newsletter = (await _newsletterQueueService.Add(new NewsletterQueue { Name = QueueConstants.DefaultQueueName })).ReponseValue;
+                newsletter = (await _newsletterQueueService.Add(new NewsletterQueue { Name = QueueConstants.DefaultQueueName })).ResponseValue;
             }
 
             return newsletter;

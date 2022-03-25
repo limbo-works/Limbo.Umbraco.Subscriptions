@@ -1,0 +1,5 @@
+Hej {SubscriberName}
+
+{SubscribedItems}
+
+Du er tilmeldt med {SubscriberEmail}

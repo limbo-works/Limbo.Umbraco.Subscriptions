@@ -13,7 +13,7 @@ namespace Limbo.Subscriptions.Persistence.Subscribers.Extensions {
         /// <returns></returns>
         public static IServiceCollection AddRepositories(this IServiceCollection services) {
             services
-                .AddScoped<ISubscriberRepository, SubscriberRepository>();
+                .AddTransient<ISubscriberRepository, SubscriberRepository>();
 
             return services;
         }

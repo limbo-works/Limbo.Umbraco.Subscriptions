@@ -8,7 +8,7 @@ namespace Limbo.Subscriptions.Bases.GraphQL.Responses {
             return response.StatusCode switch {
                 System.Net.HttpStatusCode.InternalServerError => throw new Exception("Internal server error"),
                 System.Net.HttpStatusCode.NoContent => null,
-                _ => response.ReponseValue,
+                _ => response.ResponseValue,
             };
         }
     }

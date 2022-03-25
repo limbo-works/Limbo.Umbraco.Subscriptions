@@ -12,7 +12,7 @@ namespace Limbo.MailSystem.Distribution.Services {
         /// Queues emails for distribution
         /// </summary>
         /// <param name="mails"></param>
-        /// <param name="sendEmail"></param>
-        void QueueDistributeEmails(List<Mail> mails, Func<Mail, Task> sendEmail);
+        /// <param name="sendEmailMethod"></param>
+        void QueueDistributeEmails(List<Mail> mails, Func<Mail, Task> sendEmailMethod);
     }
 }

@@ -16,7 +16,7 @@ namespace Limbo.Subscriptions.SubscriptionItems.Queries {
         [UseFiltering]
         [UseSorting]
         public virtual async Task<IQueryable<SubscriptionItem>?> GetSubscriptionItemById([Service] ISubscriptionItemService subscriptionItemService) {
-            var response = (await subscriptionItemService.QueryDbSet(IsolationLevel.ReadCommitted)).ReponseValue;
+            var response = (await subscriptionItemService.QueryDbSet(IsolationLevel.ReadCommitted)).ResponseValue;
             return response;
         }
         [Authorize]
@@ -25,7 +25,7 @@ namespace Limbo.Subscriptions.SubscriptionItems.Queries {
         [UseFiltering]
         [UseSorting]
         public virtual async Task<IQueryable<SubscriptionItem>> GetSubscriptionItems([Service] ISubscriptionItemService subscriptionItemService) {
-            var response = (await subscriptionItemService.QueryDbSet(IsolationLevel.ReadCommitted)).ReponseValue;
+            var response = (await subscriptionItemService.QueryDbSet(IsolationLevel.ReadCommitted)).ResponseValue;
             if (response is not null) {
                 return response;
             } else {

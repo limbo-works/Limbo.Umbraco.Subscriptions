@@ -1,0 +1,18 @@
+﻿@using Limbo.Subscriptions.Subscribers.Models
+@using Umbraco.Cms.Core.Services
+@inject IContentService _contentService;
+
+@model SubscriberTemplateModel
+
+<div>
+    <p>Hej @Model.Name</p>
+    <br />
+
+    <p>Du har opdateringer på følgende sider:</p>
+    <ul>
+        @foreach(var item in Model.SubscriptionItems) {
+            var contentNode = _contentService.GetById(item.NodeId);
+            <li>@contentNode.Name - opdateret @contentNode.UpdateDate</li>
+        }
+    </ul>
+</div>

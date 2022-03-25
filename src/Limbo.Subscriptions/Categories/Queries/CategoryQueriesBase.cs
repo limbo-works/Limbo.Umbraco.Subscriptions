@@ -16,7 +16,7 @@ namespace Limbo.Subscriptions.Categories.Queries {
         [UseFiltering]
         [UseSorting]
         public virtual async Task<IQueryable<Category>> GetCategories([Service] ICategoryService categoryService) {
-            var response = (await categoryService.QueryDbSet(IsolationLevel.ReadCommitted)).ReponseValue;
+            var response = (await categoryService.QueryDbSet(IsolationLevel.ReadCommitted)).ResponseValue;
             if (response is not null) {
                 return response;
             } else {
@@ -30,7 +30,7 @@ namespace Limbo.Subscriptions.Categories.Queries {
         [UseFiltering]
         [UseSorting]
         public virtual async Task<IQueryable<Category>?> GetCategory([Service] ICategoryService categoryService) {
-            var response = (await categoryService.QueryDbSet(IsolationLevel.ReadCommitted)).ReponseValue;
+            var response = (await categoryService.QueryDbSet(IsolationLevel.ReadCommitted)).ResponseValue;
             return response;
         }
     }

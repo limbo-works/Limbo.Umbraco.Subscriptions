@@ -8,6 +8,6 @@
         /// <summary>
         /// The default queue name
         /// </summary>
-        public static string DefaultQueueName => "Default queue";
+        public static string DefaultQueueName => "Default Queue";
     }
 }

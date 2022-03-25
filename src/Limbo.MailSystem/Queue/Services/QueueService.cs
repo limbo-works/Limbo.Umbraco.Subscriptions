@@ -30,6 +30,7 @@ namespace Limbo.MailSystem.Queue.Services {
                 lock (_lock) {
                     if (!_isItemRunning) {
                         _isItemRunning = true;
+                        action.Invoke();
                         return;
                     }
                 }

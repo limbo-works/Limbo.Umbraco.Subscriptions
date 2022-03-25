@@ -48,6 +48,8 @@ namespace TestProject {
                 .AddSubscriptions(_config, options => { })
                 .Build();
             services.AddLimboApiAuthentication(_config, settings: new ApiAuthenticationConfigurationSettings() { ConnectionStringKey = "umbracoDbDSN" });
+            services
+                .AddRazorTemplating();
         }
 
         /// <summary>
