@@ -5,13 +5,14 @@ using Limbo.DataAccess.Services;
 using Limbo.DataAccess.Services.Crud;
 using Limbo.DataAccess.Services.Models;
 using Limbo.DataAccess.Settings;
+using Limbo.DataAccess.UnitOfWorks;
 using Limbo.Subscriptions.Persistence.Subscribers.Models;
 using Limbo.Subscriptions.Persistence.Subscribers.Repositories;
 using Microsoft.Extensions.Logging;
 
 namespace Limbo.Subscriptions.Subscribers.Services {
     public class SubscriberService : CrudServiceBase<Subscriber, ISubscriberRepository>, ISubscriberService {
-        public SubscriberService(ISubscriberRepository repository, ILogger<ServiceBase<ISubscriberRepository>> logger, DataAccessSettings dataAccessSettings) : base(repository, logger, dataAccessSettings) {
+        public SubscriberService(ISubscriberRepository repository, ILogger<ServiceBase<ISubscriberRepository>> logger, DataAccessSettings dataAccessSettings, IUnitOfWork<ISubscriberRepository> unitOfWork) : base(repository, logger, dataAccessSettings, unitOfWork) {
         }
 
         public override Task<IServiceResponse<Subscriber>> Add(Subscriber entity) {

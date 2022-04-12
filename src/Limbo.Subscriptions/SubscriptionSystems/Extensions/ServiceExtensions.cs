@@ -5,7 +5,7 @@ namespace Limbo.Subscriptions.SubscriptionSystems.Extensions {
     public static class ServiceExtensions {
         public static IServiceCollection AddServices(this IServiceCollection services) {
             services
-                .AddScoped<ISubscriptionSystemService, SubscriptionSystemService>();
+                .AddTransient<ISubscriptionSystemService, SubscriptionSystemService>();
 
             return services;
         }

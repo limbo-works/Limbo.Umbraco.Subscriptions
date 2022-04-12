@@ -22,12 +22,12 @@ namespace Limbo.Subscriptions.Persistence.Categories.Models {
         /// <summary>
         /// The subscribers of a category
         /// </summary>
-        public virtual List<Subscriber>? Subscribers { get; set; }
+        public virtual List<Subscriber> Subscribers { get; set; } = new();
 
         /// <summary>
         /// The subscription items of a category
         /// </summary>
-        public virtual List<SubscriptionItem>? SubscriptionItems { get; set; }
+        public virtual List<SubscriptionItem> SubscriptionItems { get; set; } = new();
 
 
         /// <summary>

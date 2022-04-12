@@ -29,8 +29,7 @@
       </None>
     </ItemGroup>
     <ItemGroup>
-      <PackageReference Include="Limbo.DataAccess" Version="1.1.2-dev14" />
-      <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="5.0.15" />
+      <PackageReference Include="Limbo.DataAccess" Version="2.0.0-dev06" />
     </ItemGroup>
 
 </Project>

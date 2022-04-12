@@ -21,7 +21,7 @@ namespace Limbo.Subscriptions.Persistence.SubscriptionSystems.Models {
         /// <summary>
         /// The subscribers in the system
         /// </summary>
-        public virtual List<Subscriber>? Subscribers { get; set; }
+        public virtual List<Subscriber> Subscribers { get; set; } = new();
 
         /// <summary>
         /// Validates that the subscription system is valid

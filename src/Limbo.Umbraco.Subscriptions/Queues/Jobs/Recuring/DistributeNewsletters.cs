@@ -60,7 +60,9 @@ namespace Limbo.Umbraco.Subscriptions.Queues.Jobs.Recuring {
                     }
                 } while (mails.Any());
 
+                _logger.LogInformation("Clearing newsletter queue");
                 await ClearQueue(QueueConstants.DefaultQueueName);
+                _logger.LogInformation("Done clearing newsletter queue");
             } catch (Exception ex) {
                 _logger.LogError(ex, "Failed to distribute newsletters");
             }
@@ -74,6 +76,8 @@ namespace Limbo.Umbraco.Subscriptions.Queues.Jobs.Recuring {
             }).FirstOrDefault(queue => queue.Name == queueName);
             if (newsletterQueue != null) {
                 await ClearQueue(newsletterQueue.Id);
+            } else {
+                _logger.LogError("Failed to find queue");
             }
         }
 
@@ -81,7 +85,11 @@ namespace Limbo.Umbraco.Subscriptions.Queues.Jobs.Recuring {
             var subscriptionItems = (await _newsletterQueueService.QueryDbSet()).ResponseValue.Include(item => item.SubscriptionItems).Select(queue => new NewsletterQueue {
                 SubscriptionItems = queue.SubscriptionItems
             }).ToList().SelectMany(queue => queue.SubscriptionItems ?? new List<SubscriptionItem>());
-            await _newsletterQueueService.RemoveSubscriptionItems(queueId, subscriptionItems.Select(item => item.Id).ToArray());
+            var subscriptionItemIds = subscriptionItems.Select(item => item.Id).ToArray();
+            _logger.LogDebug("subscriptionItemIds Count {Count}", subscriptionItemIds.Length);
+            if (subscriptionItemIds.Any()) {
+                await _newsletterQueueService.RemoveSubscriptionItems(queueId, subscriptionItemIds);
+            }
         }
 
         private async Task<IEnumerable<Mail>> GetMails(int page) {

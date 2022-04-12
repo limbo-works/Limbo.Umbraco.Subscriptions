@@ -4,7 +4,7 @@ using Limbo.MailSystem.Mails.Models;
 
 namespace Limbo.Umbraco.Subscriptions.Queues.Jobs.Recuring.Models {
     public class DistributeNewsLettersSettings {
-        public TimeSpan HowOftenWeRepeat { get; set; } = TimeSpan.FromMinutes(5);
+        public TimeSpan HowOftenWeRepeat { get; set; } = TimeSpan.FromMinutes(1);
         public TimeSpan DelayBeforeWeStart { get; set; } = TimeSpan.FromSeconds(10);
 
         public int PageSize = 100;

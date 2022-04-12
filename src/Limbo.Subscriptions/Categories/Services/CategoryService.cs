@@ -8,10 +8,11 @@ using Limbo.DataAccess.Services.Crud;
 using Limbo.DataAccess.Services;
 using Limbo.DataAccess.Services.Models;
 using Limbo.DataAccess.Settings;
+using Limbo.DataAccess.UnitOfWorks;
 
 namespace Limbo.Subscriptions.Categories.Services {
     public class CategoryService : CrudServiceBase<Category, ICategoryRepository>, ICategoryService {
-        public CategoryService(ICategoryRepository repository, ILogger<ServiceBase<ICategoryRepository>> logger, DataAccessSettings dataAccessSettings) : base(repository, logger, dataAccessSettings) {
+        public CategoryService(ICategoryRepository repository, ILogger<ServiceBase<ICategoryRepository>> logger, DataAccessSettings dataAccessSettings, IUnitOfWork<ICategoryRepository> unitOfWork) : base(repository, logger, dataAccessSettings, unitOfWork) {
         }
 
         public override Task<IServiceResponse<Category>> Add(Category entity) {

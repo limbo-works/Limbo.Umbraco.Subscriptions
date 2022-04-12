@@ -38,7 +38,7 @@ namespace Limbo.Subscriptions.Persistence.Subscribers.Models {
         /// <summary>
         /// The subscription items of the subscriber
         /// </summary>
-        public virtual List<SubscriptionItem>? SubscriptionItems { get; set; }
+        public virtual List<SubscriptionItem> SubscriptionItems { get; set; } = new();
 
         /// <summary>
         /// The subscription systems of the subscriber
@@ -48,7 +48,7 @@ namespace Limbo.Subscriptions.Persistence.Subscribers.Models {
         /// <summary>
         /// The categories of the subscriber
         /// </summary>
-        public virtual List<Category>? Categories { get; set; }
+        public virtual List<Category> Categories { get; set; } = new();
 
 
         /// <summary>

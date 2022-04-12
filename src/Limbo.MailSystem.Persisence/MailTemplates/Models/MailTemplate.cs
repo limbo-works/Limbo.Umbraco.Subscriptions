@@ -20,6 +20,6 @@ namespace Limbo.MailSystem.Persisence.MailTemplates.Models {
         /// The segments of the mail
         /// </summary>
 
-        public virtual ICollection<MailSegment>? MailSegments { get; set; }
+        public virtual List<MailSegment> MailSegments { get; set; } = new();
     }
 }

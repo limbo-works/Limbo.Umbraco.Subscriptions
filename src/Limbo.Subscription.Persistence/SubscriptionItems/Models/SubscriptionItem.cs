@@ -23,17 +23,17 @@ namespace Limbo.Subscriptions.Persistence.SubscriptionItems.Models {
         /// <summary>
         /// The categories og the subscription item
         /// </summary>
-        public virtual List<Category>? Categories { get; set; }
+        public virtual List<Category> Categories { get; set; } = new();
 
         /// <summary>
         /// The subscribers of the subscription item
         /// </summary>
-        public virtual List<Subscriber>? Subscribers { get; set; }
+        public virtual List<Subscriber> Subscribers { get; set; } = new();
 
         /// <summary>
         /// The newsletterqueues of the subscription item
         /// </summary>
-        public virtual List<NewsletterQueue>? NewsletterQueues { get; set; }
+        public virtual List<NewsletterQueue> NewsletterQueues { get; set; } = new();
 
         /// <summary>
         /// Validates if a subscription item is valid

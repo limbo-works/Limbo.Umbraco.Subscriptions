@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using System.Threading.Tasks;
 using Limbo.Subscriptions.Persistence.Categories.Models;
 using Limbo.Subscriptions.Persistence.NewsletterQueues.Models;
 using Limbo.Subscriptions.Persistence.Subscribers.Models;
@@ -33,6 +34,14 @@ namespace Limbo.Subscriptions.Persistence.Contexts {
 
         /// <inheritdoc/>
         public DbContext Context => this;
+
+        public override void Dispose() {
+            base.Dispose();
+        }
+
+        public override ValueTask DisposeAsync() {
+            return base.DisposeAsync();
+        }
 
         /// <inheritdoc/>
         protected override void OnModelCreating(ModelBuilder modelBuilder) {

@@ -17,8 +17,7 @@ namespace Limbo.MailSystem.Persisence.Contexts.Extensions {
         /// <returns></returns>
         public static IServiceCollection AddContexts(this IServiceCollection services, IConfiguration configuration, string connectionStringKey) {
             services.AddPooledDbContextFactory<MailContext>(options =>
-                options.UseSqlServer(configuration.GetConnectionString(connectionStringKey))
-                .UseLazyLoadingProxies());
+                options.UseSqlServer(configuration.GetConnectionString(connectionStringKey)));
 
             services.AddTransient<IMailContext>(x => {
                 var factory = x.GetRequiredService<IDbContextFactory<MailContext>>();

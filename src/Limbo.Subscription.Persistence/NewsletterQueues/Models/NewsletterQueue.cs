@@ -21,7 +21,7 @@ namespace Limbo.Subscriptions.Persistence.NewsletterQueues.Models {
         /// <summary>
         /// The subscription items of a newsletter queue
         /// </summary>
-        public virtual List<SubscriptionItem>? SubscriptionItems { get; set; }
+        public virtual List<SubscriptionItem> SubscriptionItems { get; set; } = new();
 
         /// <summary>
         /// Validates if a newsletter queue is valid

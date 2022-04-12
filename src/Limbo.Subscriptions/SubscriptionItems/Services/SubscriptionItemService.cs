@@ -8,10 +8,11 @@ using Limbo.DataAccess.Services.Crud;
 using Limbo.DataAccess.Services;
 using Limbo.DataAccess.Services.Models;
 using Limbo.DataAccess.Settings;
+using Limbo.DataAccess.UnitOfWorks;
 
 namespace Limbo.Subscriptions.SubscriptionItems.Services {
     public class SubscriptionItemService : CrudServiceBase<SubscriptionItem, ISubscriptionItemRepository>, ISubscriptionItemService {
-        public SubscriptionItemService(ISubscriptionItemRepository repository, ILogger<ServiceBase<ISubscriptionItemRepository>> logger, DataAccessSettings dataAccessSettings) : base(repository, logger, dataAccessSettings) {
+        public SubscriptionItemService(ISubscriptionItemRepository repository, ILogger<ServiceBase<ISubscriptionItemRepository>> logger, DataAccessSettings dataAccessSettings, IUnitOfWork<ISubscriptionItemRepository> unitOfWork) : base(repository, logger, dataAccessSettings, unitOfWork) {
         }
 
         public override Task<IServiceResponse<SubscriptionItem>> Add(SubscriptionItem entity) {
