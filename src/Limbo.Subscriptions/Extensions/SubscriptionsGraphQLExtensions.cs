@@ -1,9 +1,9 @@
-﻿using System;
-using HotChocolate.Execution.Configuration;
+﻿using HotChocolate.Execution.Configuration;
 using Limbo.Subscriptions.Bases.GraphQL.Mutations;
 using Limbo.Subscriptions.Bases.GraphQL.Queries;
 using Limbo.Subscriptions.Categories.Mutations;
 using Limbo.Subscriptions.Categories.Queries;
+using Limbo.Subscriptions.Extensions.Options;
 using Limbo.Subscriptions.NewsletterQueues.Mutations;
 using Limbo.Subscriptions.NewsletterQueues.Queries;
 using Limbo.Subscriptions.Subscribers.Mutations;
@@ -22,25 +22,23 @@ namespace Limbo.Subscriptions.Extensions {
         /// Adds the subscription package GraphQL setup
         /// </summary>
         /// <param name="services"></param>
-        /// <param name="graphQLExtensions"></param>
+        /// <param name="graphQLOptions"></param>
         /// <returns></returns>
-        public static IServiceCollection AddSubscriptionsGraphQL(this IServiceCollection services, Func<IRequestExecutorBuilder, IRequestExecutorBuilder>? graphQLExtensions = null) {
-            if (graphQLExtensions == null) {
-                graphQLExtensions = builder => {
-                    return builder.AddQueryType<Query>()
-                        .AddTypeExtension<CategoryQueries>()
-                        .AddTypeExtension<NewsletterQueueQueries>()
-                        .AddTypeExtension<SubscriberQueries>()
-                        .AddTypeExtension<SubscriptionItemQueries>()
-                        .AddTypeExtension<SubscriptionSystemQueries>()
-                        .AddMutationType<Mutation>()
-                        .AddTypeExtension<CategoryMutations>()
-                        .AddTypeExtension<SubscriberMutations>()
-                        .AddTypeExtension<NewsletterQueueMutations>()
-                        .AddTypeExtension<SubscriptionItemMutations>()
-                        .AddTypeExtension<SubscriptionSystemMutations>();
-                };
-            }
+        public static IServiceCollection AddSubscriptionsGraphQL(this IServiceCollection services, GraphQLOptions graphQLOptions) {
+            graphQLOptions.GraphQLExtensions = builder => {
+                return builder.AddQueryType<Query>()
+                    .AddTypeExtension<CategoryQueries>()
+                    .AddTypeExtension<NewsletterQueueQueries>()
+                    .AddTypeExtension<SubscriberQueries>()
+                    .AddTypeExtension<SubscriptionItemQueries>()
+                    .AddTypeExtension<SubscriptionSystemQueries>()
+                    .AddMutationType<Mutation>()
+                    .AddTypeExtension<CategoryMutations>()
+                    .AddTypeExtension<SubscriberMutations>()
+                    .AddTypeExtension<NewsletterQueueMutations>()
+                    .AddTypeExtension<SubscriptionItemMutations>()
+                    .AddTypeExtension<SubscriptionSystemMutations>();
+            };
 
             services
                 .AddGraphQLServer()
@@ -51,7 +49,7 @@ namespace Limbo.Subscriptions.Extensions {
                 .OnSchemaError(new((dc, ex) => {
                     throw ex;
                 }))
-                .AddGraphQLExtensions(graphQLExtensions);
+                .AddGraphQLExtensions(graphQLOptions);
 
             services
                 .AddSubscriptionAutomapper();
@@ -63,10 +61,12 @@ namespace Limbo.Subscriptions.Extensions {
         /// Adds extensions for GraphQL
         /// </summary>
         /// <param name="builder"></param>
-        /// <param name="graphQLExtensions"></param>
+        /// <param name="graphQLOptions"></param>
         /// <returns></returns>
-        public static IRequestExecutorBuilder AddGraphQLExtensions(this IRequestExecutorBuilder builder, Func<IRequestExecutorBuilder, IRequestExecutorBuilder> graphQLExtensions) {
-            builder = graphQLExtensions.Invoke(builder);
+        public static IRequestExecutorBuilder AddGraphQLExtensions(this IRequestExecutorBuilder builder, GraphQLOptions graphQLOptions) {
+            if (graphQLOptions.GraphQLExtensions != null) {
+                builder = graphQLOptions.GraphQLExtensions.Invoke(builder);
+            }
 
             return builder;
         }

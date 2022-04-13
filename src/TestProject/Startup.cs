@@ -2,6 +2,7 @@ using Limbo.ApiAuthentication.Extensions;
 using Limbo.ApiAuthentication.Extensions.Models;
 using Limbo.ApiAuthentication.Settings.Models;
 using Limbo.Subscriptions.Extensions;
+using Limbo.Subscriptions.Extensions.Options;
 using Limbo.Umbraco.Subscriptions.Content.Events.Managers;
 using Limbo.Umbraco.Subscriptions.Content.Events.Saved;
 using Limbo.Umbraco.Subscriptions.Extensions;
@@ -58,9 +59,6 @@ namespace TestProject {
             services
                 .AddRazorTemplating();
 
-
-
-
             services.AddLimboApiAuthentication(_config, settings: new ApiAuthenticationConfigurationSettings() { ConnectionStringKey = "umbracoDbDSN" });
         }
 
@@ -78,7 +76,9 @@ namespace TestProject {
 
             app.UseJwtDebug(apiAuthenticationSettings);
 
-            app.UseSubscriptionsGraphQLEndpoint(true);
+            app.UseSubscriptionsGraphQLEndpoint(new SubscriptionGraphQlEndpointOptions {
+                UseSecurity = true
+            });
 
 
             app.UseUmbraco()

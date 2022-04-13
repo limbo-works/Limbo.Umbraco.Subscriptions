@@ -1,4 +1,5 @@
-﻿using Limbo.MailSystem.Settings.Models;
+﻿using Limbo.MailSystem.Settings.Extensions.Options;
+using Limbo.MailSystem.Settings.Models;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -11,12 +12,11 @@ namespace Limbo.MailSystem.Settings.Extensions {
         /// Adds settings
         /// </summary>
         /// <param name="services"></param>
-        /// <param name="configuration"></param>
-        /// <param name="configurationSection"></param>
+        /// <param name="mailSystemSettingsOptions"></param>
         /// <returns></returns>
-        public static IServiceCollection AddSettings(this IServiceCollection services, IConfiguration configuration, string configurationSection) {
+        public static IServiceCollection AddSettings(this IServiceCollection services, MailSystemSettingsOptions mailSystemSettingsOptions) {
             var mailSettings = new MailSettings();
-            configuration.Bind(configurationSection, mailSettings);
+            mailSystemSettingsOptions.Configuration.Bind(mailSystemSettingsOptions.ConfigurationSection, mailSettings);
             services.AddSingleton(mailSettings);
 
             return services;

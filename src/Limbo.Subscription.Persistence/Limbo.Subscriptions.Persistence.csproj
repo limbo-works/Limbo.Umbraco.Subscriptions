@@ -29,7 +29,7 @@
       </None>
     </ItemGroup>
     <ItemGroup>
-      <PackageReference Include="Limbo.DataAccess" Version="2.0.0-dev06" />
+      <PackageReference Include="Limbo.DataAccess" Version="2.0.0-dev07" />
     </ItemGroup>
 
 </Project>

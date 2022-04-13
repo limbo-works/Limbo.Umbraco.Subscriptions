@@ -1,8 +1,8 @@
 ﻿using Limbo.MailSystem.Persisence.Contexts.Extensions;
+using Limbo.MailSystem.Persisence.Extensions.Options;
 using Limbo.MailSystem.Persisence.MailSegments.Extensions;
 using Limbo.MailSystem.Persisence.MailTemplates.Extensions;
 using Limbo.MailSystem.Persisence.SegmentTypes.Extensions;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Limbo.MailSystem.Persisence.Extensions {
@@ -14,12 +14,11 @@ namespace Limbo.MailSystem.Persisence.Extensions {
         /// Adds the persistence services
         /// </summary>
         /// <param name="services"></param>
-        /// <param name="configuration"></param>
-        /// <param name="connectionStringKey"></param>
+        /// <param name="mailSystemPersistenceOptions"></param>
         /// <returns></returns>
-        public static IServiceCollection AddPersistence(this IServiceCollection services, IConfiguration configuration, string connectionStringKey) {
+        public static IServiceCollection AddPersistence(this IServiceCollection services, MailSystemPersistenceOptions mailSystemPersistenceOptions) {
             services
-                .AddContexts(configuration, connectionStringKey)
+                .AddContexts(mailSystemPersistenceOptions.ContextOptions)
                 .AddMailTemplates()
                 .AddMailSegments()
                 .AddSegmentTypes();

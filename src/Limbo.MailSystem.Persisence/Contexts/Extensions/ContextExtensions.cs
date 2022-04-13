@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Limbo.MailSystem.Persisence.Contexts.Extensions.Options;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -12,12 +13,11 @@ namespace Limbo.MailSystem.Persisence.Contexts.Extensions {
         /// Adds contexts
         /// </summary>
         /// <param name="services"></param>
-        /// <param name="configuration"></param>
-        /// <param name="connectionStringKey"></param>
+        /// <param name="contextOptions"></param>
         /// <returns></returns>
-        public static IServiceCollection AddContexts(this IServiceCollection services, IConfiguration configuration, string connectionStringKey) {
+        public static IServiceCollection AddContexts(this IServiceCollection services, ContextOptions contextOptions) {
             services.AddPooledDbContextFactory<MailContext>(options =>
-                options.UseSqlServer(configuration.GetConnectionString(connectionStringKey)));
+                options.UseSqlServer(contextOptions.Configuration.GetConnectionString(contextOptions.ConnectionStringKey)));
 
             services.AddTransient<IMailContext>(x => {
                 var factory = x.GetRequiredService<IDbContextFactory<MailContext>>();

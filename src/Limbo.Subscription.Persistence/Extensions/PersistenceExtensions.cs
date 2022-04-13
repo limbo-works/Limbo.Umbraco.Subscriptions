@@ -5,7 +5,6 @@ using Limbo.Subscriptions.Persistence.NewsletterQueues.Extensions;
 using Limbo.Subscriptions.Persistence.Subscribers.Extensions;
 using Limbo.Subscriptions.Persistence.SubscriptionItems.Extensions;
 using Limbo.Subscriptions.Persistence.SubscriptionSystems.Extensions;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Limbo.Subscriptions.Persistence.Extensions {
@@ -17,19 +16,17 @@ namespace Limbo.Subscriptions.Persistence.Extensions {
         /// Adds persistence
         /// </summary>
         /// <param name="services"></param>
-        /// <param name="configuration"></param>
-        /// <param name="connectionStringKey"></param>
-        /// <param name="dataAccessConfigurationSection"></param>
+        /// <param name="subscriptionPersistenceOptions"></param>
         /// <returns></returns>
-        public static IServiceCollection AddPersistence(this IServiceCollection services, IConfiguration configuration, string connectionStringKey, string dataAccessConfigurationSection) {
+        public static IServiceCollection AddPersistence(this IServiceCollection services, SubscriptionPersistenceOptions subscriptionPersistenceOptions) {
             services
-                .AddContexts(configuration, connectionStringKey)
+                .AddContexts(subscriptionPersistenceOptions.ContextOptions)
                 .AddCategories()
                 .AddNewsletterQueues()
                 .AddSubscribers()
                 .AddSubcriptionItems()
                 .AddSubscriptionSystems()
-                .AddDataAccess(configuration, dataAccessConfigurationSection);
+                .AddDataAccess(subscriptionPersistenceOptions.DataAccessOptions);
 
             return services;
         }

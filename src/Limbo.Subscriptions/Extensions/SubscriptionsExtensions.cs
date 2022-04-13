@@ -1,11 +1,10 @@
 ﻿using Limbo.Subscriptions.Persistence.Extensions;
 using Limbo.Subscriptions.Bases.Automapper;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using HotChocolate.Execution.Configuration;
-using System;
 using Limbo.MailSystem.Extensions;
+using Limbo.MailSystem.Persisence.Extensions;
+using Limbo.Subscriptions.Extensions.Options;
 
 namespace Limbo.Subscriptions.Extensions {
     /// <inheritdoc/>
@@ -15,18 +14,14 @@ namespace Limbo.Subscriptions.Extensions {
         /// Adds subscription
         /// </summary>
         /// <param name="services"></param>
-        /// <param name="config"></param>
-        /// <param name="connectionStringKey"></param>
-        /// <param name="dataAccessConfigurationSection"></param>
-        /// <param name="graphQLExtensions"></param>
-        /// <param name="mailConfigurationSection"></param>
+        /// <param name="subscriptionOptions"></param>
         /// <returns></returns>
-        public static IServiceCollection AddSubscriptions(this IServiceCollection services, IConfiguration config, string connectionStringKey = "Default", string dataAccessConfigurationSection = "Limbo:DataAccess", Func<IRequestExecutorBuilder, IRequestExecutorBuilder>? graphQLExtensions = null, string mailConfigurationSection = "Limbo:MailSystem") {
+        public static IServiceCollection AddSubscriptions(this IServiceCollection services, SubscriptionOptions subscriptionOptions) {
             services
-                .AddPersistence(config, connectionStringKey, dataAccessConfigurationSection)
+                .AddPersistence(subscriptionOptions.SubscriptionPersistenceOptions)
                 .AddSubscriptionServices()
-                .AddSubscriptionsGraphQL(graphQLExtensions)
-                .AddMailSystem(config, connectionStringKey, mailConfigurationSection);
+                .AddSubscriptionsGraphQL(subscriptionOptions.GraphQLOptions)
+                .AddMailSystem(subscriptionOptions.MailSystemOptions);
 
             return services;
         }
@@ -35,13 +30,16 @@ namespace Limbo.Subscriptions.Extensions {
         /// Adds a graphql endpoint
         /// </summary>
         /// <param name="app"></param>
-        /// <param name="useSecurity"></param>
+        /// <param name="subscriptionGraphQlEndpointOptions"></param>
         /// <returns></returns>
-        public static IApplicationBuilder UseSubscriptionsGraphQLEndpoint(this IApplicationBuilder app, bool useSecurity = true) {
+        public static IApplicationBuilder UseSubscriptionsGraphQLEndpoint(this IApplicationBuilder app, SubscriptionGraphQlEndpointOptions subscriptionGraphQlEndpointOptions) {
             app.UseRouting();
-            app.UseCors(options => options.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
 
-            if (useSecurity) {
+            if (subscriptionGraphQlEndpointOptions.AddCors) {
+                app.UseCors(options => options.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
+            }
+
+            if (subscriptionGraphQlEndpointOptions.UseSecurity) {
                 app
                     .UseAuthentication()
                     .UseAuthorization();

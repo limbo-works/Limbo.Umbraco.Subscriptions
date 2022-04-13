@@ -1,4 +1,5 @@
 ﻿using System;
+using Limbo.Subscriptions.Persistence.Contexts.Extensions.Options;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -12,12 +13,11 @@ namespace Limbo.Subscriptions.Persistence.Contexts.Extensions {
         /// Adds contexts
         /// </summary>
         /// <param name="services"></param>
-        /// <param name="configuration"></param>
-        /// <param name="connectionStringKey"></param>
+        /// <param name="contextOptions"></param>
         /// <returns></returns>
-        public static IServiceCollection AddContexts(this IServiceCollection services, IConfiguration configuration, string connectionStringKey) {
+        public static IServiceCollection AddContexts(this IServiceCollection services, ContextOptions contextOptions) {
             services.AddPooledDbContextFactory<SubscriptionDbContext>(options =>
-                options.UseSqlServer(configuration.GetConnectionString(connectionStringKey)).LogTo(Console.WriteLine));
+                options.UseSqlServer(contextOptions.Configuration.GetConnectionString(contextOptions.ConnectionStringKey)).LogTo(Console.WriteLine));
 
             services.AddScoped<ISubscriptionDbContext>(x => {
                 var factory = x.GetRequiredService<IDbContextFactory<SubscriptionDbContext>>();
