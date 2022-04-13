@@ -2,6 +2,8 @@ using Limbo.ApiAuthentication.Extensions;
 using Limbo.ApiAuthentication.Extensions.Models;
 using Limbo.ApiAuthentication.Settings.Models;
 using Limbo.Subscriptions.Extensions;
+using Limbo.Umbraco.Subscriptions.Content.Events.Managers;
+using Limbo.Umbraco.Subscriptions.Content.Events.Saved;
 using Limbo.Umbraco.Subscriptions.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -9,7 +11,12 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
+using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 using Umbraco.Cms.Core.DependencyInjection;
+using Umbraco.Cms.Core.Models;
+using Umbraco.Cms.Core.Notifications;
 using Umbraco.Extensions;
 
 namespace TestProject {
@@ -47,9 +54,15 @@ namespace TestProject {
                 .AddComposers()
                 .AddSubscriptions(_config, options => { })
                 .Build();
-            services.AddLimboApiAuthentication(_config, settings: new ApiAuthenticationConfigurationSettings() { ConnectionStringKey = "umbracoDbDSN" });
+            services
+                .AddTransient<IContentSavedNewsletterHandler, Custom>();
             services
                 .AddRazorTemplating();
+
+
+
+
+            services.AddLimboApiAuthentication(_config, settings: new ApiAuthenticationConfigurationSettings() { ConnectionStringKey = "umbracoDbDSN" });
         }
 
         /// <summary>
@@ -79,6 +92,16 @@ namespace TestProject {
                     u.UseBackOfficeEndpoints();
                     u.UseWebsiteEndpoints();
                 });
+        }
+    }
+
+    internal class Custom : ContentSavedNewsletterHandler {
+        public Custom(IContentNewsletterManager contentNewsletterManager) : base(contentNewsletterManager) {
+        }
+
+        public override Task HandleAsync(IEnumerable<IContent> entities, CancellationToken cancellationToken) {
+            Console.WriteLine("Hello");
+            return base.HandleAsync(entities, cancellationToken);
         }
     }
 }

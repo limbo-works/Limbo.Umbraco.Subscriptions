@@ -9,7 +9,7 @@ using Microsoft.Extensions.Logging;
 using Umbraco.Cms.Core.Models;
 
 namespace Limbo.Umbraco.Subscriptions.Content.Events.Managers {
-    internal class ContentNewsletterManager : IContentNewsletterManager {
+    public class ContentNewsletterManager : IContentNewsletterManager {
         private readonly ISubscriptionItemService _subscriptionItemService;
         private readonly INewsletterQueueService _newsletterQueueService;
         private readonly ILogger<ContentNewsletterManager> _logger;
