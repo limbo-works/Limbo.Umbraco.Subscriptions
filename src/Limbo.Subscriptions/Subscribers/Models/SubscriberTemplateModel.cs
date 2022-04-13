@@ -2,7 +2,12 @@
 using Limbo.MailSystem.Templates.RazorTemplates.Builders;
 
 namespace Limbo.Subscriptions.Subscribers.Models {
+    /// <summary>
+    /// Model for a email template for a subscriber email
+    /// </summary>
     public class SubscriberTemplateModel : Subscriber, ITemplateModel {
+
+        /// <inheritdoc/>
         public SubscriberTemplateModel(Subscriber subscriber) {
             Id = subscriber.Id;
             Name = subscriber.Name;

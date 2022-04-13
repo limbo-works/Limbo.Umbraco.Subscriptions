@@ -6,13 +6,16 @@ using Limbo.Umbraco.Subscriptions.Properties;
 using Umbraco.Cms.Core.Models;
 
 namespace Limbo.Umbraco.Subscriptions.Content.Events.Saving {
+    /// <inheritdoc/>
     public class ContentSavingNewsletterHandler : IContentSavingNewsletterHandler {
         private readonly IContentNewsletterManager _contentNewsletterManager;
 
+        /// <inheritdoc/>
         public ContentSavingNewsletterHandler(IContentNewsletterManager contentNewsletterManager) {
             _contentNewsletterManager = contentNewsletterManager;
         }
 
+        /// <inheritdoc/>
         public virtual async Task HandleAsync(IEnumerable<IContent> entities, CancellationToken cancellationToken) {
             foreach (var contentItem in entities) {
                 if (contentItem.HasProperty(PropertyAliases.IncludeInNextNewsletterAlias)) {

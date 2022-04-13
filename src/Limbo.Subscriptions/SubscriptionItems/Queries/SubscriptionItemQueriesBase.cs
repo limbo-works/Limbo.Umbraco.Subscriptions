@@ -9,8 +9,17 @@ using Limbo.Subscriptions.Persistence.SubscriptionItems.Models;
 using Limbo.Subscriptions.SubscriptionItems.Services;
 
 namespace Limbo.Subscriptions.SubscriptionItems.Queries {
+
+    /// <summary>
+    /// Queries for subscription items
+    /// </summary>
     public class SubscriptionItemQueriesBase {
 
+        /// <summary>
+        /// Gets a subscription item by id
+        /// </summary>
+        /// <param name="subscriptionItemService"></param>
+        /// <returns></returns>
         [Authorize]
         [UseProjection]
         [UseFiltering]
@@ -19,6 +28,12 @@ namespace Limbo.Subscriptions.SubscriptionItems.Queries {
             var response = (await subscriptionItemService.QueryDbSet(IsolationLevel.ReadCommitted)).ResponseValue;
             return response;
         }
+
+        /// <summary>
+        /// Gets subscription items
+        /// </summary>
+        /// <param name="subscriptionItemService"></param>
+        /// <returns></returns>
         [Authorize]
         [UsePaging]
         [UseProjection]

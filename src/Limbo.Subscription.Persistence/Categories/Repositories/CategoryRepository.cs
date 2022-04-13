@@ -8,13 +8,10 @@ using Microsoft.Extensions.Logging;
 namespace Limbo.Subscriptions.Persistence.Categories.Repositories {
     /// <inheritdoc/>
     public class CategoryRepository : DbCrudRepositoryBase<Category>, ICategoryRepository {
-        public CategoryRepository(IDbContextFactory<SubscriptionDbContext> contextFactory, ILogger<DbCrudRepositoryBase<Category>> logger) : base(contextFactory, logger) {
-        }
 
         /// <inheritdoc/>
-
-
-
+        public CategoryRepository(IDbContextFactory<SubscriptionDbContext> contextFactory, ILogger<DbCrudRepositoryBase<Category>> logger) : base(contextFactory, logger) {
+        }
 
         /// <inheritdoc/>
         public async Task<Category> AddSubscribers(int id, int[] subscriberIds) {

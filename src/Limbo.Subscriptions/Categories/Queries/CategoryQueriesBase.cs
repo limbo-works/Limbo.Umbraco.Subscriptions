@@ -9,7 +9,16 @@ using Limbo.Subscriptions.Categories.Services;
 using Limbo.Subscriptions.Persistence.Categories.Models;
 
 namespace Limbo.Subscriptions.Categories.Queries {
+    /// <summary>
+    /// Queries for categories
+    /// </summary>
     public class CategoryQueriesBase {
+
+        /// <summary>
+        /// Gets categories
+        /// </summary>
+        /// <param name="categoryService"></param>
+        /// <returns></returns>
         [Authorize]
         [UsePaging]
         [UseProjection]
@@ -24,6 +33,11 @@ namespace Limbo.Subscriptions.Categories.Queries {
             }
         }
 
+        /// <summary>
+        /// Gets a category
+        /// </summary>
+        /// <param name="categoryService"></param>
+        /// <returns></returns>
         [Authorize]
         [UseFirstOrDefault]
         [UseProjection]

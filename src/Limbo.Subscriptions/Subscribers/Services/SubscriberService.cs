@@ -11,39 +11,48 @@ using Limbo.Subscriptions.Persistence.Subscribers.Repositories;
 using Microsoft.Extensions.Logging;
 
 namespace Limbo.Subscriptions.Subscribers.Services {
+    /// <inheritdoc/>
     public class SubscriberService : CrudServiceBase<Subscriber, ISubscriberRepository>, ISubscriberService {
+
+        /// <inheritdoc/>
         public SubscriberService(ISubscriberRepository repository, ILogger<ServiceBase<ISubscriberRepository>> logger, DataAccessSettings dataAccessSettings, IUnitOfWork<ISubscriberRepository> unitOfWork) : base(repository, logger, dataAccessSettings, unitOfWork) {
         }
 
+        /// <inheritdoc/>
         public override Task<IServiceResponse<Subscriber>> Add(Subscriber entity) {
             Subscriber.Validate(entity);
             return base.Add(entity);
         }
 
+        /// <inheritdoc/>
         public async Task<IServiceResponse<Subscriber>> AddCategories(int id, int[] categoryIds) {
             return await ExecuteServiceTask(async () => {
                 return await repository.AddCategories(id, categoryIds);
             }, HttpStatusCode.Created, IsolationLevel.Snapshot);
         }
 
+        /// <inheritdoc/>
         public async Task<IServiceResponse<Subscriber>> AddSubscriptionItems(int id, int[] subscriptionItemIds) {
             return await ExecuteServiceTask(async () => {
                 return await repository.AddSubscriptionItems(id, subscriptionItemIds);
             }, HttpStatusCode.Created, IsolationLevel.Snapshot);
         }
 
+        /// <inheritdoc/>
         public async Task<IServiceResponse<Subscriber>> RemoveCategories(int id, int[] categoryIds) {
             return await ExecuteServiceTask(async () => {
                 return await repository.RemoveCategories(id, categoryIds);
             }, HttpStatusCode.OK, IsolationLevel.Snapshot);
         }
 
+        /// <inheritdoc/>
         public async Task<IServiceResponse<Subscriber>> RemoveSubscriptionItems(int id, int[] subscriptionItemIds) {
             return await ExecuteServiceTask(async () => {
                 return await repository.RemoveSubscriptionItems(id, subscriptionItemIds);
             }, HttpStatusCode.OK, IsolationLevel.Snapshot);
         }
 
+        /// <inheritdoc/>
         public override Task<IServiceResponse<Subscriber>> Update(Subscriber entity) {
             Subscriber.Validate(entity);
             return base.Update(entity);

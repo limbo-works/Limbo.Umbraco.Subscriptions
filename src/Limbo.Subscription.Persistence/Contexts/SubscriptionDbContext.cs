@@ -35,14 +35,6 @@ namespace Limbo.Subscriptions.Persistence.Contexts {
         /// <inheritdoc/>
         public DbContext Context => this;
 
-        public override void Dispose() {
-            base.Dispose();
-        }
-
-        public override ValueTask DisposeAsync() {
-            return base.DisposeAsync();
-        }
-
         /// <inheritdoc/>
         protected override void OnModelCreating(ModelBuilder modelBuilder) {
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());

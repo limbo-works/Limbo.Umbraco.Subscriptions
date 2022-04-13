@@ -4,8 +4,10 @@ using Limbo.Umbraco.Subscriptions.Properties;
 using Umbraco.Cms.Core.Notifications;
 
 namespace Limbo.Umbraco.Subscriptions.Content.Events.SendingContent {
+    /// <inheritdoc/>
     public class SendingContentHandler : ISendingContentHandler {
 
+        /// <inheritdoc/>
         public void Handle(SendingContentNotification notification) {
             foreach (var variant in notification.Content.Variants) {
                 if (variant.PublishDate.HasValue && variant.PublishDate.Value.ToUniversalTime() > DateTime.UtcNow.AddSeconds(10)) {

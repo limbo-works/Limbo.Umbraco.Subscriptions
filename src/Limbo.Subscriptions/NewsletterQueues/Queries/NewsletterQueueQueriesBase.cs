@@ -9,8 +9,16 @@ using Limbo.Subscriptions.NewsletterQueues.Services;
 using Limbo.Subscriptions.Persistence.NewsletterQueues.Models;
 
 namespace Limbo.Subscriptions.NewsletterQueues.Queries {
+    /// <summary>
+    /// Queries for newsletter queues
+    /// </summary>
     public class NewsletterQueueQueriesBase {
 
+        /// <summary>
+        /// Gets a newsletter queue by id
+        /// </summary>
+        /// <param name="newsletterQueueService"></param>
+        /// <returns></returns>
         [Authorize]
         [UseFirstOrDefault]
         [UseProjection]
@@ -20,6 +28,12 @@ namespace Limbo.Subscriptions.NewsletterQueues.Queries {
             var response = (await newsletterQueueService.QueryDbSet(IsolationLevel.ReadCommitted)).ResponseValue;
             return response;
         }
+
+        /// <summary>
+        /// Gets newsletter queue
+        /// </summary>
+        /// <param name="newsletterQueueService"></param>
+        /// <returns></returns>
         [Authorize]
         [UsePaging]
         [UseProjection]

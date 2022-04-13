@@ -15,8 +15,15 @@ using Limbo.Subscriptions.SubscriptionSystems.Queries;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Limbo.Subscriptions.Extensions {
+    /// <inheritdoc/>
     public static class SubscriptionsGraphQLExtensions {
 
+        /// <summary>
+        /// Adds the subscription package GraphQL setup
+        /// </summary>
+        /// <param name="services"></param>
+        /// <param name="graphQLExtensions"></param>
+        /// <returns></returns>
         public static IServiceCollection AddSubscriptionsGraphQL(this IServiceCollection services, Func<IRequestExecutorBuilder, IRequestExecutorBuilder>? graphQLExtensions = null) {
             if (graphQLExtensions == null) {
                 graphQLExtensions = builder => {
@@ -52,6 +59,12 @@ namespace Limbo.Subscriptions.Extensions {
             return services;
         }
 
+        /// <summary>
+        /// Adds extensions for GraphQL
+        /// </summary>
+        /// <param name="builder"></param>
+        /// <param name="graphQLExtensions"></param>
+        /// <returns></returns>
         public static IRequestExecutorBuilder AddGraphQLExtensions(this IRequestExecutorBuilder builder, Func<IRequestExecutorBuilder, IRequestExecutorBuilder> graphQLExtensions) {
             builder = graphQLExtensions.Invoke(builder);
 

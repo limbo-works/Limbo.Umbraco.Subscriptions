@@ -9,17 +9,20 @@ using Microsoft.Extensions.Logging;
 using Umbraco.Cms.Core.Models;
 
 namespace Limbo.Umbraco.Subscriptions.Content.Events.Managers {
+    /// <inheritdoc/>
     public class ContentNewsletterManager : IContentNewsletterManager {
         private readonly ISubscriptionItemService _subscriptionItemService;
         private readonly INewsletterQueueService _newsletterQueueService;
         private readonly ILogger<ContentNewsletterManager> _logger;
 
+        /// <inheritdoc/>
         public ContentNewsletterManager(ISubscriptionItemService subscriptionItemService, ILogger<ContentNewsletterManager> logger, INewsletterQueueService newsletterQueueService) {
             _subscriptionItemService = subscriptionItemService;
             _logger = logger;
             _newsletterQueueService = newsletterQueueService;
         }
 
+        /// <inheritdoc/>
         public async Task AddToNewsLetter(IContent contentItem) {
             var exsitingItem = (await _subscriptionItemService.QueryDbSet()).ResponseValue?.FirstOrDefault(item => item.NodeId == contentItem.Id);
             if (exsitingItem == null) {
@@ -37,6 +40,7 @@ namespace Limbo.Umbraco.Subscriptions.Content.Events.Managers {
             }
         }
 
+        /// <inheritdoc/>
         public async Task RemoveFromNewsletter(IContent contentItem) {
             var exsitingItem = (await _subscriptionItemService.QueryDbSet()).ResponseValue?.Include(item => item.NewsletterQueues).FirstOrDefault(item => item.NodeId == contentItem.Id);
             if (exsitingItem == null) {
@@ -50,6 +54,10 @@ namespace Limbo.Umbraco.Subscriptions.Content.Events.Managers {
             }
         }
 
+        /// <summary>
+        /// Gets the newsletter
+        /// </summary>
+        /// <returns></returns>
         private async Task<NewsletterQueue?> GetNewsletter() {
             var newsletter = (await _newsletterQueueService.QueryDbSet()).ResponseValue?.FirstOrDefault(item => item.Name == QueueConstants.DefaultQueueName);
             if (newsletter == null) {

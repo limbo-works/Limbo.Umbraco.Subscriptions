@@ -38,4 +38,10 @@
 		<PackageReference Include="HotChocolate.Data.EntityFramework" Version="12.7.0" />
 	</ItemGroup>
 
+  
+    <!-- Generate XML documentation -->
+    <PropertyGroup>
+        <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
+    </PropertyGroup>
+
 </Project>

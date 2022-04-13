@@ -8,12 +8,10 @@ using Microsoft.Extensions.Logging;
 namespace Limbo.Subscriptions.Persistence.NewsletterQueues.Repositories {
     /// <inheritdoc/>
     public class NewsletterQueueRepository : DbCrudRepositoryBase<NewsletterQueue>, INewsletterQueueRepository {
-        public NewsletterQueueRepository(IDbContextFactory<SubscriptionDbContext> contextFactory, ILogger<DbCrudRepositoryBase<NewsletterQueue>> logger) : base(contextFactory, logger) {
-        }
-
 
         /// <inheritdoc/>
-
+        public NewsletterQueueRepository(IDbContextFactory<SubscriptionDbContext> contextFactory, ILogger<DbCrudRepositoryBase<NewsletterQueue>> logger) : base(contextFactory, logger) {
+        }
 
         /// <inheritdoc/>
         public async Task<NewsletterQueue> AddSubscriptionItems(int id, int[] subscriptionItemIds) {

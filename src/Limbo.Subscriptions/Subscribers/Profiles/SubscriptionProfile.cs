@@ -4,7 +4,9 @@ using Limbo.Subscriptions.Persistence.SubscriptionSystems.Models;
 using Limbo.Subscriptions.Subscribers.Models;
 
 namespace Limbo.Subscriptions.Subscribers.Profiles {
+    /// <inheritdoc/>
     public class SubscriptionProfile : Profile {
+        /// <inheritdoc/>
         public SubscriptionProfile() {
             CreateMap<Subscriber, SubscriberUpdateInput>()
                 .ForMember(dest => dest.SubscriptionSystemId, opt => opt.MapFrom(src => src.SubscriptionSystem != null ? src.SubscriptionSystem.Id : 0));

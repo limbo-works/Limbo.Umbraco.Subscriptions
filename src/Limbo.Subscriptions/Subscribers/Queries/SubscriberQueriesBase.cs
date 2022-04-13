@@ -9,8 +9,16 @@ using Limbo.Subscriptions.Persistence.Subscribers.Models;
 using Limbo.Subscriptions.Subscribers.Services;
 
 namespace Limbo.Subscriptions.Subscribers.Queries {
+    /// <summary>
+    /// Queries for subscribers
+    /// </summary>
     public class SubscriberQueriesBase {
 
+        /// <summary>
+        /// Gets a subscriber
+        /// </summary>
+        /// <param name="subscriberService"></param>
+        /// <returns></returns>
         [Authorize]
         [UseFirstOrDefault]
         [UseProjection]
@@ -21,6 +29,11 @@ namespace Limbo.Subscriptions.Subscribers.Queries {
             return response;
         }
 
+        /// <summary>
+        /// Gets subsribers
+        /// </summary>
+        /// <param name="subscriberService"></param>
+        /// <returns></returns>
         [Authorize]
         [UsePaging]
         [UseProjection]
