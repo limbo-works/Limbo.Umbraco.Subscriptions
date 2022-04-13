@@ -24,21 +24,21 @@ namespace Limbo.MailSystem.Mails.Models {
         /// <summary>
         /// The sender of the mail
         /// </summary>
-        public Sender From { get; set; }
+        public virtual Sender From { get; set; }
 
         /// <summary>
         /// The recipients of the mail
         /// </summary>
-        public ICollection<Recipient> Recipients { get; set; }
+        public virtual ICollection<Recipient> Recipients { get; set; }
 
         /// <summary>
         /// The subject of the mail
         /// </summary>
-        public string Subject { get; set; }
+        public virtual string Subject { get; set; }
 
         /// <summary>
         /// The body of the mail
         /// </summary>
-        public string Body { get; set; }
+        public virtual string Body { get; set; }
     }
 }

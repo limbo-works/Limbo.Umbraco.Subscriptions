@@ -16,11 +16,11 @@
         /// <summary>
         /// The name of the sender
         /// </summary>
-        public string Name { get; set; }
+        public virtual string Name { get; set; }
 
         /// <summary>
         /// The email of the sender
         /// </summary>
-        public string Email { get; set; }
+        public virtual string Email { get; set; }
     }
 }

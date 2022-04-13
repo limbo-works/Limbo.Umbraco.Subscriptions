@@ -10,12 +10,12 @@ namespace Limbo.Umbraco.Subscriptions.Queues.Jobs.Recuring.Models {
         /// <summary>
         /// How often do we run the background task
         /// </summary>
-        public TimeSpan HowOftenWeRepeat { get; set; } = TimeSpan.FromMinutes(1);
+        public virtual TimeSpan HowOftenWeRepeat { get; set; } = TimeSpan.FromMinutes(1);
 
         /// <summary>
         /// Delay before task starts on start up
         /// </summary>
-        public TimeSpan DelayBeforeWeStart { get; set; } = TimeSpan.FromSeconds(10);
+        public virtual TimeSpan DelayBeforeWeStart { get; set; } = TimeSpan.FromSeconds(10);
 
         /// <summary>
         /// The page size for creating mails
@@ -28,17 +28,17 @@ namespace Limbo.Umbraco.Subscriptions.Queues.Jobs.Recuring.Models {
         /// <summary>
         /// The name of the newsletter queue to distribute newsletters from
         /// </summary>
-        public string QueueName { get; set; } = QueueConstants.DefaultQueueName;
+        public virtual string QueueName { get; set; } = QueueConstants.DefaultQueueName;
 
         /// <summary>
         /// Path to email template
         /// </summary>
-        public string TemplatePath { get; set; } = "~/Views/Mails/Default.cshtml";
+        public virtual string TemplatePath { get; set; } = "~/Views/Mails/Default.cshtml";
 
         /// <summary>
         /// The subject title of the email
         /// </summary>
-        public string SubjectTitle { get; set; } = "Nyt fra hjemmesiden";
+        public virtual string SubjectTitle { get; set; } = "Nyt fra hjemmesiden";
 
         /// <summary>
         /// The method the mail is sent
@@ -46,7 +46,7 @@ namespace Limbo.Umbraco.Subscriptions.Queues.Jobs.Recuring.Models {
         /// <remarks>
         /// This supports any method that you can write in code. This will be called for every mail. Default is Console.WriteLine
         /// </remarks>
-        public Func<Mail, Task> SendMailMethod { get; set; } = mail => {
+        public virtual Func<Mail, Task> SendMailMethod { get; set; } = mail => {
             Console.WriteLine(mail.Body);
             return Task.CompletedTask;
         };

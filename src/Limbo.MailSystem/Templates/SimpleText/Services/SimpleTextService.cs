@@ -23,7 +23,7 @@ namespace Limbo.MailSystem.Templates.SimpleText.Services {
         }
 
         /// <inheritdoc/>
-        public async Task<IServiceResponse<MailTemplate>> CreateTemplate(string name, string content) {
+        public virtual async Task<IServiceResponse<MailTemplate>> CreateTemplate(string name, string content) {
             SegmentType segmentType = await GetSegmentType();
 
             var mailTemplate = new MailTemplate {
@@ -50,7 +50,7 @@ namespace Limbo.MailSystem.Templates.SimpleText.Services {
         }
 
         /// <inheritdoc/>
-        public async Task<IServiceResponse<MailTemplate>?> UpdateTemplateContent(int id, string content) {
+        public virtual async Task<IServiceResponse<MailTemplate>?> UpdateTemplateContent(int id, string content) {
             var mailTemplate = (await _mailTemplateService.QueryDbSet()).ResponseValue.Include(item => item.MailSegments).FirstOrDefault(item => item.Id == id);
             if (mailTemplate == null) {
                 return null;
@@ -65,12 +65,12 @@ namespace Limbo.MailSystem.Templates.SimpleText.Services {
         }
 
         /// <inheritdoc/>
-        public async Task<IServiceResponse<MailTemplate>> DeleteTemplate(int id) {
+        public virtual async Task<IServiceResponse<MailTemplate>> DeleteTemplate(int id) {
             return await _mailTemplateService.DeleteById(id);
         }
 
         /// <inheritdoc/>
-        public async Task<MailTemplate?> GetTemplate(int id) {
+        public virtual async Task<MailTemplate?> GetTemplate(int id) {
             return (await _mailTemplateService.QueryDbSet()).ResponseValue.Include(item => item.MailSegments).ThenInclude(item => item.SegmentType).FirstOrDefault(item => item.Id == id);
         }
     }

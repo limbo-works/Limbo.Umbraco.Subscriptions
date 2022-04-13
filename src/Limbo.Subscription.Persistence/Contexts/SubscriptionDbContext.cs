@@ -1,5 +1,4 @@
 ﻿using System.Reflection;
-using System.Threading.Tasks;
 using Limbo.Subscriptions.Persistence.Categories.Models;
 using Limbo.Subscriptions.Persistence.NewsletterQueues.Models;
 using Limbo.Subscriptions.Persistence.Subscribers.Models;
@@ -18,22 +17,22 @@ namespace Limbo.Subscriptions.Persistence.Contexts {
 
 
         /// <inheritdoc/>
-        public DbSet<Category>? Categories { get; set; }
+        public virtual DbSet<Category>? Categories { get; set; }
 
         /// <inheritdoc/>
-        public DbSet<NewsletterQueue>? NewsletterQueues { get; set; }
+        public virtual DbSet<NewsletterQueue>? NewsletterQueues { get; set; }
 
         /// <inheritdoc/>
-        public DbSet<Subscriber>? Subscribers { get; set; }
+        public virtual DbSet<Subscriber>? Subscribers { get; set; }
 
         /// <inheritdoc/>
-        public DbSet<SubscriptionItem>? SubscriptionItems { get; set; }
+        public virtual DbSet<SubscriptionItem>? SubscriptionItems { get; set; }
 
         /// <inheritdoc/>
-        public DbSet<SubscriptionSystem>? SubscriptionSystems { get; set; }
+        public virtual DbSet<SubscriptionSystem>? SubscriptionSystems { get; set; }
 
         /// <inheritdoc/>
-        public DbContext Context => this;
+        public virtual DbContext Context => this;
 
         /// <inheritdoc/>
         protected override void OnModelCreating(ModelBuilder modelBuilder) {

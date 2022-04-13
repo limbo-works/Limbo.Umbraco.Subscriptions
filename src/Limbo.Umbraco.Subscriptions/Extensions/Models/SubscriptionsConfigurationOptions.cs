@@ -10,21 +10,21 @@ namespace Limbo.Umbraco.Subscriptions.Extensions.Models {
         /// <summary>
         /// 
         /// </summary>
-        public string ConnectionStringKey { get; set; } = "umbracoDbDSN";
+        public virtual string ConnectionStringKey { get; set; } = "umbracoDbDSN";
 
         /// <summary>
         /// 
         /// </summary>
-        public string DataAccessConfigurationSection { get; set; } = "Limbo.DataAccess";
+        public virtual string DataAccessConfigurationSection { get; set; } = "Limbo.DataAccess";
 
         /// <summary>
         /// 
         /// </summary>
-        public string MailConfigurationSection { get; set; } = "Limbo:MailSettings";
+        public virtual string MailConfigurationSection { get; set; } = "Limbo:MailSettings";
 
         /// <summary>
         /// 
         /// </summary>
-        public Func<IRequestExecutorBuilder, IRequestExecutorBuilder>? GraphQLExtensions { get; set; } = null;
+        public virtual Func<IRequestExecutorBuilder, IRequestExecutorBuilder>? GraphQLExtensions { get; set; } = null;
     }
 }

@@ -25,42 +25,42 @@ namespace Limbo.Subscriptions.SubscriptionItems.Services {
         }
 
         /// <inheritdoc/>
-        public async Task<IServiceResponse<SubscriptionItem>> AddCategories(int id, int[] categoryIds) {
+        public virtual async Task<IServiceResponse<SubscriptionItem>> AddCategories(int id, int[] categoryIds) {
             return await ExecuteServiceTask(async () => {
                 return await repository.AddCategories(id, categoryIds);
             }, HttpStatusCode.Created, IsolationLevel.Snapshot);
         }
 
         /// <inheritdoc/>
-        public async Task<IServiceResponse<SubscriptionItem>> AddNewsletterQueues(int id, int[] newsletterQueueIds) {
+        public virtual async Task<IServiceResponse<SubscriptionItem>> AddNewsletterQueues(int id, int[] newsletterQueueIds) {
             return await ExecuteServiceTask(async () => {
                 return await repository.AddNewsletterQueues(id, newsletterQueueIds);
             }, HttpStatusCode.Created, IsolationLevel.Snapshot);
         }
 
         /// <inheritdoc/>
-        public async Task<IServiceResponse<SubscriptionItem>> AddSubscribers(int id, int[] subscriberIds) {
+        public virtual async Task<IServiceResponse<SubscriptionItem>> AddSubscribers(int id, int[] subscriberIds) {
             return await ExecuteServiceTask(async () => {
                 return await repository.AddSubscribers(id, subscriberIds);
             }, HttpStatusCode.Created, IsolationLevel.Snapshot);
         }
 
         /// <inheritdoc/>
-        public async Task<IServiceResponse<SubscriptionItem>> RemoveCategories(int id, int[] categoryIds) {
+        public virtual async Task<IServiceResponse<SubscriptionItem>> RemoveCategories(int id, int[] categoryIds) {
             return await ExecuteServiceTask(async () => {
                 return await repository.RemoveCategories(id, categoryIds);
             }, HttpStatusCode.Created, IsolationLevel.Snapshot);
         }
 
         /// <inheritdoc/>
-        public async Task<IServiceResponse<SubscriptionItem>> RemoveNewsletterQueues(int id, int[] newsletterQueueIds) {
+        public virtual async Task<IServiceResponse<SubscriptionItem>> RemoveNewsletterQueues(int id, int[] newsletterQueueIds) {
             return await ExecuteServiceTask(async () => {
                 return await repository.RemoveNewsletterQueues(id, newsletterQueueIds);
             }, HttpStatusCode.Created, IsolationLevel.Snapshot);
         }
 
         /// <inheritdoc/>
-        public async Task<IServiceResponse<SubscriptionItem>> RemoveSubscribers(int id, int[] subscriberIds) {
+        public virtual async Task<IServiceResponse<SubscriptionItem>> RemoveSubscribers(int id, int[] subscriberIds) {
             return await ExecuteServiceTask(async () => {
                 return await repository.RemoveSubscribers(id, subscriberIds);
             }, HttpStatusCode.Created, IsolationLevel.Snapshot);

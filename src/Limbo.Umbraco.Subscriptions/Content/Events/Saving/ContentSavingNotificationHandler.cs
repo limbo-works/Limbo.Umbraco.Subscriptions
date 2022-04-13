@@ -11,7 +11,7 @@ namespace Limbo.Umbraco.Subscriptions.Content.Events.Saving {
             _contentSavingNewsletterHandler = contentSavingNewsletterHandler;
         }
 
-        public async Task HandleAsync(ContentSavingNotification notification, CancellationToken cancellationToken) {
+        public virtual async Task HandleAsync(ContentSavingNotification notification, CancellationToken cancellationToken) {
             await _contentSavingNewsletterHandler.HandleAsync(notification.SavedEntities, cancellationToken);
         }
 

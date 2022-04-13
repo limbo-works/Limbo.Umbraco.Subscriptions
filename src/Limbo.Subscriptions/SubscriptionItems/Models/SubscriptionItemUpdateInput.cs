@@ -9,12 +9,12 @@ namespace Limbo.Subscriptions.SubscriptionItems.Models {
         /// Id
         /// </summary>
         [Required]
-        public int Id { get; set; }
+        public virtual int Id { get; set; }
 
         /// <summary>
         /// Subscription item node id
         /// </summary>
         [Required]
-        public int NodeId { get; set; }
+        public virtual int NodeId { get; set; }
     }
 }

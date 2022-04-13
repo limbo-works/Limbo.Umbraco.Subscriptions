@@ -9,17 +9,17 @@ namespace Limbo.MailSystem.Persisence.MailSegments.Models {
     public class MailSegment : GenericId {
 
         /// <inheritdoc/>
-        public int Id { get; set; }
+        public virtual int Id { get; set; }
 
         /// <summary>
         /// A text value under 512 bytes
         /// </summary>
-        public string? NVarCharValue { get; set; }
+        public virtual string? NVarCharValue { get; set; }
 
         /// <summary>
         /// A text value over 512 bytes
         /// </summary>
-        public string? NVarCharMaxValue { get; set; }
+        public virtual string? NVarCharMaxValue { get; set; }
 
         /// <summary>
         /// The mail template of the segment

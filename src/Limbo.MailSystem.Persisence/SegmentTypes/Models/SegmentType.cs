@@ -9,12 +9,12 @@ namespace Limbo.MailSystem.Persisence.SegmentTypes.Models {
     public class SegmentType : GenericId {
 
         /// <inheritdoc/>
-        public int Id { get; set; }
+        public virtual int Id { get; set; }
 
         /// <summary>
         /// The alias of the segment
         /// </summary>
-        public string? Alias { get; set; }
+        public virtual string? Alias { get; set; }
 
         /// <summary>
         /// The mail segments with the type

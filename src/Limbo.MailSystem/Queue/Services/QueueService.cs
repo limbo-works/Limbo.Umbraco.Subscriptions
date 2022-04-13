@@ -10,7 +10,7 @@ namespace Limbo.MailSystem.Queue.Services {
         private readonly List<Action> _queue = new();
 
         /// <inheritdoc/>
-        public void RunNextAction() {
+        public virtual void RunNextAction() {
             Action? nextItem = null;
             lock (_lock) {
                 if (_queue.Any()) {
@@ -25,7 +25,7 @@ namespace Limbo.MailSystem.Queue.Services {
         }
 
         /// <inheritdoc/>
-        public void QueueUp(Action action) {
+        public virtual void QueueUp(Action action) {
             if (!_isItemRunning) {
                 lock (_lock) {
                     if (!_isItemRunning) {
@@ -42,7 +42,7 @@ namespace Limbo.MailSystem.Queue.Services {
         }
 
         /// <inheritdoc/>
-        public bool AddToQueue(Action action) {
+        public virtual bool AddToQueue(Action action) {
             bool runAction = false;
             lock (_lock) {
                 if (_isItemRunning) {

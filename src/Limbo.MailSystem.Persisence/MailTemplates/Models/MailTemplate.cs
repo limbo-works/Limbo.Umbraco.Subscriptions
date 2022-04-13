@@ -9,12 +9,12 @@ namespace Limbo.MailSystem.Persisence.MailTemplates.Models {
     public class MailTemplate : GenericId {
 
         /// <inheritdoc/>
-        public int Id { get; set; }
+        public virtual int Id { get; set; }
 
         /// <summary>
         /// The name of the template
         /// </summary>
-        public string? Name { get; set; }
+        public virtual string? Name { get; set; }
 
         /// <summary>
         /// The segments of the mail

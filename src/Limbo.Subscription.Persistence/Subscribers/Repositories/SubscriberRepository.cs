@@ -14,22 +14,22 @@ namespace Limbo.Subscriptions.Persistence.Subscribers.Repositories {
         }
 
         /// <inheritdoc/>
-        public async Task<Subscriber> AddCategories(int id, int[] categoryIds) {
+        public virtual async Task<Subscriber> AddCategories(int id, int[] categoryIds) {
             return await AddToCollection(id, categoryIds, subscriber => subscriber.Categories);
         }
 
         /// <inheritdoc/>
-        public async Task<Subscriber> AddSubscriptionItems(int id, int[] subscriptionItemIds) {
+        public virtual async Task<Subscriber> AddSubscriptionItems(int id, int[] subscriptionItemIds) {
             return await AddToCollection(id, subscriptionItemIds, subscriber => subscriber.SubscriptionItems);
         }
 
         /// <inheritdoc/>
-        public async Task<Subscriber> RemoveCategories(int id, int[] categoryIds) {
+        public virtual async Task<Subscriber> RemoveCategories(int id, int[] categoryIds) {
             return await RemoveFromCollection(id, categoryIds, subscriber => subscriber.Categories);
         }
 
         /// <inheritdoc/>
-        public async Task<Subscriber> RemoveSubscriptionItems(int id, int[] subscriptionItemIds) {
+        public virtual async Task<Subscriber> RemoveSubscriptionItems(int id, int[] subscriptionItemIds) {
             return await RemoveFromCollection(id, subscriptionItemIds, subscriber => subscriber.SubscriptionItems);
         }
     }

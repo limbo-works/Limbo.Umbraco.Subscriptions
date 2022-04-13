@@ -9,12 +9,12 @@ namespace Limbo.Subscriptions.NewsletterQueues.Models {
         /// Id
         /// </summary>
         [Required]
-        public int Id { get; set; }
+        public virtual int Id { get; set; }
 
         /// <summary>
         /// The name of the newsletter queue
         /// </summary>
         [Required]
-        public string? Name { get; set; }
+        public virtual string? Name { get; set; }
     }
 }

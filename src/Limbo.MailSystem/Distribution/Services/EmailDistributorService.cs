@@ -19,7 +19,7 @@ namespace Limbo.MailSystem.Distribution.Services {
         }
 
         /// <inheritdoc/>
-        public void QueueDistributeEmails(List<Mail> mails, Func<Mail, Task> sendEmailMethod) {
+        public virtual void QueueDistributeEmails(List<Mail> mails, Func<Mail, Task> sendEmailMethod) {
             _queueService.QueueUp(async () => await DistributeEmails(mails, sendEmailMethod));
         }
 

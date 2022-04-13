@@ -13,12 +13,12 @@ namespace Limbo.Subscriptions.Persistence.SubscriptionItems.Models {
         /// <summary>
         /// The unique id
         /// </summary>
-        public int Id { get; set; }
+        public virtual int Id { get; set; }
 
         /// <summary>
         /// The node id of the item
         /// </summary>
-        public int NodeId { get; set; }
+        public virtual int NodeId { get; set; }
 
         /// <summary>
         /// The categories og the subscription item

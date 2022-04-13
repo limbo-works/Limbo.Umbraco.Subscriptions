@@ -23,7 +23,7 @@ namespace Limbo.Umbraco.Subscriptions.Content.Events.Managers {
         }
 
         /// <inheritdoc/>
-        public async Task AddToNewsLetter(IContent contentItem) {
+        public virtual async Task AddToNewsLetter(IContent contentItem) {
             var exsitingItem = (await _subscriptionItemService.QueryDbSet()).ResponseValue?.FirstOrDefault(item => item.NodeId == contentItem.Id);
             if (exsitingItem == null) {
                 exsitingItem = (await _subscriptionItemService.Add(new() { NodeId = contentItem.Id })).ResponseValue;
@@ -41,7 +41,7 @@ namespace Limbo.Umbraco.Subscriptions.Content.Events.Managers {
         }
 
         /// <inheritdoc/>
-        public async Task RemoveFromNewsletter(IContent contentItem) {
+        public virtual async Task RemoveFromNewsletter(IContent contentItem) {
             var exsitingItem = (await _subscriptionItemService.QueryDbSet()).ResponseValue?.Include(item => item.NewsletterQueues).FirstOrDefault(item => item.NodeId == contentItem.Id);
             if (exsitingItem == null) {
                 exsitingItem = (await _subscriptionItemService.Add(new() { NodeId = contentItem.Id })).ResponseValue;

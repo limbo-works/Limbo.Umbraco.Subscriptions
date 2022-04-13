@@ -6,11 +6,11 @@
         /// <summary>
         /// The Regex pattern used to match the occurences
         /// </summary>
-        public string? Pattern { get; set; }
+        public virtual string? Pattern { get; set; }
 
         /// <summary>
         /// Value to replace the pattern with
         /// </summary>
-        public string? Value { get; set; }
+        public virtual string? Value { get; set; }
     }
 }

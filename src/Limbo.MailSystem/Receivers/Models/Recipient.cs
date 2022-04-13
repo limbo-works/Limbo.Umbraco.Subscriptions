@@ -6,11 +6,11 @@
         /// <summary>
         /// The name of the recipient
         /// </summary>
-        public string? Name { get; set; }
+        public virtual string? Name { get; set; }
 
         /// <summary>
         /// The email of the recipient
         /// </summary>
-        public string? Email { get; set; }
+        public virtual string? Email { get; set; }
     }
 }

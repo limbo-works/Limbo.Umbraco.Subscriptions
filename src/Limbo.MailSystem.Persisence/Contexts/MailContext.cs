@@ -16,16 +16,16 @@ namespace Limbo.MailSystem.Persisence.Contexts {
         private static readonly string _tablePrefix = "Limbo_Mail";
 
         /// <inheritdoc/>
-        public DbContext Context => this;
+        public virtual DbContext Context => this;
 
         /// <inheritdoc/>
-        public DbSet<MailTemplate>? MailTemplates { get; set; }
+        public virtual DbSet<MailTemplate>? MailTemplates { get; set; }
 
         /// <inheritdoc/>
-        public DbSet<MailSegment>? MailSegments { get; set; }
+        public virtual DbSet<MailSegment>? MailSegments { get; set; }
 
         /// <inheritdoc/>
-        public DbSet<SegmentType>? SegmentTypes { get; set; }
+        public virtual DbSet<SegmentType>? SegmentTypes { get; set; }
 
         /// <inheritdoc/>
         protected override void OnModelCreating(ModelBuilder modelBuilder) {

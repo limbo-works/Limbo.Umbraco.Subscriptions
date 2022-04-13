@@ -16,7 +16,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using Umbraco.Cms.Core.DependencyInjection;
 using Umbraco.Cms.Core.Models;
-using Umbraco.Cms.Core.Notifications;
 using Umbraco.Extensions;
 
 namespace TestProject {

@@ -1,7 +1,6 @@
 ﻿using Limbo.Umbraco.Subscriptions.Content.Events.Saved;
 using Limbo.Umbraco.Subscriptions.Content.Events.Saving;
 using Limbo.Umbraco.Subscriptions.Content.Events.SendingContent;
-using Microsoft.Extensions.DependencyInjection;
 using Umbraco.Cms.Core.DependencyInjection;
 using Umbraco.Cms.Core.Notifications;
 

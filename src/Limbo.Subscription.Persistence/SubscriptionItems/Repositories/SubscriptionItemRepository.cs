@@ -13,32 +13,32 @@ namespace Limbo.Subscriptions.Persistence.SubscriptionItems.Repositories {
         }
 
         /// <inheritdoc/>
-        public async Task<SubscriptionItem> AddCategories(int id, int[] categoryIds) {
+        public virtual async Task<SubscriptionItem> AddCategories(int id, int[] categoryIds) {
             return await AddToCollection(id, categoryIds, subscriptionItem => subscriptionItem.Categories);
         }
 
         /// <inheritdoc/>
-        public async Task<SubscriptionItem> AddNewsletterQueues(int id, int[] newsletterQueueIds) {
+        public virtual async Task<SubscriptionItem> AddNewsletterQueues(int id, int[] newsletterQueueIds) {
             return await AddToCollection(id, newsletterQueueIds, subscriptionItem => subscriptionItem.NewsletterQueues);
         }
 
         /// <inheritdoc/>
-        public async Task<SubscriptionItem> AddSubscribers(int id, int[] subscriberIds) {
+        public virtual async Task<SubscriptionItem> AddSubscribers(int id, int[] subscriberIds) {
             return await AddToCollection(id, subscriberIds, subscriptionItem => subscriptionItem.Subscribers);
         }
 
         /// <inheritdoc/>
-        public async Task<SubscriptionItem> RemoveCategories(int id, int[] categoryIds) {
+        public virtual async Task<SubscriptionItem> RemoveCategories(int id, int[] categoryIds) {
             return await RemoveFromCollection(id, categoryIds, subscriptionItem => subscriptionItem.Categories);
         }
 
         /// <inheritdoc/>
-        public async Task<SubscriptionItem> RemoveNewsletterQueues(int id, int[] newsletterQueueIds) {
+        public virtual async Task<SubscriptionItem> RemoveNewsletterQueues(int id, int[] newsletterQueueIds) {
             return await RemoveFromCollection(id, newsletterQueueIds, subscriptionItem => subscriptionItem.NewsletterQueues);
         }
 
         /// <inheritdoc/>
-        public async Task<SubscriptionItem> RemoveSubscribers(int id, int[] subscriberIds) {
+        public virtual async Task<SubscriptionItem> RemoveSubscribers(int id, int[] subscriberIds) {
             return await RemoveFromCollection(id, subscriberIds, subscriptionItem => subscriptionItem.Subscribers);
         }
     }

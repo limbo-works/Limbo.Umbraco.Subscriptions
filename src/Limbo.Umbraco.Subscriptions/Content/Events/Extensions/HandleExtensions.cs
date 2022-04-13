@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Limbo.Umbraco.Subscriptions.Content.Events.Saved;
+﻿using Limbo.Umbraco.Subscriptions.Content.Events.Saved;
 using Limbo.Umbraco.Subscriptions.Content.Events.Saving;
 using Limbo.Umbraco.Subscriptions.Content.Events.SendingContent;
 using Microsoft.Extensions.DependencyInjection;

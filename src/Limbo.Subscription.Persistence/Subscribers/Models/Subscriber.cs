@@ -13,27 +13,27 @@ namespace Limbo.Subscriptions.Persistence.Subscribers.Models {
         /// <summary>
         /// The unique id
         /// </summary>
-        public int Id { get; set; }
+        public virtual int Id { get; set; }
 
         /// <summary>
         /// The name of the subscriber
         /// </summary>
-        public string? Name { get; set; }
+        public virtual string? Name { get; set; }
 
         /// <summary>
         /// The email of the subscriber
         /// </summary>
-        public string? Email { get; set; }
+        public virtual string? Email { get; set; }
 
         /// <summary>
         /// Has the subscriber confirmed thier email
         /// </summary>
-        public bool IsConfirmed { get; set; }
+        public virtual bool IsConfirmed { get; set; }
 
         /// <summary>
         /// When was the subscriber created
         /// </summary>
-        public DateTime Created { get; set; }
+        public virtual DateTime Created { get; set; }
 
         /// <summary>
         /// The subscription items of the subscriber

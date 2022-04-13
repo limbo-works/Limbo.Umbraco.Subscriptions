@@ -25,14 +25,14 @@ namespace Limbo.Subscriptions.NewsletterQueues.Services {
         }
 
         /// <inheritdoc/>
-        public async Task<IServiceResponse<NewsletterQueue>> AddSubscriptionItems(int id, int[] subscriptionItemIds) {
+        public virtual async Task<IServiceResponse<NewsletterQueue>> AddSubscriptionItems(int id, int[] subscriptionItemIds) {
             return await ExecuteServiceTask(async () => {
                 return await repository.AddSubscriptionItems(id, subscriptionItemIds);
             }, HttpStatusCode.Created, IsolationLevel.Serializable);
         }
 
         /// <inheritdoc/>
-        public async Task<IServiceResponse<NewsletterQueue>> RemoveSubscriptionItems(int id, int[] subscriptionItemIds) {
+        public virtual async Task<IServiceResponse<NewsletterQueue>> RemoveSubscriptionItems(int id, int[] subscriptionItemIds) {
             return await ExecuteServiceTask(async () => {
                 return await repository.RemoveSubscriptionItems(id, subscriptionItemIds);
             }, HttpStatusCode.OK, IsolationLevel.Serializable);
