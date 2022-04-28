@@ -18,6 +18,30 @@ namespace Limbo.Umbraco.Subscriptions.Queues.Jobs.Recuring.Models {
         public virtual TimeSpan DelayBeforeWeStart { get; set; } = TimeSpan.FromSeconds(10);
 
         /// <summary>
+        /// How often to send newsletter (Default is null)
+        /// </summary>
+        /// <remarks>
+        /// Cannot be used with <see cref="AllowedStartTime"/> and <see cref="StopTime"/>
+        /// </remarks>
+        public virtual TimeSpan? HowOftenToSend { get; set; } = null;
+
+        /// <summary>
+        /// When it's allowed to send newsletters. Distribution will start on first repeat after this value (Default is null)
+        /// </summary>
+        /// <remarks>
+        /// Cannot be used with <see cref="HowOftenToSend"/>
+        /// </remarks>
+        public virtual DateTime? AllowedStartTime { get; set; } = null;
+
+        /// <summary>
+        /// When to stop sending newsletters (Default is null)
+        /// </summary>
+        /// <remarks>
+        /// Cannot be used with <see cref="HowOftenToSend"/>
+        /// </remarks>
+        public virtual DateTime? StopTime { get; set; } = null;
+
+        /// <summary>
         /// The page size for creating mails
         /// </summary>
         /// <remarks>

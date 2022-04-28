@@ -8,7 +8,7 @@
     <PropertyGroup>
         <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
         <Nullable>enable</Nullable>
-        <Version>0.1.0</Version>
+        <Version>1.0.0-preview.0</Version>
         <Authors>nikcio</Authors>
         <Company>Limbo</Company>
         <Description>Persistence package for Limbo.Subscriptions</Description>
@@ -29,7 +29,7 @@
       </None>
     </ItemGroup>
     <ItemGroup>
-      <PackageReference Include="Limbo.DataAccess" Version="2.0.0-dev07" />
+      <PackageReference Include="Limbo.DataAccess" Version="2.0.0-preview.0" />
     </ItemGroup>
 
 </Project>

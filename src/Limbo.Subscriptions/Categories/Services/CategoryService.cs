@@ -28,28 +28,28 @@ namespace Limbo.Subscriptions.Categories.Services {
         public virtual async Task<IServiceResponse<Category>> AddSubscribers(int id, int[] subscriberIds) {
             return await ExecuteServiceTask(async () => {
                 return await repository.AddSubscribers(id, subscriberIds);
-            }, HttpStatusCode.Created, IsolationLevel.Snapshot);
+            }, HttpStatusCode.Created, dataAccessSettings.DefaultIsolationLevel);
         }
 
         /// <inheritdoc/>
         public virtual async Task<IServiceResponse<Category>> AddSubscriptionItems(int id, int[] subscriptionItemIds) {
             return await ExecuteServiceTask(async () => {
                 return await repository.AddSubscriptionItems(id, subscriptionItemIds);
-            }, HttpStatusCode.Created, IsolationLevel.Snapshot);
+            }, HttpStatusCode.Created, dataAccessSettings.DefaultIsolationLevel);
         }
 
         /// <inheritdoc/>
         public virtual async Task<IServiceResponse<Category>> RemoveSubscribers(int id, int[] subscriberIds) {
             return await ExecuteServiceTask(async () => {
                 return await repository.RemoveSubscribers(id, subscriberIds);
-            }, HttpStatusCode.OK, IsolationLevel.Snapshot);
+            }, HttpStatusCode.OK, dataAccessSettings.DefaultIsolationLevel);
         }
 
         /// <inheritdoc/>
         public virtual async Task<IServiceResponse<Category>> RemoveSubscriptionItems(int id, int[] subscriptionItemIds) {
             return await ExecuteServiceTask(async () => {
                 return await repository.RemoveSubscriptionItems(id, subscriptionItemIds);
-            }, HttpStatusCode.OK, IsolationLevel.Snapshot);
+            }, HttpStatusCode.OK, dataAccessSettings.DefaultIsolationLevel);
         }
 
         /// <inheritdoc/>

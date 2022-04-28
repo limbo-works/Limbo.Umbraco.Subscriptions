@@ -6,7 +6,7 @@
     </PropertyGroup>
 
     <PropertyGroup>
-        <Version>0.1.0</Version>
+        <Version>1.0.0-preview.0</Version>
         <Company>Limbo</Company>
         <Authors>nikcio</Authors>
         <Copyright></Copyright>
@@ -53,7 +53,6 @@
 
     <ItemGroup>
       <ProjectReference Include="..\Limbo.Subscriptions\Limbo.Subscriptions.csproj" />
-      <ProjectReference Include="..\Limbo.Umbraco.MailSystem\Limbo.Umbraco.MailSystem.csproj" />
     </ItemGroup>
 
     <!-- Generate XML documentation -->

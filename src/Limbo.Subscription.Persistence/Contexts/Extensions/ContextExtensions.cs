@@ -17,7 +17,7 @@ namespace Limbo.Subscriptions.Persistence.Contexts.Extensions {
         /// <returns></returns>
         public static IServiceCollection AddContexts(this IServiceCollection services, ContextOptions contextOptions) {
             services.AddPooledDbContextFactory<SubscriptionDbContext>(options =>
-                options.UseSqlServer(contextOptions.Configuration.GetConnectionString(contextOptions.ConnectionStringKey)).LogTo(Console.WriteLine));
+                options.UseSqlServer(contextOptions.Configuration.GetConnectionString(contextOptions.ConnectionStringKey)));
 
             services.AddScoped<ISubscriptionDbContext>(x => {
                 var factory = x.GetRequiredService<IDbContextFactory<SubscriptionDbContext>>();

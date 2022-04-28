@@ -18,9 +18,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Limbo.Subscriptions", "Limb
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Limbo.MailSystem", "Limbo.MailSystem\Limbo.MailSystem.csproj", "{64A0AB96-A09F-48EA-90AF-E74B3EED7620}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Limbo.Umbraco.MailSystem", "Limbo.Umbraco.MailSystem\Limbo.Umbraco.MailSystem.csproj", "{AA5579D0-73F0-494E-AE3A-9CD47C5D620E}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Limbo.MailSystem.Persisence", "Limbo.MailSystem.Persisence\Limbo.MailSystem.Persisence.csproj", "{7701719D-D154-48C0-897B-EEAA4A64E61E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Limbo.MailSystem.Persisence", "Limbo.MailSystem.Persisence\Limbo.MailSystem.Persisence.csproj", "{7701719D-D154-48C0-897B-EEAA4A64E61E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -48,10 +46,6 @@ Global
 		{64A0AB96-A09F-48EA-90AF-E74B3EED7620}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{64A0AB96-A09F-48EA-90AF-E74B3EED7620}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{64A0AB96-A09F-48EA-90AF-E74B3EED7620}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AA5579D0-73F0-494E-AE3A-9CD47C5D620E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AA5579D0-73F0-494E-AE3A-9CD47C5D620E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AA5579D0-73F0-494E-AE3A-9CD47C5D620E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AA5579D0-73F0-494E-AE3A-9CD47C5D620E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7701719D-D154-48C0-897B-EEAA4A64E61E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7701719D-D154-48C0-897B-EEAA4A64E61E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7701719D-D154-48C0-897B-EEAA4A64E61E}.Release|Any CPU.ActiveCfg = Release|Any CPU

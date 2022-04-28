@@ -28,6 +28,8 @@ namespace Limbo.Umbraco.Subscriptions.Queues.Jobs.Recuring {
         private readonly ISubscriberService _subscriberService;
         private readonly DistributeNewsLettersSettings _distributeNewsLettersSettings;
         private readonly INewsletterQueueService _newsletterQueueService;
+        private DateTime _lastSend = default;
+        private readonly object _lastSendLock = new();
 
         public DistributeNewsletters(ILogger<DistributeNewsletters> logger, IRuntimeState runtimeState, IEmailDistributorService emailDistributorService, ISubscriberService subscriberService, IRazorBuilder razorBuilder, DistributeNewsLettersSettings distributeNewsLettersSettings, INewsletterQueueService newsletterQueueService) : base(distributeNewsLettersSettings.HowOftenWeRepeat, distributeNewsLettersSettings.DelayBeforeWeStart) {
             _logger = logger;
@@ -44,6 +46,15 @@ namespace Limbo.Umbraco.Subscriptions.Queues.Jobs.Recuring {
                 if (_runtimeState.Level != RuntimeLevel.Run) {
                     return;
                 }
+
+                lock (_lastSendLock) {
+                    if (!IsDistributionAllowed()) {
+                        return;
+                    }
+
+                    _lastSend = DateTime.UtcNow;
+                }
+
 
                 _logger.LogInformation("Running DistributeNewsletters");
 
@@ -67,6 +78,24 @@ namespace Limbo.Umbraco.Subscriptions.Queues.Jobs.Recuring {
                 _logger.LogError(ex, "Failed to distribute newsletters");
             }
             return;
+        }
+
+        public bool IsDistributionAllowed() {
+            if (_distributeNewsLettersSettings.HowOftenToSend != null) {
+                if (_lastSend.Add(_distributeNewsLettersSettings.HowOftenToSend.Value).ToUniversalTime() > DateTime.UtcNow) {
+                    return false;
+                }
+            } else if (_distributeNewsLettersSettings.AllowedStartTime != null && _distributeNewsLettersSettings.StopTime != null) {
+                if (!IsAllowedTimeofDay()) {
+                    return false;
+                }
+            }
+            return true;
+
+            bool IsAllowedTimeofDay() {
+                return DateTime.UtcNow.TimeOfDay > _distributeNewsLettersSettings.AllowedStartTime.Value.ToUniversalTime().TimeOfDay &&
+                    DateTime.UtcNow.TimeOfDay < _distributeNewsLettersSettings.StopTime.Value.ToUniversalTime().TimeOfDay;
+            }
         }
 
         private async Task ClearQueue(string queueName) {
