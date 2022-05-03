@@ -1,4 +1,4 @@
-﻿using Limbo.DataAccess.Services.Crud;
+﻿using Limbo.EntityFramework.Services.Crud;
 using Limbo.MailSystem.Persisence.MailSegments.Models;
 using Limbo.MailSystem.Persisence.MailSegments.Repositories;
 

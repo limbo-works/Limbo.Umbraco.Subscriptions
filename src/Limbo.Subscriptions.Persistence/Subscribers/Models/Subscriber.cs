@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Limbo.DataAccess.Models;
+using Limbo.EntityFramework.Models;
 using Limbo.Subscriptions.Persistence.Categories.Models;
 using Limbo.Subscriptions.Persistence.SubscriptionItems.Models;
 using Limbo.Subscriptions.Persistence.SubscriptionSystems.Models;

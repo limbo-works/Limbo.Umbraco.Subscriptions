@@ -1,4 +1,4 @@
-﻿using Limbo.DataAccess.Extensions;
+﻿using Limbo.EntityFramework.Extensions;
 using Limbo.Subscriptions.Persistence.Categories.Extensions;
 using Limbo.Subscriptions.Persistence.Contexts.Extensions;
 using Limbo.Subscriptions.Persistence.NewsletterQueues.Extensions;

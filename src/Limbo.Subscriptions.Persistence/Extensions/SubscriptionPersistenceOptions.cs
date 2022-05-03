@@ -1,4 +1,4 @@
-﻿using Limbo.DataAccess.Extensions.Options;
+﻿using Limbo.EntityFramework.Extensions.Options;
 using Limbo.Subscriptions.Persistence.Contexts.Extensions.Options;
 using Microsoft.Extensions.Configuration;
 

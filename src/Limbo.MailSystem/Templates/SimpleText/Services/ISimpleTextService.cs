@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using Limbo.DataAccess.Services.Models;
+using Limbo.EntityFramework.Services.Models;
 using Limbo.MailSystem.Persisence.MailTemplates.Models;
 
 namespace Limbo.MailSystem.Templates.SimpleText.Services {

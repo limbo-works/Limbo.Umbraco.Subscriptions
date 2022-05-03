@@ -1,4 +1,4 @@
-﻿using Limbo.DataAccess.Contexts.Models;
+﻿using Limbo.EntityFramework.Contexts.Models;
 using Limbo.MailSystem.Persisence.MailSegments.Models;
 using Limbo.MailSystem.Persisence.MailTemplates.Models;
 using Limbo.MailSystem.Persisence.SegmentTypes.Models;

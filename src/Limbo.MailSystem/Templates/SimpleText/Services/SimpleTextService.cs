@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Limbo.DataAccess.Services.Models;
+using Limbo.EntityFramework.Services.Models;
 using Limbo.MailSystem.MailTemplates.Services;
 using Limbo.MailSystem.Persisence.MailSegments.Models;
 using Limbo.MailSystem.Persisence.MailTemplates.Models;

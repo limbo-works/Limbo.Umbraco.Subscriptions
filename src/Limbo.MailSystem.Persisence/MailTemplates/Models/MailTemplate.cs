@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
-using Limbo.DataAccess.Models;
+using Limbo.EntityFramework.Models;
 using Limbo.MailSystem.Persisence.MailSegments.Models;
 
 namespace Limbo.MailSystem.Persisence.MailTemplates.Models {
     /// <summary>
     /// A template for a mail
     /// </summary>
-    public class MailTemplate : GenericId {
+    public class MailTemplate : IGenericId {
 
         /// <inheritdoc/>
         public virtual int Id { get; set; }

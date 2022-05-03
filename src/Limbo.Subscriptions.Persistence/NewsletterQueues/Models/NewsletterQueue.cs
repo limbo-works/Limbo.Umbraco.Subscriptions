@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Limbo.DataAccess.Models;
+using Limbo.EntityFramework.Models;
 using Limbo.Subscriptions.Persistence.SubscriptionItems.Models;
 
 namespace Limbo.Subscriptions.Persistence.NewsletterQueues.Models {
