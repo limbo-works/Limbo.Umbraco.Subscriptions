@@ -2,7 +2,7 @@
 using Limbo.MailSystem.Extensions.Options;
 using Limbo.MailSystem.MailSegments.Extensions;
 using Limbo.MailSystem.MailTemplates.Extensions;
-using Limbo.MailSystem.Persisence.Extensions;
+using Limbo.MailSystem.Persistence.Extensions;
 using Limbo.MailSystem.Queue.Extensions;
 using Limbo.MailSystem.SegmentTypes.Extensions;
 using Limbo.MailSystem.Settings.Extensions;

@@ -1,6 +1,6 @@
 ﻿using Limbo.EntityFramework.Services.Crud;
-using Limbo.MailSystem.Persisence.MailTemplates.Models;
-using Limbo.MailSystem.Persisence.MailTemplates.Repositories;
+using Limbo.MailSystem.Persistence.MailTemplates.Models;
+using Limbo.MailSystem.Persistence.MailTemplates.Repositories;
 
 namespace Limbo.MailSystem.MailTemplates.Services {
     /// <summary>

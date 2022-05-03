@@ -2,8 +2,8 @@
 using Limbo.EntityFramework.Services.Crud;
 using Limbo.EntityFramework.Settings;
 using Limbo.EntityFramework.UnitOfWorks;
-using Limbo.MailSystem.Persisence.MailTemplates.Models;
-using Limbo.MailSystem.Persisence.MailTemplates.Repositories;
+using Limbo.MailSystem.Persistence.MailTemplates.Models;
+using Limbo.MailSystem.Persistence.MailTemplates.Repositories;
 using Microsoft.Extensions.Logging;
 
 namespace Limbo.MailSystem.MailTemplates.Services {

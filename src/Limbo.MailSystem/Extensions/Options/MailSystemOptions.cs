@@ -1,4 +1,4 @@
-﻿using Limbo.MailSystem.Persisence.Extensions.Options;
+﻿using Limbo.MailSystem.Persistence.Extensions.Options;
 using Limbo.MailSystem.Settings.Extensions.Options;
 using Microsoft.Extensions.Configuration;
 

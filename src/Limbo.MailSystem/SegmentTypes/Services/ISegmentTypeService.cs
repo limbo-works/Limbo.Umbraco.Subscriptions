@@ -1,6 +1,6 @@
 ﻿using Limbo.EntityFramework.Services.Crud;
-using Limbo.MailSystem.Persisence.SegmentTypes.Models;
-using Limbo.MailSystem.Persisence.SegmentTypes.Repositories;
+using Limbo.MailSystem.Persistence.SegmentTypes.Models;
+using Limbo.MailSystem.Persistence.SegmentTypes.Repositories;
 
 namespace Limbo.MailSystem.SegmentTypes.Services {
     /// <summary>
