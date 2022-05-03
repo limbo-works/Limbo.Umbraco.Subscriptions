@@ -9,7 +9,7 @@ namespace Limbo.Subscriptions.Persistence.SubscriptionItems.Models {
     /// <summary>
     /// Represents a subscription item
     /// </summary>
-    public class SubscriptionItem : GenericId {
+    public class SubscriptionItem : IGenericId {
         /// <summary>
         /// The unique id
         /// </summary>

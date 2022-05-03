@@ -15,7 +15,7 @@ namespace Limbo.Subscriptions.Subscribers.Services {
     public class SubscriberService : CrudServiceBase<Subscriber, ISubscriberRepository>, ISubscriberService {
 
         /// <inheritdoc/>
-        public SubscriberService(ISubscriberRepository repository, ILogger<ServiceBase<ISubscriberRepository>> logger, DataAccessSettings dataAccessSettings, IUnitOfWork<ISubscriberRepository> unitOfWork) : base(repository, logger, dataAccessSettings, unitOfWork) {
+        public SubscriberService(ISubscriberRepository repository, ILogger<ServiceBase<ISubscriberRepository>> logger, EntityFrameworkSettings entityFrameworkSettings, IUnitOfWork<ISubscriberRepository> unitOfWork) : base(repository, logger, entityFrameworkSettings, unitOfWork) {
         }
 
         /// <inheritdoc/>
@@ -27,29 +27,29 @@ namespace Limbo.Subscriptions.Subscribers.Services {
         /// <inheritdoc/>
         public virtual async Task<IServiceResponse<Subscriber>> AddCategories(int id, int[] categoryIds) {
             return await ExecuteServiceTask(async () => {
-                return await repository.AddCategories(id, categoryIds);
-            }, HttpStatusCode.Created, dataAccessSettings.DefaultIsolationLevel);
+                return await Repository.AddCategories(id, categoryIds);
+            }, HttpStatusCode.Created, EntityFrameworkSettings.DefaultIsolationLevel);
         }
 
         /// <inheritdoc/>
         public virtual async Task<IServiceResponse<Subscriber>> AddSubscriptionItems(int id, int[] subscriptionItemIds) {
             return await ExecuteServiceTask(async () => {
-                return await repository.AddSubscriptionItems(id, subscriptionItemIds);
-            }, HttpStatusCode.Created, dataAccessSettings.DefaultIsolationLevel);
+                return await Repository.AddSubscriptionItems(id, subscriptionItemIds);
+            }, HttpStatusCode.Created, EntityFrameworkSettings.DefaultIsolationLevel);
         }
 
         /// <inheritdoc/>
         public virtual async Task<IServiceResponse<Subscriber>> RemoveCategories(int id, int[] categoryIds) {
             return await ExecuteServiceTask(async () => {
-                return await repository.RemoveCategories(id, categoryIds);
-            }, HttpStatusCode.OK, dataAccessSettings.DefaultIsolationLevel);
+                return await Repository.RemoveCategories(id, categoryIds);
+            }, HttpStatusCode.OK, EntityFrameworkSettings.DefaultIsolationLevel);
         }
 
         /// <inheritdoc/>
         public virtual async Task<IServiceResponse<Subscriber>> RemoveSubscriptionItems(int id, int[] subscriptionItemIds) {
             return await ExecuteServiceTask(async () => {
-                return await repository.RemoveSubscriptionItems(id, subscriptionItemIds);
-            }, HttpStatusCode.OK, dataAccessSettings.DefaultIsolationLevel);
+                return await Repository.RemoveSubscriptionItems(id, subscriptionItemIds);
+            }, HttpStatusCode.OK, EntityFrameworkSettings.DefaultIsolationLevel);
         }
 
         /// <inheritdoc/>

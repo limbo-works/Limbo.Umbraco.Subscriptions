@@ -15,7 +15,7 @@ namespace Limbo.Subscriptions.NewsletterQueues.Services {
     public class NewsletterQueueService : CrudServiceBase<NewsletterQueue, INewsletterQueueRepository>, INewsletterQueueService {
 
         /// <inheritdoc/>
-        public NewsletterQueueService(INewsletterQueueRepository repository, ILogger<ServiceBase<INewsletterQueueRepository>> logger, DataAccessSettings dataAccessSettings, IUnitOfWork<INewsletterQueueRepository> unitOfWork) : base(repository, logger, dataAccessSettings, unitOfWork) {
+        public NewsletterQueueService(INewsletterQueueRepository repository, ILogger<ServiceBase<INewsletterQueueRepository>> logger, EntityFrameworkSettings entityFrameworkSettings, IUnitOfWork<INewsletterQueueRepository> unitOfWork) : base(repository, logger, entityFrameworkSettings, unitOfWork) {
         }
 
         /// <inheritdoc/>
@@ -27,14 +27,14 @@ namespace Limbo.Subscriptions.NewsletterQueues.Services {
         /// <inheritdoc/>
         public virtual async Task<IServiceResponse<NewsletterQueue>> AddSubscriptionItems(int id, int[] subscriptionItemIds) {
             return await ExecuteServiceTask(async () => {
-                return await repository.AddSubscriptionItems(id, subscriptionItemIds);
+                return await Repository.AddSubscriptionItems(id, subscriptionItemIds);
             }, HttpStatusCode.Created, IsolationLevel.Serializable);
         }
 
         /// <inheritdoc/>
         public virtual async Task<IServiceResponse<NewsletterQueue>> RemoveSubscriptionItems(int id, int[] subscriptionItemIds) {
             return await ExecuteServiceTask(async () => {
-                return await repository.RemoveSubscriptionItems(id, subscriptionItemIds);
+                return await Repository.RemoveSubscriptionItems(id, subscriptionItemIds);
             }, HttpStatusCode.OK, IsolationLevel.Serializable);
         }
 

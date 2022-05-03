@@ -26,7 +26,7 @@ namespace Limbo.Subscriptions.Persistence.Extensions {
                 .AddSubscribers()
                 .AddSubcriptionItems()
                 .AddSubscriptionSystems()
-                .AddDataAccess(subscriptionPersistenceOptions.DataAccessOptions);
+                .AddEntityFramework(subscriptionPersistenceOptions.DataAccessOptions);
 
             return services;
         }

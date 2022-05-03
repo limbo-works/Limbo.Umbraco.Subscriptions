@@ -14,7 +14,7 @@ namespace Limbo.Subscriptions.SubscriptionSystems.Services {
     public class SubscriptionSystemService : CrudServiceBase<SubscriptionSystem, ISubscriptionSystemRepository>, ISubscriptionSystemService {
 
         /// <inheritdoc/>
-        public SubscriptionSystemService(ISubscriptionSystemRepository repository, ILogger<ServiceBase<ISubscriptionSystemRepository>> logger, DataAccessSettings dataAccessSettings, IUnitOfWork<ISubscriptionSystemRepository> unitOfWork) : base(repository, logger, dataAccessSettings, unitOfWork) {
+        public SubscriptionSystemService(ISubscriptionSystemRepository repository, ILogger<ServiceBase<ISubscriptionSystemRepository>> logger, EntityFrameworkSettings entityFrameworkSettings, IUnitOfWork<ISubscriptionSystemRepository> unitOfWork) : base(repository, logger, entityFrameworkSettings, unitOfWork) {
         }
 
         /// <inheritdoc/>

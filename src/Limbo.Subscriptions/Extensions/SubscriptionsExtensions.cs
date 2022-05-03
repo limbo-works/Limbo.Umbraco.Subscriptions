@@ -3,10 +3,10 @@ using Limbo.Subscriptions.Bases.Automapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Limbo.MailSystem.Extensions;
-using Limbo.MailSystem.Persisence.Extensions;
 using Limbo.Subscriptions.Extensions.Options;
 
 namespace Limbo.Subscriptions.Extensions {
+    
     /// <inheritdoc/>
     public static class SubscriptionsExtensions {
 

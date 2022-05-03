@@ -8,7 +8,7 @@ namespace Limbo.Subscriptions.Persistence.Categories.Models {
     /// <summary>
     /// Represents a category
     /// </summary>
-    public class Category : GenericId {
+    public class Category : IGenericId {
         /// <summary>
         /// The unique id
         /// </summary>

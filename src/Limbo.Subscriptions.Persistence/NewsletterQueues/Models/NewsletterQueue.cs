@@ -7,7 +7,7 @@ namespace Limbo.Subscriptions.Persistence.NewsletterQueues.Models {
     /// <summary>
     /// Represents a newsletter queue
     /// </summary>
-    public class NewsletterQueue : GenericId {
+    public class NewsletterQueue : IGenericId {
         /// <summary>
         /// The unique id
         /// </summary>

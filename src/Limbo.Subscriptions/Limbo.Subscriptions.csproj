@@ -1,47 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
     <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <PropertyGroup>
     <Version>1.0.0-preview.0</Version>
-    <Authors>nikcio</Authors>
     <Company>Limbo</Company>
-    <Description>A package for subscriptions on subscription items</Description>
+    <Authors>nikcio</Authors>
+    <Copyright>Copyright © 2022</Copyright>
+    <Description>A package for subscriptions on subscription items.</Description>
+  </PropertyGroup>
+
+  <!-- Information for the NuGet package -->
+  <PropertyGroup>
+    <PackageId>Limbo.Subscriptions</PackageId>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/limbo-works/Limbo.Umbraco.Subscriptions</PackageProjectUrl>
     <PackageIcon>Limbo.png</PackageIcon>
     <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/limbo-works/Limbo.Umbraco.Subscriptions</RepositoryUrl>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
 
+  <!-- Include NuGet dependencies -->
   <ItemGroup>
-    <None Include="..\..\Limbo.png">
-      <Pack>True</Pack>
-      <PackagePath>\</PackagePath>
-    </None>
-    <None Include="..\..\README.md">
-      <Pack>True</Pack>
-      <PackagePath>\</PackagePath>
-    </None>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
+    <PackageReference Include="HotChocolate.AspNetCore" Version="12.8.1" />
+    <PackageReference Include="HotChocolate.AspNetCore.Authorization" Version="12.8.1" />
+    <PackageReference Include="HotChocolate.Data" Version="12.8.1" />
+    <PackageReference Include="HotChocolate.Data.EntityFramework" Version="12.8.1" />
   </ItemGroup>
 
+  <!-- Include solution projects -->
   <ItemGroup>
     <ProjectReference Include="..\Limbo.MailSystem\Limbo.MailSystem.csproj" />
     <ProjectReference Include="..\Limbo.Subscriptions.Persistence\Limbo.Subscriptions.Persistence.csproj" />
   </ItemGroup>
 
-	<ItemGroup>
-		<PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
-		<PackageReference Include="HotChocolate.AspNetCore" Version="12.8.1" />
-		<PackageReference Include="HotChocolate.AspNetCore.Authorization" Version="12.8.1" />
-		<PackageReference Include="HotChocolate.Data" Version="12.8.1" />
-		<PackageReference Include="HotChocolate.Data.EntityFramework" Version="12.8.1" />
-	</ItemGroup>
+  <!-- Generate XML documentation -->
+  <PropertyGroup>
+    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
+  </PropertyGroup>
 
-  
-    <!-- Generate XML documentation -->
-    <PropertyGroup>
-        <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
-    </PropertyGroup>
+  <!-- Include package icon and readme file for the NuGet package -->
+  <ItemGroup>
+    <None Include="..\..\Limbo.png" Pack="true" PackagePath="\" />
+    <None Include="..\..\README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
 
 </Project>

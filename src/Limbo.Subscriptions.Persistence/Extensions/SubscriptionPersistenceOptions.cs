@@ -15,7 +15,7 @@ namespace Limbo.Subscriptions.Persistence.Extensions {
         /// <summary>
         /// Options for data access
         /// </summary>
-        public DataAccessOptions DataAccessOptions { get; set; }
+        public EntityFrameworkOptions DataAccessOptions { get; set; }
 
         /// <inheritdoc/>
         public SubscriptionPersistenceOptions(IConfiguration configuration) {
