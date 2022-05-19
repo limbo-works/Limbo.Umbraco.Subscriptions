@@ -10,16 +10,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.editorconfig = .editorconfig
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Limbo.Subscriptions.Persistence", "Limbo.Subscriptions.Persistence\Limbo.Subscriptions.Persistence.csproj", "{DC8772C1-2F54-4FC0-BB8D-8F018F2E4C64}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestProject", "TestProject\TestProject.csproj", "{052F8504-12B7-47DB-B60C-1773D29D8715}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Limbo.Subscriptions", "Limbo.Subscriptions\Limbo.Subscriptions.csproj", "{D8718051-C8E1-47BD-8271-81B3198D8774}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Limbo.MailSystem", "Limbo.MailSystem\Limbo.MailSystem.csproj", "{64A0AB96-A09F-48EA-90AF-E74B3EED7620}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Limbo.MailSystem.Persistence", "Limbo.MailSystem.Persistence\Limbo.MailSystem.Persistence.csproj", "{7701719D-D154-48C0-897B-EEAA4A64E61E}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
