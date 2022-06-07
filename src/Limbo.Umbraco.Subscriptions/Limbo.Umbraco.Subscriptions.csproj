@@ -30,18 +30,6 @@
     <RepositoryUrl>https://github.com/limbo-works/Limbo.Umbraco.Subscriptions</RepositoryUrl>
   </PropertyGroup>
 
-  <!-- Information for the NuGet package -->
-  <PropertyGroup>
-    <PackageId>Limbo.Umbraco.Subscriptions</PackageId>
-    <PackageTags>umbraco plugin package</PackageTags>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageProjectUrl>https://github.com/limbo-works/Limbo.Umbraco.Subscriptions</PackageProjectUrl>
-    <PackageIcon>Limbo.png</PackageIcon>
-    <PackageReadmeFile>README.md</PackageReadmeFile>
-    <RepositoryType>git</RepositoryType>
-    <RepositoryUrl>https://github.com/limbo-works/Limbo.Umbraco.Subscriptions</RepositoryUrl>
-  </PropertyGroup>
-
   <!-- Include backoffice assets -->
   <ItemGroup>
     <Content Include="App_Plugins\Limbo.Umbraco.Subscriptions\**\*.*" />
