@@ -42,7 +42,7 @@
 
   <!-- Information for the NuGet package -->
   <ItemGroup>
-    <PackageReference Include="Limbo.Subscriptions" Version="1.0.0-preview.0" />
+    <PackageReference Include="Limbo.Subscriptions" Version="1.0.0-beta001" />
     <PackageReference Include="Umbraco.Cms.Web.Website" Version="9.0.0" />
     <PackageReference Include="Umbraco.Cms.Web.BackOffice" Version="9.0.0" />
   </ItemGroup>
