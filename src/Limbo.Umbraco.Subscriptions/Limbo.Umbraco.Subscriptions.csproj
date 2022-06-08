@@ -4,7 +4,7 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
-    <ContentTargetFolders>.</ContentTargetFolders>
+    <ContentTargetFolders>content</ContentTargetFolders>
     <RootNamespace>Limbo.Umbraco.Subscriptions</RootNamespace>
     <Nullable>enable</Nullable>
   </PropertyGroup>
